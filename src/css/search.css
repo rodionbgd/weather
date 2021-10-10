@@ -1,0 +1,66 @@
+:root {
+  --rad: 0.5rem;
+  --dur: 0.3s;
+  --color-light: #427f9d;
+  --input-color: #daf4fd;
+  --height: 100%;
+  --btn-width: 5rem;
+  --bez: cubic-bezier(0, 0, 0.43, 1.49);
+}
+.search_div {
+  height: 80%;
+}
+form {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width: 20em;
+  border-radius: var(--rad);
+  font-size: inherit;
+}
+
+input,
+.search-button {
+  height: var(--height);
+  border: 0;
+  margin-top: 0;
+  color: var(--header-color);
+  font-size: 1.6rem;
+}
+
+input[type="search"] {
+  outline: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--input-color);
+  padding: 0 1.6rem;
+  border-radius: var(--rad);
+  z-index: 1;
+  position: relative;
+}
+
+.search-button {
+  position: relative;
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: var(--btn-width);
+  font-weight: bold;
+  background: var(--input-color);
+  border-radius: 0 var(--rad) var(--rad) 0;
+  cursor: pointer;
+}
+
+.search-button img {
+  width: 50%;
+  height: 80%;
+}
+
+input:not(:placeholder-shown) {
+  border-radius: var(--rad) 0 0 var(--rad);
+  width: calc(100% - var(--btn-width));
+}
