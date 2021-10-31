@@ -8,7 +8,7 @@
     "lint": "eslint . && prettier --check .",
     "lint:fix": "eslint --fix . && prettier --write .",
     "prepare": "husky install",
-    "dev": "webpack serve --node-env development",
+    "dev": "webpack --node-env development",
     "build": "webpack --node-env production"
   },
   "husky": {
@@ -43,6 +43,7 @@
     "@types/jest": "^26.0.24",
     "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.2",
+    "babel-plugin-rewire": "^1.2.0",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.2.0",
@@ -62,6 +63,7 @@
     "mini-css-extract-plugin": "^2.2.0",
     "prettier": "2.3.2",
     "regenerator-runtime": "^0.13.9",
+    "rewire": "^5.0.0",
     "sass": "^1.38.0",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.2.1",

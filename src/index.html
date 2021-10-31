@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
-    <script src="//www.webglearth.com/v2/api.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://use.fontawesome.com/b4ab91725e.js"></script>
+    <script src="https://www.webglearth.com/v2/api.js" defer></script>
   </head>
   <body>
     <header class="header">
@@ -27,52 +29,72 @@
     </header>
     <div id="loading"></div>
     <main id="app" class="section">
-      <div class="section-content">
-        <div class="current-container">
+      <article class="section-content">
+        <section class="current-container">
           <div>
             <span id="day" class="date-color"></span>
             <h2 id="current-city"></h2>
           </div>
           <div>
             <div class="current-temp">
-              <img id="current-city-img" alt="" src="icons/load.gif" />
-              <span id="current-city-celsius" class="heading"></span>
+              <aside>
+                <img
+                  id="current-city-img"
+                  class="current-city-img"
+                  alt=""
+                  src="icons/load.gif"
+                />
+                <span id="current-city-celsius" class="heading"></span>
+              </aside>
+              <aside>
+                <span id="current-temp-max" class="current-temp-max"></span>
+                <span id="current-temp-min" class="current-temp-min"></span>
+              </aside>
             </div>
             <div id="current-city-weather" class="current-city-weather"></div>
-            <ul class="weather-items">
-              <li>
-                <div id="current-city-wind">
-                  <img class="icon" alt="" src="" /><span class="symbol"></span>
-                </div>
-              </li>
-              <li>
-                <img
-                  class="icon"
-                  src="./icons/icons8-atmospheric-pressure-40.png"
-                  alt=""
-                />
-                <span id="current-city-pressure" class="symbol"></span>
-              </li>
-              <li>
-                <img class="icon" src="./icons/icons8-humidity-64.png" alt="" />
-                <span id="current-city-humidity" class="symbol"></span>
-              </li>
-              <li>
-                <img class="icon" src="./icons/icons8-sunrise-40.png" alt="" />
-                <span id="current-city-sunrise" class="symbol"></span>
-                <img class="icon" src="./icons/icons8-sunset-48.png" alt="" />
-                <span id="current-city-sunset" class="symbol"></span>
-              </li>
-            </ul>
           </div>
-        </div>
-        <div class="map">
+        </section>
+        <section id="slider" class="slider"></section>
+        <section class="map">
           <div id="map" class="map__wrap" style="overflow: visible"></div>
-        </div>
-        <div class="city_list">
+        </section>
+        <section class="city_list">
           <div id="city-list" class="city_list__profiles"></div>
-        </div>
-      </div>
+        </section>
+        <section id="weather-items" class="weather-items">
+          <h1>Подробный прогноз</h1>
+          <ul>
+            <li>
+              <div id="current-city-wind">
+                <img class="icon" alt="" src="" /><span class="symbol"></span>
+              </div>
+            </li>
+            <li>
+              <img
+                class="icon"
+                src="./icons/icons8-atmospheric-pressure-40.png"
+                alt=""
+              />
+              <span id="current-city-pressure" class="symbol"></span>
+            </li>
+            <li>
+              <img class="icon" src="./icons/icons8-humidity-64.png" alt="" />
+              <span id="current-city-humidity" class="symbol"></span>
+            </li>
+            <li>
+              <img class="icon" src="./icons/icons8-sunrise-40.png" alt="" />
+              <span id="current-city-sunrise" class="symbol"></span>
+              <img class="icon" src="./icons/icons8-sunset-48.png" alt="" />
+              <span id="current-city-sunset" class="symbol"></span>
+            </li>
+          </ul>
+        </section>
+      </article>
     </main>
+    <footer class="footer">
+      <a href="https://t.me/rodionbgd" class="footer__contact" target="_blank">
+        <i class="fa fa-telegram" aria-hidden="true"></i>
+      </a>
+    </footer>
   </body>
 </html>
