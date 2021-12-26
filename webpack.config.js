@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  entry: "./src/weather.js",
+  entry: "./src/index.js",
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),

@@ -1,4 +1,4 @@
-import { setCurrentCityWeather, currentCityImg } from "./city_weather";
+import { setCurrentCityWeather, currentCityImg } from "./current_city_weather";
 import addCityToList from "./add_city";
 import Slider from "./slider";
 
@@ -70,7 +70,7 @@ export function initMap(coords) {
   map.setView([coords.latitude, coords.longitude], ZOOM);
 }
 
-export function createMap(coords, city, renderCity,/* location*/) {
+export function createMap(coords, city, renderCity /* location */) {
   currentCityImg.src = "icons/load.gif";
   if (!city) return;
   fetch(

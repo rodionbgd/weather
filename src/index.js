@@ -1,8 +1,8 @@
 import Slider from "./slider";
 
 import { createMap } from "./map";
-import { init, searchForm } from "./render";
-import { currentCity, setCurrentCityWeather } from "./city_weather";
+import { init, searchForm } from "./init";
+import { currentCity, setCurrentCityWeather } from "./current_city_weather";
 
 const headerTitle = document.querySelector(".header__title");
 let sliderDesktop = null;
