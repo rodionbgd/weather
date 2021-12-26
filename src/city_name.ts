@@ -1,17 +1,19 @@
 import { createMap } from "./map";
 
-const input = document.getElementById("search");
-const searchBtn = document.getElementById("search-button");
-export const searchForm = document.getElementById("search-form");
+const input = <HTMLInputElement>document.getElementById("search");
+const searchBtn = <HTMLButtonElement>document.getElementById("search-button");
+export const searchForm = <HTMLFormElement>(
+  document.getElementById("search-form")
+);
 
-export function getCityByCoords(coords) {
-  const latlng = new window.google.maps.LatLng(
+export function getCityByCoords(coords: GeolocationCoordinates) {
+  const latLng = new window.google.maps.LatLng(
     coords.latitude,
     coords.longitude
   );
   return new window.google.maps.Geocoder().geocode(
-    { latLng: latlng },
-    (results, status) => {
+    { latLng },
+    (results: any[], status: any) => {
       if (status === window.google.maps.GeocoderStatus.OK) {
         if (results[1]) {
           let country = null;
@@ -62,7 +64,7 @@ export function getCityByCoords(coords) {
             }
           }
           if (city) {
-            createMap(coords, city, true, true);
+            createMap(coords, city, true /* , true */);
           }
         }
       }
@@ -70,22 +72,22 @@ export function getCityByCoords(coords) {
   );
 }
 
-function getCityByName(value) {
+function getCityByName(value: string) {
   const geocoder = new window.google.maps.Geocoder();
 
   geocoder.geocode(
     {
       address: value,
     },
-    (results, status) => {
+    (results: any, status: any) => {
       if (!value) return;
       if (status === window.google.maps.GeocoderStatus.OK) {
         const coords = {
           latitude: results[0].geometry.location.lat(),
           longitude: results[0].geometry.location.lng(),
-        };
+        } as GeolocationCoordinates;
         const city = results[0].address_components[0].long_name;
-        createMap(coords, city, true, false);
+        createMap(coords, city, true /* ,false */);
       } else {
         alert("Неправильный город"); // eslint-disable-line no-alert
       }

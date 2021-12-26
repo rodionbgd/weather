@@ -1,17 +1,23 @@
 let shiftX = 0;
 
 export default class Slider {
-  constructor(elem, options) {
+  options: any;
+
+  elem: HTMLElement | null;
+
+  sliderElem: HTMLElement | undefined;
+
+  constructor(elem: HTMLElement | null, options: any) {
     this.options = options;
     this.elem = elem;
-    this.sliderElem = {};
+    this.sliderElem = undefined;
   }
 
   removeSlider() {
     if (window.TOUCH || !this.sliderElem) {
       return;
     }
-    this.sliderElem.parentNode.removeChild(this.sliderElem);
+    this.sliderElem.parentNode!.removeChild(this.sliderElem);
   }
 
   createSlider() {
@@ -33,19 +39,19 @@ export default class Slider {
                                 </div>`;
     }
     if (window.TOUCH) {
-      const section = document.getElementById("slider");
+      const section = <HTMLElement>document.getElementById("slider");
       section.innerHTML = "";
       section.dataset.name = this.options.name;
       section.insertAdjacentHTML("afterbegin", sliderInnerHTML);
       return;
     }
     const section = document.createElement("section");
-    section.dataset.name = this.elem.dataset.name;
+    section.dataset.name = this.elem!.dataset.name;
     section.classList.add("slider");
     section.id = "slider_d";
     section.insertAdjacentHTML("afterbegin", sliderInnerHTML);
     document.body.insertAdjacentElement("afterbegin", section);
-    const coords = this.elem.getBoundingClientRect();
+    const coords = this.elem!.getBoundingClientRect();
     let left = coords.left + (coords.width - section.offsetWidth) / 2;
     let top = coords.top + window.pageYOffset - section.offsetHeight - 5;
     if (left + section.offsetWidth > window.innerWidth)
@@ -56,7 +62,7 @@ export default class Slider {
   }
 
   renderSlider() {
-    const slider = document.getElementById("slider_d");
+    const slider = <HTMLElement>document.getElementById("slider_d");
     if (!slider) return;
     const coords = slider.getBoundingClientRect();
     const sliderLeftBound = slider.offsetLeft;
@@ -70,7 +76,7 @@ export default class Slider {
     slider.addEventListener("dragstart", preventDefault);
     slider.addEventListener("pointerdown", (e) => {
       if (window.TOUCH) return;
-      const hourElem = e.target;
+      const hourElem = <HTMLElement>e.target;
       if (!hourElem.closest("div")) {
         return;
       }
@@ -84,7 +90,7 @@ export default class Slider {
         sliderLeftBound +
         slider.clientLeft;
 
-      function moveAt(pageX) {
+      function moveAt(pageX: number) {
         if (
           (dX < dXPrev &&
             allHourElements[allHourElements.length - 1].getBoundingClientRect()
@@ -100,7 +106,7 @@ export default class Slider {
         });
       }
 
-      function onPointerMove(event) {
+      function onPointerMove(event: MouseEvent) {
         dX = event.pageX - startX;
         moveAt(event.pageX);
       }

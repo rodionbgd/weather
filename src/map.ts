@@ -1,15 +1,16 @@
 import { setCurrentCityWeather, currentCityImg } from "./current_city_weather";
 import addCityToList from "./add_city";
 import Slider from "./slider";
+import { MapWebGL, MarkerWebGL } from "./types";
 
-const mapElem = document.getElementById("map");
+const mapElem = <HTMLDivElement>document.getElementById("map");
 let lastCity = "";
-let marker;
-let map;
+let marker: MarkerWebGL;
+let map: MapWebGL;
 
 const WEATHER_API_KEY = "5df917b322441cc9e193178bf51efa31";
 
-export function createMarker(coords, city) {
+export function createMarker(coords: GeolocationCoordinates, city: string) {
   if (marker) {
     marker.setLatLng([coords.latitude, coords.longitude]);
     marker
@@ -28,7 +29,7 @@ export function createMarker(coords, city) {
     .openPopup();
 }
 
-function flyToCity(coords) {
+function flyToCity(coords: GeolocationCoordinates) {
   if (!map) return;
   map.fitBounds([
     [coords.latitude - 90, coords.longitude - 90],
@@ -43,7 +44,7 @@ function flyToCity(coords) {
   );
 }
 
-export function initMap(coords) {
+export function initMap(coords: GeolocationCoordinates) {
   const ZOOM = 1;
   const baselayer = window.WE.tileLayer(
     "https://webglearth.github.io/webglearth2-offline/{z}/{x}/{y}.jpg",
@@ -70,7 +71,11 @@ export function initMap(coords) {
   map.setView([coords.latitude, coords.longitude], ZOOM);
 }
 
-export function createMap(coords, city, renderCity /* location */) {
+export function createMap(
+  coords: GeolocationCoordinates,
+  city: string,
+  renderCity: boolean /* location */
+) {
   currentCityImg.src = "icons/load.gif";
   if (!city) return;
   fetch(

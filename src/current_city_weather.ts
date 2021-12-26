@@ -1,21 +1,43 @@
-export const currentCity = document.getElementById("current-city");
-export const currentCityImg = document.getElementById("current-city-img");
-const currentCityWind = document.getElementById("current-city-wind");
-export const currentCityWeather = document.getElementById(
-  "current-city-weather"
+import { WeatherData } from "./types";
+
+export const currentCity = <HTMLHeadingElement>(
+  document.getElementById("current-city")
 );
-const currentCityCelsius = document.getElementById("current-city-celsius");
-const currentCityMax = document.getElementById("current-temp-max");
-const currentCityMin = document.getElementById("current-temp-min");
-const currentCityPressure = document.getElementById("current-city-pressure");
-const currentCityHumidity = document.getElementById("current-city-humidity");
-const currentCitySunset = document.getElementById("current-city-sunset");
-const currentCitySunrise = document.getElementById("current-city-sunrise");
-const day = document.getElementById("day");
+export const currentCityImg = <HTMLImageElement>(
+  document.getElementById("current-city-img")
+);
+const currentCityWind = <HTMLDivElement>(
+  document.getElementById("current-city-wind")
+);
+export const currentCityWeather = <HTMLDivElement>(
+  document.getElementById("current-city-weather")
+);
+const currentCityCelsius = <HTMLSpanElement>(
+  document.getElementById("current-city-celsius")
+);
+const currentCityMax = <HTMLSpanElement>(
+  document.getElementById("current-temp-max")
+);
+const currentCityMin = <HTMLSpanElement>(
+  document.getElementById("current-temp-min")
+);
+const currentCityPressure = <HTMLSpanElement>(
+  document.getElementById("current-city-pressure")
+);
+const currentCityHumidity = <HTMLSpanElement>(
+  document.getElementById("current-city-humidity")
+);
+const currentCitySunset = <HTMLSpanElement>(
+  document.getElementById("current-city-sunset")
+);
+const currentCitySunrise = <HTMLSpanElement>(
+  document.getElementById("current-city-sunrise")
+);
+const day = <HTMLSpanElement>document.getElementById("day");
 
 const initialTimeZone = new Date().getTimezoneOffset() * 60;
 
-export function getWindDirection(deg) {
+export function getWindDirection(deg: number) {
   const DIRECTION = [
     "north",
     "north-north-east",
@@ -39,13 +61,15 @@ export function getWindDirection(deg) {
   ];
 }
 
-export function setCurrentCityWeather(options) {
+export function setCurrentCityWeather(options: WeatherData) {
   if (!options) return;
   currentCity.textContent = options.name;
   const imageSrc = options.current.weather[0].icon;
   currentCityImg.src = `./icons/${imageSrc}_icon.png`;
   const windDirection = getWindDirection(options.current.wind_deg);
-  currentCityWind.children[0].src = `./icons/wind/icons8-${windDirection}-80.png`;
+  (
+    currentCityWind.children[0] as HTMLImageElement
+  ).src = `./icons/wind/icons8-${windDirection}-80.png`;
   const windDirectionRu = windDirection
     .split("-")
     .map((val) => {

@@ -1,31 +1,39 @@
 import Slider from "./slider";
 
 import { createMap } from "./map";
-import { init, searchForm } from "./init";
+import init from "./init";
+import { searchForm } from "./city_name";
 import { currentCity, setCurrentCityWeather } from "./current_city_weather";
 
-const headerTitle = document.querySelector(".header__title");
-let sliderDesktop = null;
+const headerTitle = <HTMLDivElement>document.querySelector(".header__title");
+let sliderDesktop: Slider | null;
 
 document.addEventListener("DOMContentLoaded", init);
 document.addEventListener("pointerdown", (e) => {
-  const city = e.target.closest(".city_list__profile");
+  const city = <HTMLElement>(
+    (e.target as HTMLElement).closest(".city_list__profile")
+  );
   if (city) {
     if (window.TOUCH && currentCity.textContent !== city.dataset.name) {
       const sliderM = new Slider(
-        city,
-        JSON.parse(localStorage[city.dataset.name]).hourly
+        city as HTMLElement,
+        JSON.parse(localStorage[city.dataset.name as string]).hourly
       );
       sliderM.createSlider();
     }
-    setCurrentCityWeather(JSON.parse(localStorage[city.dataset.name]));
+    setCurrentCityWeather(
+      JSON.parse(localStorage[city.dataset.name as string])
+    );
     if (window.TOUCH) return;
     let sliderRemoved = false;
     // if (window.TOUCH)
     //     slider = document.getElementById("slider");
     if (sliderDesktop) {
       sliderDesktop.removeSlider();
-      if (sliderDesktop.sliderElem.dataset.name === city.dataset.name) {
+      if (
+        sliderDesktop.sliderElem &&
+        sliderDesktop.sliderElem.dataset.name === city.dataset.name
+      ) {
         sliderRemoved = true;
         sliderDesktop = null;
       }
@@ -35,34 +43,35 @@ document.addEventListener("pointerdown", (e) => {
       const initCoords = city.getBoundingClientRect();
       const shiftX = e.clientX;
       const startX = e.pageX;
-      city.style = "";
+      city.setAttribute("style", "");
       city.style.position = "relative";
-      city.style.zIndex = 1000;
-      const onPointerMove = function onPointerMove(event) {
+      city.style.zIndex = `${1000}`;
+      const onPointerMove = function onPointerMove(event: PointerEvent) {
         city.style.left = `${event.pageX - shiftX}px`;
-        city.style.opacity =
+        city.style.opacity = `${
           1 -
           2 *
             Math.abs(
               (initCoords.left - city.getBoundingClientRect().left) /
                 (initCoords.left - initCoords.width / 2)
-            );
+            )
+        }`;
       };
 
-      const endMove = function endMove(event) {
+      const endMove = function endMove(event: PointerEvent) {
         document.removeEventListener("pointermove", onPointerMove);
         document.removeEventListener("pointerup", endMove);
         if (Math.abs(startX - event.clientX) > initCoords.width / 2) {
           if (
             Object.prototype.hasOwnProperty.call(
               localStorage,
-              city.dataset.name
+              city.dataset.name as string
             )
           ) {
-            delete localStorage[city.dataset.name];
+            delete localStorage[city.dataset.name as string];
           }
           if (!Object.keys(localStorage).length) {
-            const elem = document.querySelector(".city_list");
+            const elem = <HTMLElement>document.querySelector(".city_list");
             elem.style.display = "none";
           }
           if (sliderDesktop && !window.TOUCH) {
@@ -77,8 +86,8 @@ document.addEventListener("pointerdown", (e) => {
         }
         city.style.transition = "left 0.5s, opacity 0.5s";
         city.style.left = `${0}px`;
-        city.style.opacity = 1;
-        city.style = "";
+        city.style.opacity = `${1}`;
+        city.setAttribute("style", "");
       };
       document.addEventListener("pointermove", onPointerMove);
       document.addEventListener("pointerup", endMove);
@@ -87,7 +96,7 @@ document.addEventListener("pointerdown", (e) => {
     if (!sliderRemoved && !window.TOUCH) {
       sliderDesktop = new Slider(
         city,
-        JSON.parse(localStorage[city.dataset.name]).hourly
+        JSON.parse(localStorage[city.dataset.name as string]).hourly
       );
       sliderDesktop.createSlider.call(sliderDesktop);
       sliderDesktop.renderSlider.call(sliderDesktop);
@@ -96,7 +105,7 @@ document.addEventListener("pointerdown", (e) => {
     !window.TOUCH &&
     !city &&
     sliderDesktop &&
-    e.target.closest(".slider") !== sliderDesktop.sliderElem
+    (e.target as HTMLElement).closest(".slider") !== sliderDesktop.sliderElem
   ) {
     sliderDesktop.removeSlider();
     sliderDesktop = null;
@@ -106,20 +115,20 @@ document.addEventListener("pointerdown", (e) => {
 document.body.addEventListener("selectstart", (e) => e.preventDefault());
 searchForm.addEventListener("submit", (e) => e.preventDefault());
 headerTitle.addEventListener("pointerenter", () => {
-  headerTitle.querySelector("img").src = "icons/header_over_icon.png";
+  headerTitle.querySelector("img")!.src = "icons/header_over_icon.png";
 });
 headerTitle.addEventListener("pointerleave", () => {
-  headerTitle.querySelector("img").src = "icons/header_out_icon.png";
+  headerTitle.querySelector("img")!.src = "icons/header_out_icon.png";
 });
 headerTitle.addEventListener("click", () => {
-  if (!localStorage[currentCity.textContent]) return;
+  if (!localStorage[currentCity.innerHTML as string]) return;
   createMap(
     {
-      latitude: JSON.parse(localStorage[currentCity.textContent]).lat,
-      longitude: JSON.parse(localStorage[currentCity.textContent]).lon,
-    },
-    JSON.parse(localStorage[currentCity.textContent]).name,
-    true,
-    false
+      latitude: JSON.parse(localStorage[currentCity.innerHTML]).lat,
+      longitude: JSON.parse(localStorage[currentCity.innerHTML]).lon,
+    } as GeolocationCoordinates,
+    JSON.parse(localStorage[currentCity.innerHTML]).name,
+    true
+    /* / false */
   );
 });
