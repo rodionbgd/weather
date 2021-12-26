@@ -70,7 +70,7 @@ export function initMap(coords) {
   map.setView([coords.latitude, coords.longitude], ZOOM);
 }
 
-export function createMap(coords, city, renderCity, location) {
+export function createMap(coords, city, renderCity,/* location*/) {
   currentCityImg.src = "icons/load.gif";
   if (!city) return;
   fetch(
@@ -83,7 +83,7 @@ export function createMap(coords, city, renderCity, location) {
       const optionsHour = data;
       optionsHour.name = city;
       if (renderCity) {
-        setCurrentCityWeather(optionsHour, location);
+        setCurrentCityWeather(optionsHour);
       }
       addCityToList(optionsHour);
       if (window.TOUCH && renderCity) {

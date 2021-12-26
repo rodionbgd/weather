@@ -9,7 +9,6 @@ export function getCityByCoords(coords) {
     coords.latitude,
     coords.longitude
   );
-
   return new window.google.maps.Geocoder().geocode(
     { latLng: latlng },
     (results, status) => {

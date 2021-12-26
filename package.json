@@ -59,6 +59,7 @@
     "jest-fetch-mock": "^3.0.3",
     "lint-staged": "^11.1.2",
     "live-server": "^1.2.1",
+    "live-server-https": "0.0.2",
     "load-google-maps-api": "^2.0.2",
     "mini-css-extract-plugin": "^2.2.0",
     "prettier": "2.3.2",
