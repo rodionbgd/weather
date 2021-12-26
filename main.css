@@ -260,7 +260,8 @@ body {
 }
 
 @media (hover: none) and (pointer: coarse) {
-  html, body {
+  html,
+  body {
     min-height: 100%;
   }
 }
