@@ -252,6 +252,19 @@ body {
   background: linear-gradient(to bottom right, #4a6dc6, #54ccb0);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body {
+    height: 100%;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  html, body {
+    min-height: 100%;
+  }
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -259,7 +272,8 @@ body {
   font-family: Solis, Arial, Helvetica, sans-serif;
   font-size: calc(0.5em + 1vw);
   color: var(--main-color);
-  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 #loading {
@@ -464,11 +478,6 @@ body {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  html,
-  body {
-    height: 100%;
-  }
-
   .section {
     margin-top: 15vh;
     width: 100%;
