@@ -17,9 +17,12 @@ export type MapWebGL = {
   panInsideBounds: any;
   setView: any;
 };
-export type WeatherData = {
-  name: string;
+
+export type CityWeather = {
+  timezone: string;
   timezone_offset: number;
+  lat: number;
+  lon: number;
   current: {
     humidity: number;
     pressure: number;
@@ -31,4 +34,15 @@ export type WeatherData = {
     wind_speed: number;
   };
   hourly: [{ temp: number }];
+};
+export type Coords = {
+  latitude: number;
+  longitude: number;
+};
+export type City = {
+  name: string;
+  coords: Coords;
+  isCurrentCity?: boolean;
+  updateTime: string;
+  weather: CityWeather;
 };

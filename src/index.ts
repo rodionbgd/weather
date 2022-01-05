@@ -1,20 +1,31 @@
+import { configureStore } from "@reduxjs/toolkit";
 import Slider from "./slider";
-
-import { createMap } from "./map";
 import init from "./init";
 import { searchForm } from "./city_name";
-import { currentCity, setCurrentCityWeather } from "./current_city_weather";
+import {
+  currentCityEl,
+  getCityWeather,
+  setCurrentCityWeather,
+} from "./current_city_weather";
+import { addCity, citySlice } from "./reducers/cities";
+import { City, CityWeather } from "./types";
 
 const headerTitle = <HTMLDivElement>document.querySelector(".header__title");
 let sliderDesktop: Slider | null;
 
+// eslint-disable-next-line
+export const store = configureStore({
+  reducer: {
+    cities: citySlice.reducer,
+  },
+});
 document.addEventListener("DOMContentLoaded", init);
 document.addEventListener("pointerdown", (e) => {
   const city = <HTMLElement>(
     (e.target as HTMLElement).closest(".city_list__profile")
   );
   if (city) {
-    if (window.TOUCH && currentCity.textContent !== city.dataset.name) {
+    if (window.TOUCH && currentCityEl.textContent !== city.dataset.name) {
       const sliderM = new Slider(
         city as HTMLElement,
         JSON.parse(localStorage[city.dataset.name as string]).hourly
@@ -120,15 +131,25 @@ headerTitle.addEventListener("pointerenter", () => {
 headerTitle.addEventListener("pointerleave", () => {
   headerTitle.querySelector("img")!.src = "icons/header_out_icon.png";
 });
-headerTitle.addEventListener("click", () => {
-  if (!localStorage[currentCity.innerHTML as string]) return;
-  createMap(
-    {
-      latitude: JSON.parse(localStorage[currentCity.innerHTML]).lat,
-      longitude: JSON.parse(localStorage[currentCity.innerHTML]).lon,
-    } as GeolocationCoordinates,
-    JSON.parse(localStorage[currentCity.innerHTML]).name,
-    true
-    /* / false */
-  );
+headerTitle.addEventListener("click", async () => {
+  if (!currentCityEl.innerHTML) return;
+  let city = store
+    .getState()
+    .cities.filter((item) => item.name === currentCityEl.innerHTML)[0] as City;
+  city = {
+    ...city,
+    updateTime: new Date().toString(),
+    weather: (await getCityWeather(city.coords)) as CityWeather,
+  };
+  store.dispatch(addCity(city));
+  setCurrentCityWeather(city);
+  // await createMap(
+  //     {
+  //         latitude: JSON.parse(localStorage[currentCity.innerHTML]).lat,
+  //         longitude: JSON.parse(localStorage[currentCity.innerHTML]).lon,
+  //     } as GeolocationCoordinates,
+  //     JSON.parse(localStorage[currentCity.innerHTML]).name,
+  //     true
+  //     /* / false */
+  // );
 });

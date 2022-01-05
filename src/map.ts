@@ -1,16 +1,11 @@
-import { setCurrentCityWeather, currentCityImg } from "./current_city_weather";
-import addCityToList from "./add_city";
-import Slider from "./slider";
-import { MapWebGL, MarkerWebGL } from "./types";
+import { Coords, MapWebGL, MarkerWebGL } from "./types";
 
 const mapElem = <HTMLDivElement>document.getElementById("map");
-let lastCity = "";
+// const lastCity = "";
 let marker: MarkerWebGL;
 let map: MapWebGL;
 
-const WEATHER_API_KEY = "5df917b322441cc9e193178bf51efa31";
-
-export function createMarker(coords: GeolocationCoordinates, city: string) {
+export function createMarker(coords: Coords, city: string) {
   if (marker) {
     marker.setLatLng([coords.latitude, coords.longitude]);
     marker
@@ -29,7 +24,7 @@ export function createMarker(coords: GeolocationCoordinates, city: string) {
     .openPopup();
 }
 
-function flyToCity(coords: GeolocationCoordinates) {
+export function flyToCity(coords: Coords) {
   if (!map) return;
   map.fitBounds([
     [coords.latitude - 90, coords.longitude - 90],
@@ -44,7 +39,7 @@ function flyToCity(coords: GeolocationCoordinates) {
   );
 }
 
-export function initMap(coords: GeolocationCoordinates) {
+export function initMap(coords: Coords) {
   const ZOOM = 1;
   const baselayer = window.WE.tileLayer(
     "https://webglearth.github.io/webglearth2-offline/{z}/{x}/{y}.jpg",
@@ -71,34 +66,30 @@ export function initMap(coords: GeolocationCoordinates) {
   map.setView([coords.latitude, coords.longitude], ZOOM);
 }
 
-export function createMap(
-  coords: GeolocationCoordinates,
-  city: string,
-  renderCity: boolean /* location */
-) {
-  currentCityImg.src = "icons/load.gif";
-  if (!city) return;
-  fetch(
-    `https://api.openweathermap.org/data/2.5/onecall` +
-      `?lat=${coords.latitude}&lon=${coords.longitude}` +
-      `&exclude=minutely,daily,alerts&lang=ru&appid=${WEATHER_API_KEY}`
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      const optionsHour = data;
-      optionsHour.name = city;
-      if (renderCity) {
-        setCurrentCityWeather(optionsHour);
-      }
-      addCityToList(optionsHour);
-      if (window.TOUCH && renderCity) {
-        const slider = new Slider(null, optionsHour.hourly);
-        slider.createSlider();
-      }
-      if (!window.TOUCH && optionsHour.name !== lastCity && renderCity) {
-        flyToCity(coords);
-        createMarker(coords, optionsHour.name);
-        lastCity = optionsHour.name;
-      }
-    });
-}
+// export async function createMap(
+//     coords: Coords,
+//     city: string,
+//     renderCity: boolean /* location */
+// ) {
+//     if (!city) return;
+//     // const response = await fetch(
+//     //     `https://api.openweathermap.org/data/2.5/onecall` +
+//     //     `?lat=${coords.latitude}&lon=${coords.longitude}` +
+//     //     `&exclude=minutely,alerts&lang=ru&appid=${WEATHER_API_KEY}`
+//     // );
+//     // const optionsHour = await response.json();
+//     // optionsHour.name = city;
+//     // if (renderCity) {
+//     //     setCurrentCityWeather(optionsHour);
+//     // }
+//     // addCityToLS(optionsHour);
+//     // if (window.TOUCH && renderCity) {
+//     //     const slider = new Slider(null, optionsHour.hourly);
+//     //     slider.createSlider();
+//     // }
+//     if (!window.TOUCH   && city !== lastCity /* && renderCity */) {
+//       flyToCity(coords);
+//       createMarker(coords, city);
+//       lastCity = city;
+//     }
+// }

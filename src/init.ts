@@ -4,20 +4,36 @@ import "./css/slider.css";
 import "./css/style.css";
 
 import { getCityByCoords } from "./city_name";
-import { createMap, initMap } from "./map";
-import { currentCityWeather } from "./current_city_weather";
+import { createMarker, flyToCity, initMap } from "./map";
+import {
+  currentCityEl,
+  currentCityWeather,
+  setCurrentCityWeather,
+} from "./current_city_weather";
+import { store } from "./index";
+import { setCityList } from "./reducers/cities";
+import addGoogleScript from "./utils";
+import addNewCity from "./add_city";
+
+import { City } from "./types";
+import { getCityList, getCurrentCity } from "./get_city";
 
 window.TOUCH = window.matchMedia("(any-hover:none)").matches;
 
-function getCityList() {
-  if (localStorage.length > 5) localStorage.clear();
-  Object.entries(localStorage).forEach(([key, value]) => {
-    const cityListCoords = {
-      latitude: JSON.parse(value).lat,
-      longitude: JSON.parse(value).lon,
-    } as GeolocationCoordinates;
-    createMap(cityListCoords, key, false /* , false */);
-  });
+export function createSubscriber() {
+  const { cities } = store.getState();
+  const currentCity = cities.filter((city) => city.isCurrentCity)[0];
+  if (!currentCity) {
+    return;
+  }
+  if (
+    !window.TOUCH &&
+    currentCity.name !== currentCityEl.innerHTML /* && renderCity */
+  ) {
+    flyToCity(currentCity.coords);
+    createMarker(currentCity.coords, currentCity.name);
+  }
+  setCurrentCityWeather(currentCity);
 }
 
 function loadNow(opacity: number) {
@@ -28,76 +44,71 @@ function loadNow(opacity: number) {
     loading.style.opacity = `${opacity}`;
     setTimeout(() => {
       loadNow(opacity - 0.1);
-    }, 200);
+    }, 100);
   }
 }
 
-export default function init() {
+function getLocation() {
+  // Moscow
+  let coords = {
+    latitude: 55.7558,
+    longitude: 37.6173,
+  };
+  let cityName = "Москва";
+
+  const { cities } = store.getState();
+  store.subscribe(createSubscriber);
+
+  async function success(position: GeolocationPosition) {
+    if (!window.TOUCH) {
+      initMap(position.coords);
+    }
+    const { latitude, longitude } = position.coords;
+    coords = { latitude, longitude };
+    const name = await getCityByCoords(coords);
+    const newCity = await getCurrentCity(name, coords, cities);
+    if (newCity) {
+      addNewCity(newCity);
+    }
+  }
+
+  async function error() {
+    if (cities.length) {
+      const cityData = cities.at(-1) as City;
+      coords = cityData.coords;
+      cityName = cityData.name;
+    }
+    if (!window.TOUCH) {
+      initMap(coords);
+    }
+    cityName = await getCityByCoords(coords);
+    const newCity = await getCurrentCity(cityName, coords, cities);
+    if (newCity) {
+      addNewCity(newCity);
+    }
+  }
+
+  if (!navigator.geolocation) {
+    error();
+  } else {
+    const options = {
+      enableHighAccuracy: true,
+      maximumAge: 60000,
+      timeout: 10000,
+    };
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  }
+}
+
+export default async function init() {
   if (!window.TOUCH) {
     const weatherItems = <HTMLElement>document.getElementById("weather-items");
     weatherItems.firstElementChild!.remove();
     currentCityWeather.insertAdjacentElement("afterend", weatherItems);
   }
   loadNow(1);
-  const script = document.createElement("script");
-  script.type = "text/javascript";
-  script.src =
-    "https://maps.googleapis.com/maps/api/js" +
-    "?key=AIzaSyCFgn8EeO8dUIZuqg7AD-lnG_Yc5jCT4Ek&libraries=places" +
-    "&callback=googleAutoComplete";
-  document.head.append(script);
-
-  let coords = {
-    latitude: 55.7558,
-    longitude: 37.6173,
-  } as GeolocationCoordinates;
-
-  function success(position: GeolocationPosition) {
-    if (!window.TOUCH) {
-      initMap(position.coords);
-    }
-    coords = {
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude,
-    } as GeolocationCoordinates;
-    getCityByCoords(position.coords);
-    getCityList();
-  }
-
-  function error() {
-    let city;
-    if (localStorage.length) {
-      const cityData = JSON.parse(
-        <string>(
-          localStorage.getItem(
-            <string>localStorage.key(localStorage.length - 1)
-          )
-        )
-      );
-      coords = {
-        latitude: cityData.lat,
-        longitude: cityData.lon,
-      } as GeolocationCoordinates;
-      city = cityData.name;
-    }
-    if (!window.TOUCH) {
-      initMap(coords);
-    }
-    if (!city) city = "Москва";
-    createMap(coords, city, true /* , false */);
-    getCityList();
-  }
-
-  if (!navigator.geolocation) {
-    error();
-  } else if (!navigator.geolocation) {
-    error();
-  } else {
-    const options = {
-      enableHighAccuracy: true,
-      maximumAge: 60000,
-      timeout: 5000,
-    };
-    navigator.geolocation.getCurrentPosition(success, error, options);
-  }
+  addGoogleScript();
+  const cityList = await getCityList();
+  store.dispatch(setCityList(cityList));
+  getLocation();
 }

@@ -1,6 +1,8 @@
-import { WeatherData } from "./types";
+import { City, Coords } from "./types";
 
-export const currentCity = <HTMLHeadingElement>(
+const WEATHER_API_KEY = "5df917b322441cc9e193178bf51efa31";
+
+export const currentCityEl = <HTMLHeadingElement>(
   document.getElementById("current-city")
 );
 export const currentCityImg = <HTMLImageElement>(
@@ -61,12 +63,23 @@ export function getWindDirection(deg: number) {
   ];
 }
 
-export function setCurrentCityWeather(options: WeatherData) {
+export async function getCityWeather(coords: Coords) {
+  currentCityImg.src = "icons/load.gif";
+  const response = await fetch(
+    `https://api.openweathermap.org/data/2.5/onecall` +
+      `?lat=${coords.latitude}&lon=${coords.longitude}` +
+      `&exclude=minutely,daily,alerts&lang=ru&appid=${WEATHER_API_KEY}`
+  );
+  return response.json();
+}
+
+export function setCurrentCityWeather(options: City) {
   if (!options) return;
-  currentCity.textContent = options.name;
-  const imageSrc = options.current.weather[0].icon;
+  const { weather } = options;
+  currentCityEl.textContent = options.name;
+  const imageSrc = weather.current.weather[0].icon;
   currentCityImg.src = `./icons/${imageSrc}_icon.png`;
-  const windDirection = getWindDirection(options.current.wind_deg);
+  const windDirection = getWindDirection(weather.current.wind_deg);
   (
     currentCityWind.children[0] as HTMLImageElement
   ).src = `./icons/wind/icons8-${windDirection}-80.png`;
@@ -87,7 +100,7 @@ export function setCurrentCityWeather(options: WeatherData) {
       }
     })
     .join("");
-  currentCityWind.children[1].innerHTML = `${options.current.wind_speed.toFixed(
+  currentCityWind.children[1].innerHTML = `${weather.current.wind_speed.toFixed(
     1
   )} м/с ${windDirectionRu}`;
   day.textContent = new Date().toLocaleDateString("ru-RU", {
@@ -97,41 +110,41 @@ export function setCurrentCityWeather(options: WeatherData) {
     minute: "numeric",
   });
   currentCityWeather.textContent =
-    options.current.weather[0].description[0].toUpperCase() +
-    options.current.weather[0].description.substr(1);
-  currentCityCelsius.textContent = `${(options.current.temp - 273.15).toFixed(
+    weather.current.weather[0].description[0].toUpperCase() +
+    weather.current.weather[0].description.substr(1);
+  currentCityCelsius.textContent = `${(weather.current.temp - 273.15).toFixed(
     0
   )}°`;
   const maxTemp = Math.max(
-    ...options.hourly.slice(0, 25).map((val) => val.temp)
+    ...weather.hourly.slice(0, 25).map((val) => val.temp)
   );
   const minTemp = Math.min(
-    ...options.hourly.slice(0, 25).map((val) => val.temp)
+    ...weather.hourly.slice(0, 25).map((val) => val.temp)
   );
   currentCityMax.innerHTML = `${Math.round(maxTemp - 273.15).toFixed(0)}° `;
   currentCityMin.innerHTML = `/ ${Math.round(minTemp - 273.15).toFixed(0)}°`;
   currentCityPressure.textContent = `${(
-    options.current.pressure / 1.36
+    weather.current.pressure / 1.36
   ).toFixed(0)} мм рт. ст.`;
-  currentCityHumidity.textContent = `${options.current.humidity} %`;
+  currentCityHumidity.textContent = `${weather.current.humidity} %`;
   const sunrise = {
     hour: new Date(
-      (options.current.sunrise + options.timezone_offset + initialTimeZone) *
+      (weather.current.sunrise + weather.timezone_offset + initialTimeZone) *
         1000
     ).getHours(),
     minute: new Date(
-      (options.current.sunrise + options.timezone_offset + initialTimeZone) *
+      (weather.current.sunrise + weather.timezone_offset + initialTimeZone) *
         1000
     ).getMinutes(),
   };
 
   const sunset = {
     hour: new Date(
-      (options.current.sunset + options.timezone_offset + initialTimeZone) *
+      (weather.current.sunset + weather.timezone_offset + initialTimeZone) *
         1000
     ).getHours(),
     minute: new Date(
-      (options.current.sunset + options.timezone_offset + initialTimeZone) *
+      (weather.current.sunset + weather.timezone_offset + initialTimeZone) *
         1000
     ).getMinutes(),
   };
