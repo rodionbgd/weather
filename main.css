@@ -1,81 +1,162 @@
+/**
+ * Swiper 7.4.1
+ * Most modern mobile touch slider and framework with hardware accelerated transitions
+ * https://swiperjs.com
+ *
+ * Copyright 2014-2021 Vladimir Kharlampidi
+ *
+ * Released under the MIT License
+ *
+ * Released on: December 24, 2021
+ */
+
+@font-face{font-family:swiper-icons;src:url("data:application/font-woff;charset=utf-8;base64, d09GRgABAAAAAAZgABAAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAAGRAAAABoAAAAci6qHkUdERUYAAAWgAAAAIwAAACQAYABXR1BPUwAABhQAAAAuAAAANuAY7+xHU1VCAAAFxAAAAFAAAABm2fPczU9TLzIAAAHcAAAASgAAAGBP9V5RY21hcAAAAkQAAACIAAABYt6F0cBjdnQgAAACzAAAAAQAAAAEABEBRGdhc3AAAAWYAAAACAAAAAj//wADZ2x5ZgAAAywAAADMAAAD2MHtryVoZWFkAAABbAAAADAAAAA2E2+eoWhoZWEAAAGcAAAAHwAAACQC9gDzaG10eAAAAigAAAAZAAAArgJkABFsb2NhAAAC0AAAAFoAAABaFQAUGG1heHAAAAG8AAAAHwAAACAAcABAbmFtZQAAA/gAAAE5AAACXvFdBwlwb3N0AAAFNAAAAGIAAACE5s74hXjaY2BkYGAAYpf5Hu/j+W2+MnAzMYDAzaX6QjD6/4//Bxj5GA8AuRwMYGkAPywL13jaY2BkYGA88P8Agx4j+/8fQDYfA1AEBWgDAIB2BOoAeNpjYGRgYNBh4GdgYgABEMnIABJzYNADCQAACWgAsQB42mNgYfzCOIGBlYGB0YcxjYGBwR1Kf2WQZGhhYGBiYGVmgAFGBiQQkOaawtDAoMBQxXjg/wEGPcYDDA4wNUA2CCgwsAAAO4EL6gAAeNpj2M0gyAACqxgGNWBkZ2D4/wMA+xkDdgAAAHjaY2BgYGaAYBkGRgYQiAHyGMF8FgYHIM3DwMHABGQrMOgyWDLEM1T9/w8UBfEMgLzE////P/5//f/V/xv+r4eaAAeMbAxwIUYmIMHEgKYAYjUcsDAwsLKxc3BycfPw8jEQA/gZBASFhEVExcQlJKWkZWTl5BUUlZRVVNXUNTQZBgMAAMR+E+gAEQFEAAAAKgAqACoANAA+AEgAUgBcAGYAcAB6AIQAjgCYAKIArAC2AMAAygDUAN4A6ADyAPwBBgEQARoBJAEuATgBQgFMAVYBYAFqAXQBfgGIAZIBnAGmAbIBzgHsAAB42u2NMQ6CUAyGW568x9AneYYgm4MJbhKFaExIOAVX8ApewSt4Bic4AfeAid3VOBixDxfPYEza5O+Xfi04YADggiUIULCuEJK8VhO4bSvpdnktHI5QCYtdi2sl8ZnXaHlqUrNKzdKcT8cjlq+rwZSvIVczNiezsfnP/uznmfPFBNODM2K7MTQ45YEAZqGP81AmGGcF3iPqOop0r1SPTaTbVkfUe4HXj97wYE+yNwWYxwWu4v1ugWHgo3S1XdZEVqWM7ET0cfnLGxWfkgR42o2PvWrDMBSFj/IHLaF0zKjRgdiVMwScNRAoWUoH78Y2icB/yIY09An6AH2Bdu/UB+yxopYshQiEvnvu0dURgDt8QeC8PDw7Fpji3fEA4z/PEJ6YOB5hKh4dj3EvXhxPqH/SKUY3rJ7srZ4FZnh1PMAtPhwP6fl2PMJMPDgeQ4rY8YT6Gzao0eAEA409DuggmTnFnOcSCiEiLMgxCiTI6Cq5DZUd3Qmp10vO0LaLTd2cjN4fOumlc7lUYbSQcZFkutRG7g6JKZKy0RmdLY680CDnEJ+UMkpFFe1RN7nxdVpXrC4aTtnaurOnYercZg2YVmLN/d/gczfEimrE/fs/bOuq29Zmn8tloORaXgZgGa78yO9/cnXm2BpaGvq25Dv9S4E9+5SIc9PqupJKhYFSSl47+Qcr1mYNAAAAeNptw0cKwkAAAMDZJA8Q7OUJvkLsPfZ6zFVERPy8qHh2YER+3i/BP83vIBLLySsoKimrqKqpa2hp6+jq6RsYGhmbmJqZSy0sraxtbO3sHRydnEMU4uR6yx7JJXveP7WrDycAAAAAAAH//wACeNpjYGRgYOABYhkgZgJCZgZNBkYGLQZtIJsFLMYAAAw3ALgAeNolizEKgDAQBCchRbC2sFER0YD6qVQiBCv/H9ezGI6Z5XBAw8CBK/m5iQQVauVbXLnOrMZv2oLdKFa8Pjuru2hJzGabmOSLzNMzvutpB3N42mNgZGBg4GKQYzBhYMxJLMlj4GBgAYow/P/PAJJhLM6sSoWKfWCAAwDAjgbRAAB42mNgYGBkAIIbCZo5IPrmUn0hGA0AO8EFTQAA");font-weight:400;font-style:normal}:root{--swiper-theme-color:#007aff}.swiper{margin-left:auto;margin-right:auto;position:relative;overflow:hidden;list-style:none;padding:0;z-index:1}.swiper-vertical>.swiper-wrapper{flex-direction:column}.swiper-wrapper{position:relative;width:100%;height:100%;z-index:1;display:flex;transition-property:transform;box-sizing:content-box}.swiper-android .swiper-slide,.swiper-wrapper{transform:translate3d(0px,0,0)}.swiper-pointer-events{touch-action:pan-y}.swiper-pointer-events.swiper-vertical{touch-action:pan-x}.swiper-slide{flex-shrink:0;width:100%;height:100%;position:relative;transition-property:transform}.swiper-slide-invisible-blank{visibility:hidden}.swiper-autoheight,.swiper-autoheight .swiper-slide{height:auto}.swiper-autoheight .swiper-wrapper{align-items:flex-start;transition-property:transform,height}.swiper-3d,.swiper-3d.swiper-css-mode .swiper-wrapper{perspective:1200px}.swiper-3d .swiper-cube-shadow,.swiper-3d .swiper-slide,.swiper-3d .swiper-slide-shadow,.swiper-3d .swiper-slide-shadow-bottom,.swiper-3d .swiper-slide-shadow-left,.swiper-3d .swiper-slide-shadow-right,.swiper-3d .swiper-slide-shadow-top,.swiper-3d .swiper-wrapper{transform-style:preserve-3d}.swiper-3d .swiper-slide-shadow,.swiper-3d .swiper-slide-shadow-bottom,.swiper-3d .swiper-slide-shadow-left,.swiper-3d .swiper-slide-shadow-right,.swiper-3d .swiper-slide-shadow-top{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:10}.swiper-3d .swiper-slide-shadow{background:rgba(0,0,0,.15)}.swiper-3d .swiper-slide-shadow-left{background-image:linear-gradient(to left,rgba(0,0,0,.5),rgba(0,0,0,0))}.swiper-3d .swiper-slide-shadow-right{background-image:linear-gradient(to right,rgba(0,0,0,.5),rgba(0,0,0,0))}.swiper-3d .swiper-slide-shadow-top{background-image:linear-gradient(to top,rgba(0,0,0,.5),rgba(0,0,0,0))}.swiper-3d .swiper-slide-shadow-bottom{background-image:linear-gradient(to bottom,rgba(0,0,0,.5),rgba(0,0,0,0))}.swiper-css-mode>.swiper-wrapper{overflow:auto;scrollbar-width:none;-ms-overflow-style:none}.swiper-css-mode>.swiper-wrapper::-webkit-scrollbar{display:none}.swiper-css-mode>.swiper-wrapper>.swiper-slide{scroll-snap-align:start start}.swiper-horizontal.swiper-css-mode>.swiper-wrapper{scroll-snap-type:x mandatory}.swiper-vertical.swiper-css-mode>.swiper-wrapper{scroll-snap-type:y mandatory}.swiper-centered>.swiper-wrapper::before{content:'';flex-shrink:0;order:9999}.swiper-centered.swiper-horizontal>.swiper-wrapper>.swiper-slide:first-child{margin-inline-start:var(--swiper-centered-offset-before)}.swiper-centered.swiper-horizontal>.swiper-wrapper::before{height:100%;min-height:1px;width:var(--swiper-centered-offset-after)}.swiper-centered.swiper-vertical>.swiper-wrapper>.swiper-slide:first-child{margin-block-start:var(--swiper-centered-offset-before)}.swiper-centered.swiper-vertical>.swiper-wrapper::before{width:100%;min-width:1px;height:var(--swiper-centered-offset-after)}.swiper-centered>.swiper-wrapper>.swiper-slide{scroll-snap-align:center center}
+:root{--swiper-navigation-size:44px}.swiper-button-next,.swiper-button-prev{position:absolute;top:50%;width:calc(var(--swiper-navigation-size)/ 44 * 27);height:var(--swiper-navigation-size);margin-top:calc(0px - (var(--swiper-navigation-size)/ 2));z-index:10;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--swiper-navigation-color,var(--swiper-theme-color))}.swiper-button-next.swiper-button-disabled,.swiper-button-prev.swiper-button-disabled{opacity:.35;cursor:auto;pointer-events:none}.swiper-button-next:after,.swiper-button-prev:after{font-family:swiper-icons;font-size:var(--swiper-navigation-size);text-transform:none!important;letter-spacing:0;text-transform:none;font-variant:initial;line-height:1}.swiper-button-prev,.swiper-rtl .swiper-button-next{left:10px;right:auto}.swiper-button-prev:after,.swiper-rtl .swiper-button-next:after{content:'prev'}.swiper-button-next,.swiper-rtl .swiper-button-prev{right:10px;left:auto}.swiper-button-next:after,.swiper-rtl .swiper-button-prev:after{content:'next'}.swiper-button-lock{display:none}
+.swiper-pagination{position:absolute;text-align:center;transition:.3s opacity;transform:translate3d(0,0,0);z-index:10}.swiper-pagination.swiper-pagination-hidden{opacity:0}.swiper-horizontal>.swiper-pagination-bullets,.swiper-pagination-bullets.swiper-pagination-horizontal,.swiper-pagination-custom,.swiper-pagination-fraction{bottom:10px;left:0;width:100%}.swiper-pagination-bullets-dynamic{overflow:hidden;font-size:0}.swiper-pagination-bullets-dynamic .swiper-pagination-bullet{transform:scale(.33);position:relative}.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active{transform:scale(1)}.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-main{transform:scale(1)}.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-prev{transform:scale(.66)}.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-prev-prev{transform:scale(.33)}.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-next{transform:scale(.66)}.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-next-next{transform:scale(.33)}.swiper-pagination-bullet{width:var(--swiper-pagination-bullet-width,var(--swiper-pagination-bullet-size,8px));height:var(--swiper-pagination-bullet-height,var(--swiper-pagination-bullet-size,8px));display:inline-block;border-radius:50%;background:var(--swiper-pagination-bullet-inactive-color,#000);opacity:var(--swiper-pagination-bullet-inactive-opacity, .2)}button.swiper-pagination-bullet{border:none;margin:0;padding:0;box-shadow:none;-webkit-appearance:none;appearance:none}.swiper-pagination-clickable .swiper-pagination-bullet{cursor:pointer}.swiper-pagination-bullet:only-child{display:none!important}.swiper-pagination-bullet-active{opacity:var(--swiper-pagination-bullet-opacity, 1);background:var(--swiper-pagination-color,var(--swiper-theme-color))}.swiper-pagination-vertical.swiper-pagination-bullets,.swiper-vertical>.swiper-pagination-bullets{right:10px;top:50%;transform:translate3d(0px,-50%,0)}.swiper-pagination-vertical.swiper-pagination-bullets .swiper-pagination-bullet,.swiper-vertical>.swiper-pagination-bullets .swiper-pagination-bullet{margin:var(--swiper-pagination-bullet-vertical-gap,6px) 0;display:block}.swiper-pagination-vertical.swiper-pagination-bullets.swiper-pagination-bullets-dynamic,.swiper-vertical>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic{top:50%;transform:translateY(-50%);width:8px}.swiper-pagination-vertical.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet,.swiper-vertical>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet{display:inline-block;transition:.2s transform,.2s top}.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet,.swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet{margin:0 var(--swiper-pagination-bullet-horizontal-gap,4px)}.swiper-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic,.swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic{left:50%;transform:translateX(-50%);white-space:nowrap}.swiper-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet,.swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet{transition:.2s transform,.2s left}.swiper-horizontal.swiper-rtl>.swiper-pagination-bullets-dynamic .swiper-pagination-bullet{transition:.2s transform,.2s right}.swiper-pagination-progressbar{background:rgba(0,0,0,.25);position:absolute}.swiper-pagination-progressbar .swiper-pagination-progressbar-fill{background:var(--swiper-pagination-color,var(--swiper-theme-color));position:absolute;left:0;top:0;width:100%;height:100%;transform:scale(0);transform-origin:left top}.swiper-rtl .swiper-pagination-progressbar .swiper-pagination-progressbar-fill{transform-origin:right top}.swiper-horizontal>.swiper-pagination-progressbar,.swiper-pagination-progressbar.swiper-pagination-horizontal,.swiper-pagination-progressbar.swiper-pagination-vertical.swiper-pagination-progressbar-opposite,.swiper-vertical>.swiper-pagination-progressbar.swiper-pagination-progressbar-opposite{width:100%;height:4px;left:0;top:0}.swiper-horizontal>.swiper-pagination-progressbar.swiper-pagination-progressbar-opposite,.swiper-pagination-progressbar.swiper-pagination-horizontal.swiper-pagination-progressbar-opposite,.swiper-pagination-progressbar.swiper-pagination-vertical,.swiper-vertical>.swiper-pagination-progressbar{width:4px;height:100%;left:0;top:0}.swiper-pagination-lock{display:none}
+:root {
+  --swiper-navigation-size: 44px;
+  --swiper-theme-color: #007aff;
+}
+
+.swiper {
+  max-width: 100%;
+  overflow-y: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper {
+  /*max-width: calc( 100% - 1.2em);*/
+  /*padding: 1em;*/
+  font-size: inherit;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.swiper-wrapper {
+  position: relative;
+  max-width: 100%;
+  z-index: 10000;
+  display: flex;
+  transition-property: transform;
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper-slide {
+  transition-property: transform;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.swiper-slide {
+  /*max-width: 100%;*/
+  /*height: 100%;*/
+  /*position: relative;*/
+}
+
+.swiper-pagination {
+  /*padding-left: .5rem;*/
+}
+
+.swiper-pagination-bullet {
+  width: 0.5rem;
+  height: 0.5rem;
+  /*text-align: center;*/
+  /*background-color: #c62c2c;*/
+  /*opacity: 1;*/
+  /*background: rgba(0,0,0,0.2);*/
+}
+.swiper-pagination-bullet-active {
+  width: 0.8rem;
+  height: 0.5rem;
+  opacity: 0.4;
+}
+
 :root {
   --start: 15%;
+  --day-to-show: 7;
 }
 
-.city_list {
-  overflow: hidden;
-}
-
-.city_list__profiles {
-  border-radius: 0 0 12px 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.city_list__profile {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-}
-
-.city_list__profile:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0.05rem 0.05rem 0.05rem rgba(51, 51, 51, 0.08);
-}
-
-.city_list__picture {
-  margin: 0 auto;
-  height: 80%;
-}
-
-.city_list__name {
-  font-weight: bold;
-  width: 50%;
-}
-
-.city_list__value {
-  width: 20%;
-  color: var(--main-color);
-  font-weight: 700;
-  text-align: right;
+.hour-daily-weather {
+  /*overflow: scroll;*/
 }
 
 @media (hover: none) and (pointer: coarse) {
-  .city_list {
+  .hour-daily-weather {
     width: 100%;
   }
 
-  .city_list__profiles {
+  .daily-labels {
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
     width: 100%;
     margin: 0;
-    border-bottom: 1px solid rgba(168, 204, 255, 0.2);
+    padding-left: 0;
   }
 
-  .city_list__profile {
-    height: 5em;
-    font-size: 1.2em;
-    padding: 0 2rem;
-    box-shadow: 0 0.1rem 0.1rem -0.1rem rgba(51, 51, 51, 0.1);
-    transition: transform 0.25s cubic-bezier(0.7, 0.98, 0.86, 0.98),
-      box-shadow 0.25s cubic-bezier(0.7, 0.98, 0.86, 0.98);
+  .daily-labels > li {
+    min-width: calc(100% / 5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style-type: none;
+    margin: 1em 1em 0;
+  }
+
+  .daily-labels > li > * {
+    margin: 0;
+  }
+
+  .daily-chart {
+    min-width: calc(100% * var(--day-to-show) / var(--day-per-slider));
   }
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .city_list {
+  .hour-daily-weather {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    flex-basis: 45%;
+    flex: 45%;
     height: 50vh;
     border: var(--main-color) solid 0.1em;
     padding: 0.5em 0;
     border-radius: 0.3em;
     overflow: hidden;
+  }
+
+  .daily-labels {
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+    width: 100%;
+    margin: 0;
+    padding-left: 0;
+  }
+
+  .daily-chart {
+    width: 100%;
+    padding: 0 1.8em 0 2em;
+    margin: -1.5em 0 0;
+  }
+  .daily-labels > li {
+    width: calc(100% / 5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em 1em 0;
+    list-style-type: none;
+  }
+
+  .daily-labels > li > * {
+    margin: 0;
   }
 
   .city_list__profiles {
@@ -97,76 +178,72 @@
   }
 }
 
-:root {
-  --rad: 0.5rem;
-  --dur: 0.3s;
-  --color-light: #427f9d;
-  --input-color: #daf4fd;
-  --height: 100%;
-  --btn-width: 5rem;
-  --bez: cubic-bezier(0, 0, 0.43, 1.49);
-}
-.search_div {
-  height: 80%;
-}
-form {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+.search_box {
   height: 100%;
-  width: 20em;
-  border-radius: var(--rad);
-  font-size: inherit;
+  margin-bottom: 0.5em;
+}
+.search {
+  padding-left: 1.5rem;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+  height: 2em;
+  background-color: white;
+  border-radius: 1em;
+  /*-webkit-box-shadow: 0px 10px 38px 0px rgba(0,0,0,0.1);*/
+  /*-moz-box-shadow: 0px 10px 38px 0px rgba(0,0,0,0.1);*/
+  /*box-shadow: 0px 10px 38px 0px rgba(0,0,0,0.1);*/
 }
 
-input,
-.search-button {
-  height: var(--height);
-  border: 0;
-  margin-top: 0;
-  color: var(--header-color);
+.search_icon {
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+  margin-right: 0.5em;
+  color: #5e6573;
+}
+
+/*.text {*/
+/*    padding-left: 1em;*/
+/*}*/
+
+.line {
+  /*margin-left: 1em;*/
+  /*border-left: 1px solid #D8D8D8;*/
+  /*height: 40px;*/
+}
+
+.search_text {
+  width: 100%;
+  border: none;
+  margin-left: 0.5em;
   font-size: 1.6rem;
 }
 
-input[type="search"] {
-  outline: 0;
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: #adb1b8;
+}
+
+.text_and-icon {
   width: 100%;
-  height: 100%;
-  background: var(--input-color);
-  padding: 0 1.6rem;
-  border-radius: var(--rad);
-  z-index: 1;
-  position: relative;
-}
-
-.search-button {
-  position: relative;
-  display: none;
-  flex-direction: row;
-  justify-content: center;
+  display: flex;
   align-items: center;
-  width: var(--btn-width);
-  font-weight: bold;
-  background: var(--input-color);
-  border-radius: 0 var(--rad) var(--rad) 0;
-  cursor: pointer;
+}
+.select_area {
+  color: var(--match-color);
 }
 
-.search-button img {
-  width: 50%;
-  height: 80%;
-}
-
-input:not(:placeholder-shown) {
-  border-radius: var(--rad) 0 0 var(--rad);
-  width: calc(100% - var(--btn-width));
+.search_text:focus {
+  outline: none !important;
 }
 
 :root {
   --slider-width: 32em;
   --city-width: 20em;
+  --hour-per-slider: 6;
+  --day-per-slider: 4;
   box-sizing: border-box;
 }
 
@@ -176,23 +253,18 @@ input:not(:placeholder-shown) {
   }
 
   .slider {
-    margin-top: 3em;
+    padding: 0;
     overflow: auto;
-    border-bottom: 1px solid rgba(168, 204, 255, 0.2);
-    border-top: 1px solid rgba(168, 204, 255, 0.2);
+    /*border-bottom: 1px solid rgba(168, 204, 255, 0.2);*/
+    /*border-top: 1px solid rgba(168, 204, 255, 0.2);*/
     overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    overflow-x: -moz-scrollbars-none;
+    -ms-overflow-style: none;
   }
 
   .slider::-webkit-scrollbar {
     width: 0 !important;
-  }
-
-  .slider {
-    overflow-x: -moz-scrollbars-none;
-  }
-
-  .slider {
-    -ms-overflow-style: none;
   }
 }
 
@@ -215,29 +287,45 @@ input:not(:placeholder-shown) {
   display: flex;
   width: var(--slider-width);
   z-index: 1000;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  padding: 0.5em 0;
 }
 
 .wrap {
   position: relative;
-  min-width: calc(var(--slider-width) / 6 - 0.5em);
   text-align: center;
-  margin-right: 0.5em;
 }
 
-.wrap img {
-  width: 100%;
+.wrap p {
+  margin: 0.5em 0;
 }
 
-.wrap > p {
-  line-height: 1.5em;
+.wrap p:last-of-type {
+  font-size: 1rem;
+}
+
+.width-hour {
+  min-width: calc(var(--slider-width) / var(--hour-per-slider));
+}
+
+.width-day {
+  min-width: calc(var(--slider-width) / var(--day-per-slider));
+}
+.wrap-hour-img {
+  width: 50%;
+  margin-top: 0.5em;
+}
+
+.wrap-day-img {
+  width: 30%;
+  margin-top: 1em;
 }
 
 :root {
   font-size: 12px;
   box-sizing: border-box;
   --header-color: #535353;
-  --main-color: #dce0e0;
+  --main-color: #ffffff;
 }
 
 *,
@@ -246,10 +334,8 @@ input:not(:placeholder-shown) {
   box-sizing: inherit;
 }
 
-html,
 body {
   width: 100%;
-  background: linear-gradient(to bottom right, #4a6dc6, #54ccb0);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -263,6 +349,7 @@ body {
   html,
   body {
     min-height: 100%;
+    position: fixed;
   }
 }
 
@@ -270,27 +357,30 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  font-family: Solis, Arial, Helvetica, sans-serif;
+  font-family: Helvetica, sans-serif;
   font-size: calc(0.5em + 1vw);
   color: var(--main-color);
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
+a:visited,
+a:focus {
+  text-decoration: none;
+}
 #loading {
   position: fixed;
   width: 100%;
   height: 100vh;
   z-index: 100;
   overflow: visible;
-  background: #4a6dc6 url(244ab7d66c732562c43e.gif) no-repeat center center;
+  background: #4a6dc6 url(1197a2e2549c82db3ea1.gif) no-repeat center
+    center;
 }
 
 @media (hover: none) and (pointer: coarse) {
   .header {
-    height: 4em;
-    min-height: 4em;
-    padding: 0.2em 1em;
+    height: 6rem;
   }
 }
 
@@ -354,6 +444,13 @@ body {
   align-items: center;
 }
 
+.update-time {
+  align-self: end;
+  font-size: 0.58em;
+  padding: 1em;
+  margin-bottom: 0;
+}
+
 .date-color {
   color: #a0ecfa;
 }
@@ -378,8 +475,54 @@ body {
 }
 
 @media (hover: none) and (pointer: coarse) {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-height: 2.5em;
+    background-color: unset;
+    font-size: 2.5em;
+    font-weight: 450;
+    text-align: center;
+    /*margin-top: 1em;*/
+  }
+
+  .current-city-title {
+    /*height: 100%;*/
+    width: 100%;
+    margin-left: 2em;
+    /*position: fixed;*/
+  }
+
+  .current-city-title img {
+    width: 0.8em;
+  }
+  .menu-mobile {
+    /*position: relative;*/
+    /*top: 1em;*/
+    margin-right: 1em;
+  }
+
   .section {
-    margin-top: 1.5em;
+    color: #fff;
+    margin-top: 1em;
+  }
+
+  .scroll {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 85vh;
+    /*-webkit-mask-image: linear-gradient(*/
+    /*  to bottom,*/
+    /*  rgba(0, 0, 0, 0),*/
+    /*  rgba(0, 0, 0, 1) 3%*/
+    /*);*/
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 3) 3%
+    );
   }
 
   .section-content {
@@ -392,10 +535,11 @@ body {
     align-items: center;
     width: 100%;
     flex-basis: 100%;
-    font-size: 4vw;
+    font-size: 2em;
   }
 
   .current-container > * {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -407,19 +551,31 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 3em;
-    font-weight: 300;
   }
 
   .current-temp > aside {
-    margin-top: 0.2em;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
   }
 
-  .current-temp [class*="current-temp-m"] {
-    font-size: 0.5em;
+  .celcius-font {
+    position: relative;
+    font-weight: 300;
+    top: -1.8em;
+    right: 0.1em;
+    font-size: 0.3em;
+  }
+
+  .current-temp-max-min {
+    margin-top: -0.2em;
+  }
+
+  .current-temp-max,
+  .current-temp-min {
+    font-size: 0.3em;
+    font-weight: 450;
   }
 
   .current-temp-min {
@@ -433,44 +589,68 @@ body {
 
   .current-city-weather {
     margin-top: 0.5em;
-    font-weight: 300;
+    margin-bottom: 2em;
+    font-weight: 500;
     font-size: 1.5rem;
   }
 
-  .weather-items {
+  .verbose-info {
+    margin: 2em 1em 0;
+    max-width: 100%;
+  }
+
+  .verbose-info + .verbose-info {
+    margin-bottom: 1em;
+  }
+
+  .verbose-info__title {
+    width: 60%;
+    word-break: break-word;
+    padding: 0 1.5rem;
+    margin-top: 1em;
+    font-size: 1.8em;
+    line-height: 1.1em;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .verbose-info__items {
+    margin-top: 1em;
+    padding: 0.5rem 1.5rem;
     width: 100%;
-    padding-left: 2em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(auto-fit, minmax(1em, 2fr));
   }
 
-  .weather-items ul {
-    padding-left: 0;
-    width: 100%;
+  .verbose-info_border {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 2em;
+    padding-top: 1rem;
   }
-
-  .weather-items li {
-    list-style-type: none;
-    padding: 1.5em 0 1.5em 0.5em;
-    width: 100%;
-  }
-
-  .weather-items span {
-    font-weight: 400;
-    font-size: 2em;
-  }
-
-  .weather-items li div {
+  .verbose-info li {
     display: flex;
     align-items: center;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 1rem 1.5rem;
+    width: 100%;
   }
 
   .icon {
     position: relative;
-    /*height: 100%;*/
-    width: 5em;
-    padding-right: 1.5em;
+    width: 2.5em;
   }
-  .icon + .symbol {
-    padding-right: 1.5em;
+  .item-description-wrapper {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  .verbose-info__icon {
+    max-width: 20%;
+    min-height: auto;
+  }
+  .item-description {
+    margin: 0;
+    font-size: 0.9rem;
   }
 
   .map {
@@ -519,7 +699,7 @@ body {
 
   .current-city-weather {
     margin-top: 0;
-    font-weight: 50;
+    font-weight: 150;
   }
 
   .weather-items {
@@ -557,7 +737,7 @@ body {
     position: relative;
     height: 1.5em;
     width: auto;
-    padding-right: 0.5em;
+    /*padding-right: 0.5em;*/
   }
 
   .map {
@@ -625,9 +805,8 @@ body {
   padding: 1em 0;
   font-size: 0.9rem;
 }
-
 .footer__contact {
-  color: #0072b0;
+  color: #00a8ff;
   font-size: 3em;
   border-radius: 100%;
   -webkit-transition: all 0.2s linear;
@@ -639,5 +818,2398 @@ body {
 .footer__contact:focus,
 .footer__contact:hover {
   color: rgba(29, 31, 227, 0.9);
+  text-decoration: none;
+  cursor: auto;
+}
+
+:root {
+  --sun-phase-deg: 0deg;
+  --moon-phase-deg: 0deg;
+}
+
+.sun-phase {
+  margin: 0 auto;
+  padding: 1em 1em 0 1em;
+  width: 80%;
+  overflow: hidden;
+  position: relative;
+}
+
+.moon-phase {
+  margin: 0 auto;
+  padding: 1em 1em 0 1em;
+  width: 60%;
+  top: -11em;
+  overflow: hidden;
+  position: relative;
+}
+
+.moon-phase::before {
+  content: "";
+  padding-top: 100%;
+  display: block;
+  margin-bottom: -50%;
+  border-radius: 50%;
+  border: 0.2em dashed #dbdbdb;
+}
+
+.moon-phase span {
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  left: -2%;
+  height: 2em;
+}
+
+.moon-rotate img {
+  margin-top: 0.7em;
+  transform: rotate(-110deg);
+}
+.sun-phase::before {
+  content: "";
+  padding-top: 100%;
+  display: block;
+  margin-bottom: -50%;
+  border-radius: 50%;
+  border: 0.2em dashed #dbdbdb;
+}
+
+.sun-phase span {
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  left: -4%;
+  height: 2em;
+}
+
+.sun-phase-animate {
+  transform-origin: 100% 100%;
+  animation: rotate-sun 1.5s ease;
+  transform: rotate(var(--sun-phase-deg));
+}
+
+@keyframes rotate-sun {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(var(--sun-phase-deg));
+  }
+}
+
+.moon-phase-animate {
+  transform-origin: 100% 100%;
+  animation: rotate-moon 1.5s ease;
+  transform: rotate(var(--moon-phase-deg));
+}
+
+@keyframes rotate-moon {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(var(--moon-phase-deg));
+  }
+}
+.sun-phase span img {
+  width: 20%;
+  margin-top: 0.5em;
+  margin-left: 0.6em;
+}
+
+.sun-moon-phase-descr {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.5em;
+  width: 100%;
+  font-size: 1.5em;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.sun-moon-phase-descr > * {
+  margin: 0.5em 0;
+}
+
+/*.progress{*/
+/*    position: relative;*/
+/*    margin-left: 100px;*/
+/*    margin-top: 35px;*/
+/*    margin-bottom: -52px;*/
+/*    float:left;*/
+/*    text-align: center;*/
+/*}*/
+/*.barOverflow{ !* Wraps the rotating .bar *!*/
+/*    position: relative;*/
+/*    overflow: hidden; !* Comment this line to understand the trick *!*/
+/*    width: 200px; height: 100px; !* Half circle (overflow) *!*/
+/*    margin-bottom: -14px; !* bring the numbers up *!*/
+/*}*/
+/*.bar{*/
+/*    position: absolute;*/
+/*    top: 0; left: 0;*/
+/*    width: 200px; height: 200px; !* full circle! *!*/
+/*    border-radius: 50%;*/
+/*    box-sizing: border-box;*/
+/*    border: 2px solid #dedede;     !* half gray, *!*/
+/*    border-bottom-color: #e3b714;  !* half azure *!*/
+/*    border-right-color: #e3b714;*/
+/*    transform: rotate(225deg);*/
+/*    animation-name: rotate;*/
+/*    animation-duration: 2s;*/
+/*    !*animation-iteration-count: infinite;*!*/
+/*    animation-timing-function: ease-in;*/
+/*}*/
+
+/*@-webkit-keyframes rotate {*/
+/*    0% {transform: rotate(45deg);}*/
+/*    100% {transform: rotate(225deg);}*/
+/*}*/
+
+/*@keyframes rotate {*/
+/*    0% {transform: rotate(45deg);}*/
+/*    100% {transform: rotate(225deg);}*/
+/*}*/
+
+/*div#sun  {*/
+/*    position: relative;*/
+/*    transform: rotate(0deg);*/
+/*    animation-name: rotatgeCCW;*/
+/*    animation-timing-function: linear;*/
+/*    animation-duration: 2s;*/
+/*    width: 25%;*/
+/*    top:125px;*/
+/*    left:-10px;*/
+/*    !*animation-iteration-count: infinite;*!*/
+/*}*/
+
+/*@-webkit-keyframes rotateCCW {*/
+/*    0% {transform: rotate(0deg);}*/
+/*    100% {transform: rotate(-180deg);}*/
+/*}*/
+
+/*!* Standard syntax *!*/
+/*@keyframes rotateCCW {*/
+/*    0% {transform: rotate(0deg);}*/
+/*    100% {transform: rotate(-180deg);}*/
+/*}*/
+
+.border {
+  width: 100%;
+  border-top: 1pt solid #b3d7fd;
+}
+
+.margin-top--11em {
+  margin-top: -11em;
+}
+.font-2em {
+  font-size: 2em;
+}
+
+.font-weight-300 {
+  font-weight: 300;
+}
+
+.font-weight-400 {
+  font-weight: 400;
+}
+
+.font-weight-500 {
+  font-weight: 500;
+}
+
+.font-weight-600 {
+  font-weight: 600;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.no-min-width {
+  min-width: 0;
+}
+
+.no-border {
+  border: 0;
+}
+
+.opacity-8 {
+  opacity: 0.8;
+}
+
+.opacity-7 {
+  opacity: 0.7;
+}
+
+.opacity-5 {
+  opacity: 0.5;
+}
+
+/*!
+ *  Weather Icons 2.0.10
+ *  Updated November 1, 2020
+ *  Weather themed icons for Bootstrap
+ *  Author - Erik Flowers - erik@helloerik.com
+ *  Email: erik@helloerik.com
+ *  Twitter: http://twitter.com/Erik_UX
+ *  ------------------------------------------------------------------------------
+ *  Maintained at http://erikflowers.github.io/weather-icons
+ *
+ *  License
+ *  ------------------------------------------------------------------------------
+ *  - Font licensed under SIL OFL 1.1 -
+ *    http://scripts.sil.org/OFL
+ *  - CSS, SCSS and LESS are licensed under MIT License -
+ *    http://opensource.org/licenses/mit-license.html
+ *  - Documentation licensed under CC BY 3.0 -
+ *    http://creativecommons.org/licenses/by/3.0/
+ *  - Inspired by and works great as a companion with Font Awesome
+ *    "Font Awesome by Dave Gandy - http://fontawesome.io"
+ */
+@font-face {
+  font-family: "weathericons";
+  src: url(bb2ec001c20cf752f852.eot);
+  src: url(bb2ec001c20cf752f852.eot?#iefix)
+      format("embedded-opentype"),
+    url(e218aee6928fe3da9ed6.woff2) format("woff2"),
+    url(371511ddba5fdac0538c.woff) format("woff"),
+    url(0942d1e1c447d6ce3ffc.ttf) format("truetype"),
+    url(1341a15172cec8dae06e.svg#weather_iconsregular)
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+.wi {
+  display: inline-block;
+  font-family: "weathericons";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.wi-fw {
+  text-align: center;
+  width: 1.4em;
+}
+.wi-rotate-90 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.wi-rotate-180 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.wi-rotate-270 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  -webkit-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+.wi-flip-horizontal {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
+  -webkit-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+.wi-flip-vertical {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1);
+  -webkit-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
+  transform: scale(1, -1);
+}
+.wi-day-sunny:before {
+  content: "\f00d";
+}
+.wi-day-cloudy:before {
+  content: "\f002";
+}
+.wi-day-cloudy-gusts:before {
+  content: "\f000";
+}
+.wi-day-cloudy-windy:before {
+  content: "\f001";
+}
+.wi-day-fog:before {
+  content: "\f003";
+}
+.wi-day-hail:before {
+  content: "\f004";
+}
+.wi-day-haze:before {
+  content: "\f0b6";
+}
+.wi-day-lightning:before {
+  content: "\f005";
+}
+.wi-day-rain:before {
+  content: "\f008";
+}
+.wi-day-rain-mix:before {
+  content: "\f006";
+}
+.wi-day-rain-wind:before {
+  content: "\f007";
+}
+.wi-day-showers:before {
+  content: "\f009";
+}
+.wi-day-sleet:before {
+  content: "\f0b2";
+}
+.wi-day-sleet-storm:before {
+  content: "\f068";
+}
+.wi-day-snow:before {
+  content: "\f00a";
+}
+.wi-day-snow-thunderstorm:before {
+  content: "\f06b";
+}
+.wi-day-snow-wind:before {
+  content: "\f065";
+}
+.wi-day-sprinkle:before {
+  content: "\f00b";
+}
+.wi-day-storm-showers:before {
+  content: "\f00e";
+}
+.wi-day-sunny-overcast:before {
+  content: "\f00c";
+}
+.wi-day-thunderstorm:before {
+  content: "\f010";
+}
+.wi-day-windy:before {
+  content: "\f085";
+}
+.wi-solar-eclipse:before {
+  content: "\f06e";
+}
+.wi-hot:before {
+  content: "\f072";
+}
+.wi-day-cloudy-high:before {
+  content: "\f07d";
+}
+.wi-day-light-wind:before {
+  content: "\f0c4";
+}
+.wi-night-clear:before {
+  content: "\f02e";
+}
+.wi-night-alt-cloudy:before {
+  content: "\f086";
+}
+.wi-night-alt-cloudy-gusts:before {
+  content: "\f022";
+}
+.wi-night-alt-cloudy-windy:before {
+  content: "\f023";
+}
+.wi-night-alt-hail:before {
+  content: "\f024";
+}
+.wi-night-alt-lightning:before {
+  content: "\f025";
+}
+.wi-night-alt-rain:before {
+  content: "\f028";
+}
+.wi-night-alt-rain-mix:before {
+  content: "\f026";
+}
+.wi-night-alt-rain-wind:before {
+  content: "\f027";
+}
+.wi-night-alt-showers:before {
+  content: "\f029";
+}
+.wi-night-alt-sleet:before {
+  content: "\f0b4";
+}
+.wi-night-alt-sleet-storm:before {
+  content: "\f06a";
+}
+.wi-night-alt-snow:before {
+  content: "\f02a";
+}
+.wi-night-alt-snow-thunderstorm:before {
+  content: "\f06d";
+}
+.wi-night-alt-snow-wind:before {
+  content: "\f067";
+}
+.wi-night-alt-sprinkle:before {
+  content: "\f02b";
+}
+.wi-night-alt-storm-showers:before {
+  content: "\f02c";
+}
+.wi-night-alt-thunderstorm:before {
+  content: "\f02d";
+}
+.wi-night-cloudy:before {
+  content: "\f031";
+}
+.wi-night-cloudy-gusts:before {
+  content: "\f02f";
+}
+.wi-night-cloudy-windy:before {
+  content: "\f030";
+}
+.wi-night-fog:before {
+  content: "\f04a";
+}
+.wi-night-hail:before {
+  content: "\f032";
+}
+.wi-night-lightning:before {
+  content: "\f033";
+}
+.wi-night-partly-cloudy:before {
+  content: "\f083";
+}
+.wi-night-rain:before {
+  content: "\f036";
+}
+.wi-night-rain-mix:before {
+  content: "\f034";
+}
+.wi-night-rain-wind:before {
+  content: "\f035";
+}
+.wi-night-showers:before {
+  content: "\f037";
+}
+.wi-night-sleet:before {
+  content: "\f0b3";
+}
+.wi-night-sleet-storm:before {
+  content: "\f069";
+}
+.wi-night-snow:before {
+  content: "\f038";
+}
+.wi-night-snow-thunderstorm:before {
+  content: "\f06c";
+}
+.wi-night-snow-wind:before {
+  content: "\f066";
+}
+.wi-night-sprinkle:before {
+  content: "\f039";
+}
+.wi-night-storm-showers:before {
+  content: "\f03a";
+}
+.wi-night-thunderstorm:before {
+  content: "\f03b";
+}
+.wi-lunar-eclipse:before {
+  content: "\f070";
+}
+.wi-stars:before {
+  content: "\f077";
+}
+.wi-storm-showers:before {
+  content: "\f01d";
+}
+.wi-thunderstorm:before {
+  content: "\f01e";
+}
+.wi-night-alt-cloudy-high:before {
+  content: "\f07e";
+}
+.wi-night-cloudy-high:before {
+  content: "\f080";
+}
+.wi-night-alt-partly-cloudy:before {
+  content: "\f081";
+}
+.wi-cloud:before {
+  content: "\f041";
+}
+.wi-cloudy:before {
+  content: "\f013";
+}
+.wi-cloudy-gusts:before {
+  content: "\f011";
+}
+.wi-cloudy-windy:before {
+  content: "\f012";
+}
+.wi-fog:before {
+  content: "\f014";
+}
+.wi-hail:before {
+  content: "\f015";
+}
+.wi-rain:before {
+  content: "\f019";
+}
+.wi-rain-mix:before {
+  content: "\f017";
+}
+.wi-rain-wind:before {
+  content: "\f018";
+}
+.wi-showers:before {
+  content: "\f01a";
+}
+.wi-sleet:before {
+  content: "\f0b5";
+}
+.wi-snow:before {
+  content: "\f01b";
+}
+.wi-sprinkle:before {
+  content: "\f01c";
+}
+.wi-storm-showers:before {
+  content: "\f01d";
+}
+.wi-thunderstorm:before {
+  content: "\f01e";
+}
+.wi-snow-wind:before {
+  content: "\f064";
+}
+.wi-snow:before {
+  content: "\f01b";
+}
+.wi-smog:before {
+  content: "\f074";
+}
+.wi-smoke:before {
+  content: "\f062";
+}
+.wi-lightning:before {
+  content: "\f016";
+}
+.wi-raindrops:before {
+  content: "\f04e";
+}
+.wi-raindrop:before {
+  content: "\f078";
+}
+.wi-dust:before {
+  content: "\f063";
+}
+.wi-snowflake-cold:before {
+  content: "\f076";
+}
+.wi-windy:before {
+  content: "\f021";
+}
+.wi-strong-wind:before {
+  content: "\f050";
+}
+.wi-sandstorm:before {
+  content: "\f082";
+}
+.wi-earthquake:before {
+  content: "\f0c6";
+}
+.wi-fire:before {
+  content: "\f0c7";
+}
+.wi-flood:before {
+  content: "\f07c";
+}
+.wi-meteor:before {
+  content: "\f071";
+}
+.wi-tsunami:before {
+  content: "\f0c5";
+}
+.wi-volcano:before {
+  content: "\f0c8";
+}
+.wi-hurricane:before {
+  content: "\f073";
+}
+.wi-tornado:before {
+  content: "\f056";
+}
+.wi-small-craft-advisory:before {
+  content: "\f0cc";
+}
+.wi-gale-warning:before {
+  content: "\f0cd";
+}
+.wi-storm-warning:before {
+  content: "\f0ce";
+}
+.wi-hurricane-warning:before {
+  content: "\f0cf";
+}
+.wi-wind-direction:before {
+  content: "\f0b1";
+}
+.wi-alien:before {
+  content: "\f075";
+}
+.wi-celsius:before {
+  content: "\f03c";
+}
+.wi-fahrenheit:before {
+  content: "\f045";
+}
+.wi-degrees:before {
+  content: "\f042";
+}
+.wi-thermometer:before {
+  content: "\f055";
+}
+.wi-thermometer-exterior:before {
+  content: "\f053";
+}
+.wi-thermometer-internal:before {
+  content: "\f054";
+}
+.wi-cloud-down:before {
+  content: "\f03d";
+}
+.wi-cloud-up:before {
+  content: "\f040";
+}
+.wi-cloud-refresh:before {
+  content: "\f03e";
+}
+.wi-horizon:before {
+  content: "\f047";
+}
+.wi-horizon-alt:before {
+  content: "\f046";
+}
+.wi-sunrise:before {
+  content: "\f051";
+}
+.wi-sunset:before {
+  content: "\f052";
+}
+.wi-moonrise:before {
+  content: "\f0c9";
+}
+.wi-moonset:before {
+  content: "\f0ca";
+}
+.wi-refresh:before {
+  content: "\f04c";
+}
+.wi-refresh-alt:before {
+  content: "\f04b";
+}
+.wi-umbrella:before {
+  content: "\f084";
+}
+.wi-barometer:before {
+  content: "\f079";
+}
+.wi-humidity:before {
+  content: "\f07a";
+}
+.wi-na:before {
+  content: "\f07b";
+}
+.wi-train:before {
+  content: "\f0cb";
+}
+.wi-moon-new:before {
+  content: "\f095";
+}
+.wi-moon-waxing-crescent-1:before {
+  content: "\f096";
+}
+.wi-moon-waxing-crescent-2:before {
+  content: "\f097";
+}
+.wi-moon-waxing-crescent-3:before {
+  content: "\f098";
+}
+.wi-moon-waxing-crescent-4:before {
+  content: "\f099";
+}
+.wi-moon-waxing-crescent-5:before {
+  content: "\f09a";
+}
+.wi-moon-waxing-crescent-6:before {
+  content: "\f09b";
+}
+.wi-moon-first-quarter:before {
+  content: "\f09c";
+}
+.wi-moon-waxing-gibbous-1:before {
+  content: "\f09d";
+}
+.wi-moon-waxing-gibbous-2:before {
+  content: "\f09e";
+}
+.wi-moon-waxing-gibbous-3:before {
+  content: "\f09f";
+}
+.wi-moon-waxing-gibbous-4:before {
+  content: "\f0a0";
+}
+.wi-moon-waxing-gibbous-5:before {
+  content: "\f0a1";
+}
+.wi-moon-waxing-gibbous-6:before {
+  content: "\f0a2";
+}
+.wi-moon-full:before {
+  content: "\f0a3";
+}
+.wi-moon-waning-gibbous-1:before {
+  content: "\f0a4";
+}
+.wi-moon-waning-gibbous-2:before {
+  content: "\f0a5";
+}
+.wi-moon-waning-gibbous-3:before {
+  content: "\f0a6";
+}
+.wi-moon-waning-gibbous-4:before {
+  content: "\f0a7";
+}
+.wi-moon-waning-gibbous-5:before {
+  content: "\f0a8";
+}
+.wi-moon-waning-gibbous-6:before {
+  content: "\f0a9";
+}
+.wi-moon-third-quarter:before {
+  content: "\f0aa";
+}
+.wi-moon-waning-crescent-1:before {
+  content: "\f0ab";
+}
+.wi-moon-waning-crescent-2:before {
+  content: "\f0ac";
+}
+.wi-moon-waning-crescent-3:before {
+  content: "\f0ad";
+}
+.wi-moon-waning-crescent-4:before {
+  content: "\f0ae";
+}
+.wi-moon-waning-crescent-5:before {
+  content: "\f0af";
+}
+.wi-moon-waning-crescent-6:before {
+  content: "\f0b0";
+}
+.wi-moon-alt-new:before {
+  content: "\f0eb";
+}
+.wi-moon-alt-waxing-crescent-1:before {
+  content: "\f0d0";
+}
+.wi-moon-alt-waxing-crescent-2:before {
+  content: "\f0d1";
+}
+.wi-moon-alt-waxing-crescent-3:before {
+  content: "\f0d2";
+}
+.wi-moon-alt-waxing-crescent-4:before {
+  content: "\f0d3";
+}
+.wi-moon-alt-waxing-crescent-5:before {
+  content: "\f0d4";
+}
+.wi-moon-alt-waxing-crescent-6:before {
+  content: "\f0d5";
+}
+.wi-moon-alt-first-quarter:before {
+  content: "\f0d6";
+}
+.wi-moon-alt-waxing-gibbous-1:before {
+  content: "\f0d7";
+}
+.wi-moon-alt-waxing-gibbous-2:before {
+  content: "\f0d8";
+}
+.wi-moon-alt-waxing-gibbous-3:before {
+  content: "\f0d9";
+}
+.wi-moon-alt-waxing-gibbous-4:before {
+  content: "\f0da";
+}
+.wi-moon-alt-waxing-gibbous-5:before {
+  content: "\f0db";
+}
+.wi-moon-alt-waxing-gibbous-6:before {
+  content: "\f0dc";
+}
+.wi-moon-alt-full:before {
+  content: "\f0dd";
+}
+.wi-moon-alt-waning-gibbous-1:before {
+  content: "\f0de";
+}
+.wi-moon-alt-waning-gibbous-2:before {
+  content: "\f0df";
+}
+.wi-moon-alt-waning-gibbous-3:before {
+  content: "\f0e0";
+}
+.wi-moon-alt-waning-gibbous-4:before {
+  content: "\f0e1";
+}
+.wi-moon-alt-waning-gibbous-5:before {
+  content: "\f0e2";
+}
+.wi-moon-alt-waning-gibbous-6:before {
+  content: "\f0e3";
+}
+.wi-moon-alt-third-quarter:before {
+  content: "\f0e4";
+}
+.wi-moon-alt-waning-crescent-1:before {
+  content: "\f0e5";
+}
+.wi-moon-alt-waning-crescent-2:before {
+  content: "\f0e6";
+}
+.wi-moon-alt-waning-crescent-3:before {
+  content: "\f0e7";
+}
+.wi-moon-alt-waning-crescent-4:before {
+  content: "\f0e8";
+}
+.wi-moon-alt-waning-crescent-5:before {
+  content: "\f0e9";
+}
+.wi-moon-alt-waning-crescent-6:before {
+  content: "\f0ea";
+}
+.wi-moon-0:before {
+  content: "\f095";
+}
+.wi-moon-1:before {
+  content: "\f096";
+}
+.wi-moon-2:before {
+  content: "\f097";
+}
+.wi-moon-3:before {
+  content: "\f098";
+}
+.wi-moon-4:before {
+  content: "\f099";
+}
+.wi-moon-5:before {
+  content: "\f09a";
+}
+.wi-moon-6:before {
+  content: "\f09b";
+}
+.wi-moon-7:before {
+  content: "\f09c";
+}
+.wi-moon-8:before {
+  content: "\f09d";
+}
+.wi-moon-9:before {
+  content: "\f09e";
+}
+.wi-moon-10:before {
+  content: "\f09f";
+}
+.wi-moon-11:before {
+  content: "\f0a0";
+}
+.wi-moon-12:before {
+  content: "\f0a1";
+}
+.wi-moon-13:before {
+  content: "\f0a2";
+}
+.wi-moon-14:before {
+  content: "\f0a3";
+}
+.wi-moon-15:before {
+  content: "\f0a4";
+}
+.wi-moon-16:before {
+  content: "\f0a5";
+}
+.wi-moon-17:before {
+  content: "\f0a6";
+}
+.wi-moon-18:before {
+  content: "\f0a7";
+}
+.wi-moon-19:before {
+  content: "\f0a8";
+}
+.wi-moon-20:before {
+  content: "\f0a9";
+}
+.wi-moon-21:before {
+  content: "\f0aa";
+}
+.wi-moon-22:before {
+  content: "\f0ab";
+}
+.wi-moon-23:before {
+  content: "\f0ac";
+}
+.wi-moon-24:before {
+  content: "\f0ad";
+}
+.wi-moon-25:before {
+  content: "\f0ae";
+}
+.wi-moon-26:before {
+  content: "\f0af";
+}
+.wi-moon-27:before {
+  content: "\f0b0";
+}
+.wi-time-1:before {
+  content: "\f08a";
+}
+.wi-time-2:before {
+  content: "\f08b";
+}
+.wi-time-3:before {
+  content: "\f08c";
+}
+.wi-time-4:before {
+  content: "\f08d";
+}
+.wi-time-5:before {
+  content: "\f08e";
+}
+.wi-time-6:before {
+  content: "\f08f";
+}
+.wi-time-7:before {
+  content: "\f090";
+}
+.wi-time-8:before {
+  content: "\f091";
+}
+.wi-time-9:before {
+  content: "\f092";
+}
+.wi-time-10:before {
+  content: "\f093";
+}
+.wi-time-11:before {
+  content: "\f094";
+}
+.wi-time-12:before {
+  content: "\f089";
+}
+.wi-direction-up:before {
+  content: "\f058";
+}
+.wi-direction-up-right:before {
+  content: "\f057";
+}
+.wi-direction-right:before {
+  content: "\f04d";
+}
+.wi-direction-down-right:before {
+  content: "\f088";
+}
+.wi-direction-down:before {
+  content: "\f044";
+}
+.wi-direction-down-left:before {
+  content: "\f043";
+}
+.wi-direction-left:before {
+  content: "\f048";
+}
+.wi-direction-up-left:before {
+  content: "\f087";
+}
+.wi-wind-beaufort-0:before {
+  content: "\f0b7";
+}
+.wi-wind-beaufort-1:before {
+  content: "\f0b8";
+}
+.wi-wind-beaufort-2:before {
+  content: "\f0b9";
+}
+.wi-wind-beaufort-3:before {
+  content: "\f0ba";
+}
+.wi-wind-beaufort-4:before {
+  content: "\f0bb";
+}
+.wi-wind-beaufort-5:before {
+  content: "\f0bc";
+}
+.wi-wind-beaufort-6:before {
+  content: "\f0bd";
+}
+.wi-wind-beaufort-7:before {
+  content: "\f0be";
+}
+.wi-wind-beaufort-8:before {
+  content: "\f0bf";
+}
+.wi-wind-beaufort-9:before {
+  content: "\f0c0";
+}
+.wi-wind-beaufort-10:before {
+  content: "\f0c1";
+}
+.wi-wind-beaufort-11:before {
+  content: "\f0c2";
+}
+.wi-wind-beaufort-12:before {
+  content: "\f0c3";
+}
+.wi-yahoo-0:before {
+  content: "\f056";
+}
+.wi-yahoo-1:before {
+  content: "\f00e";
+}
+.wi-yahoo-2:before {
+  content: "\f073";
+}
+.wi-yahoo-3:before {
+  content: "\f01e";
+}
+.wi-yahoo-4:before {
+  content: "\f01e";
+}
+.wi-yahoo-5:before {
+  content: "\f017";
+}
+.wi-yahoo-6:before {
+  content: "\f017";
+}
+.wi-yahoo-7:before {
+  content: "\f017";
+}
+.wi-yahoo-8:before {
+  content: "\f015";
+}
+.wi-yahoo-9:before {
+  content: "\f01a";
+}
+.wi-yahoo-10:before {
+  content: "\f015";
+}
+.wi-yahoo-11:before {
+  content: "\f01a";
+}
+.wi-yahoo-12:before {
+  content: "\f01a";
+}
+.wi-yahoo-13:before {
+  content: "\f01b";
+}
+.wi-yahoo-14:before {
+  content: "\f00a";
+}
+.wi-yahoo-15:before {
+  content: "\f064";
+}
+.wi-yahoo-16:before {
+  content: "\f01b";
+}
+.wi-yahoo-17:before {
+  content: "\f015";
+}
+.wi-yahoo-18:before {
+  content: "\f017";
+}
+.wi-yahoo-19:before {
+  content: "\f063";
+}
+.wi-yahoo-20:before {
+  content: "\f014";
+}
+.wi-yahoo-21:before {
+  content: "\f021";
+}
+.wi-yahoo-22:before {
+  content: "\f062";
+}
+.wi-yahoo-23:before {
+  content: "\f050";
+}
+.wi-yahoo-24:before {
+  content: "\f050";
+}
+.wi-yahoo-25:before {
+  content: "\f076";
+}
+.wi-yahoo-26:before {
+  content: "\f013";
+}
+.wi-yahoo-27:before {
+  content: "\f031";
+}
+.wi-yahoo-28:before {
+  content: "\f002";
+}
+.wi-yahoo-29:before {
+  content: "\f031";
+}
+.wi-yahoo-30:before {
+  content: "\f002";
+}
+.wi-yahoo-31:before {
+  content: "\f02e";
+}
+.wi-yahoo-32:before {
+  content: "\f00d";
+}
+.wi-yahoo-33:before {
+  content: "\f083";
+}
+.wi-yahoo-34:before {
+  content: "\f00c";
+}
+.wi-yahoo-35:before {
+  content: "\f017";
+}
+.wi-yahoo-36:before {
+  content: "\f072";
+}
+.wi-yahoo-37:before {
+  content: "\f00e";
+}
+.wi-yahoo-38:before {
+  content: "\f00e";
+}
+.wi-yahoo-39:before {
+  content: "\f00e";
+}
+.wi-yahoo-40:before {
+  content: "\f01a";
+}
+.wi-yahoo-41:before {
+  content: "\f064";
+}
+.wi-yahoo-42:before {
+  content: "\f01b";
+}
+.wi-yahoo-43:before {
+  content: "\f064";
+}
+.wi-yahoo-44:before {
+  content: "\f00c";
+}
+.wi-yahoo-45:before {
+  content: "\f00e";
+}
+.wi-yahoo-46:before {
+  content: "\f01b";
+}
+.wi-yahoo-47:before {
+  content: "\f00e";
+}
+.wi-yahoo-3200:before {
+  content: "\f077";
+}
+.wi-forecast-io-clear-day:before {
+  content: "\f00d";
+}
+.wi-forecast-io-clear-night:before {
+  content: "\f02e";
+}
+.wi-forecast-io-rain:before {
+  content: "\f019";
+}
+.wi-forecast-io-snow:before {
+  content: "\f01b";
+}
+.wi-forecast-io-sleet:before {
+  content: "\f0b5";
+}
+.wi-forecast-io-wind:before {
+  content: "\f050";
+}
+.wi-forecast-io-fog:before {
+  content: "\f014";
+}
+.wi-forecast-io-cloudy:before {
+  content: "\f013";
+}
+.wi-forecast-io-partly-cloudy-day:before {
+  content: "\f002";
+}
+.wi-forecast-io-partly-cloudy-night:before {
+  content: "\f031";
+}
+.wi-forecast-io-hail:before {
+  content: "\f015";
+}
+.wi-forecast-io-thunderstorm:before {
+  content: "\f01e";
+}
+.wi-forecast-io-tornado:before {
+  content: "\f056";
+}
+.wi-wmo4680-0:before,
+.wi-wmo4680-00:before {
+  content: "\f055";
+}
+.wi-wmo4680-1:before,
+.wi-wmo4680-01:before {
+  content: "\f013";
+}
+.wi-wmo4680-2:before,
+.wi-wmo4680-02:before {
+  content: "\f055";
+}
+.wi-wmo4680-3:before,
+.wi-wmo4680-03:before {
+  content: "\f013";
+}
+.wi-wmo4680-4:before,
+.wi-wmo4680-04:before {
+  content: "\f014";
+}
+.wi-wmo4680-5:before,
+.wi-wmo4680-05:before {
+  content: "\f014";
+}
+.wi-wmo4680-10:before {
+  content: "\f014";
+}
+.wi-wmo4680-11:before {
+  content: "\f014";
+}
+.wi-wmo4680-12:before {
+  content: "\f016";
+}
+.wi-wmo4680-18:before {
+  content: "\f050";
+}
+.wi-wmo4680-20:before {
+  content: "\f014";
+}
+.wi-wmo4680-21:before {
+  content: "\f017";
+}
+.wi-wmo4680-22:before {
+  content: "\f017";
+}
+.wi-wmo4680-23:before {
+  content: "\f019";
+}
+.wi-wmo4680-24:before {
+  content: "\f01b";
+}
+.wi-wmo4680-25:before {
+  content: "\f015";
+}
+.wi-wmo4680-26:before {
+  content: "\f01e";
+}
+.wi-wmo4680-27:before {
+  content: "\f063";
+}
+.wi-wmo4680-28:before {
+  content: "\f063";
+}
+.wi-wmo4680-29:before {
+  content: "\f063";
+}
+.wi-wmo4680-30:before {
+  content: "\f014";
+}
+.wi-wmo4680-31:before {
+  content: "\f014";
+}
+.wi-wmo4680-32:before {
+  content: "\f014";
+}
+.wi-wmo4680-33:before {
+  content: "\f014";
+}
+.wi-wmo4680-34:before {
+  content: "\f014";
+}
+.wi-wmo4680-35:before {
+  content: "\f014";
+}
+.wi-wmo4680-40:before {
+  content: "\f017";
+}
+.wi-wmo4680-41:before {
+  content: "\f01c";
+}
+.wi-wmo4680-42:before {
+  content: "\f019";
+}
+.wi-wmo4680-43:before {
+  content: "\f01c";
+}
+.wi-wmo4680-44:before {
+  content: "\f019";
+}
+.wi-wmo4680-45:before {
+  content: "\f015";
+}
+.wi-wmo4680-46:before {
+  content: "\f015";
+}
+.wi-wmo4680-47:before {
+  content: "\f01b";
+}
+.wi-wmo4680-48:before {
+  content: "\f01b";
+}
+.wi-wmo4680-50:before {
+  content: "\f01c";
+}
+.wi-wmo4680-51:before {
+  content: "\f01c";
+}
+.wi-wmo4680-52:before {
+  content: "\f019";
+}
+.wi-wmo4680-53:before {
+  content: "\f019";
+}
+.wi-wmo4680-54:before {
+  content: "\f076";
+}
+.wi-wmo4680-55:before {
+  content: "\f076";
+}
+.wi-wmo4680-56:before {
+  content: "\f076";
+}
+.wi-wmo4680-57:before {
+  content: "\f01c";
+}
+.wi-wmo4680-58:before {
+  content: "\f019";
+}
+.wi-wmo4680-60:before {
+  content: "\f01c";
+}
+.wi-wmo4680-61:before {
+  content: "\f01c";
+}
+.wi-wmo4680-62:before {
+  content: "\f019";
+}
+.wi-wmo4680-63:before {
+  content: "\f019";
+}
+.wi-wmo4680-64:before {
+  content: "\f015";
+}
+.wi-wmo4680-65:before {
+  content: "\f015";
+}
+.wi-wmo4680-66:before {
+  content: "\f015";
+}
+.wi-wmo4680-67:before {
+  content: "\f017";
+}
+.wi-wmo4680-68:before {
+  content: "\f017";
+}
+.wi-wmo4680-70:before {
+  content: "\f01b";
+}
+.wi-wmo4680-71:before {
+  content: "\f01b";
+}
+.wi-wmo4680-72:before {
+  content: "\f01b";
+}
+.wi-wmo4680-73:before {
+  content: "\f01b";
+}
+.wi-wmo4680-74:before {
+  content: "\f076";
+}
+.wi-wmo4680-75:before {
+  content: "\f076";
+}
+.wi-wmo4680-76:before {
+  content: "\f076";
+}
+.wi-wmo4680-77:before {
+  content: "\f01b";
+}
+.wi-wmo4680-78:before {
+  content: "\f076";
+}
+.wi-wmo4680-80:before {
+  content: "\f019";
+}
+.wi-wmo4680-81:before {
+  content: "\f01c";
+}
+.wi-wmo4680-82:before {
+  content: "\f019";
+}
+.wi-wmo4680-83:before {
+  content: "\f019";
+}
+.wi-wmo4680-84:before {
+  content: "\f01d";
+}
+.wi-wmo4680-85:before {
+  content: "\f017";
+}
+.wi-wmo4680-86:before {
+  content: "\f017";
+}
+.wi-wmo4680-87:before {
+  content: "\f017";
+}
+.wi-wmo4680-89:before {
+  content: "\f015";
+}
+.wi-wmo4680-90:before {
+  content: "\f016";
+}
+.wi-wmo4680-91:before {
+  content: "\f01d";
+}
+.wi-wmo4680-92:before {
+  content: "\f01e";
+}
+.wi-wmo4680-93:before {
+  content: "\f01e";
+}
+.wi-wmo4680-94:before {
+  content: "\f016";
+}
+.wi-wmo4680-95:before {
+  content: "\f01e";
+}
+.wi-wmo4680-96:before {
+  content: "\f01e";
+}
+.wi-wmo4680-99:before {
+  content: "\f056";
+}
+.wi-owm-200:before {
+  content: "\f01e";
+}
+.wi-owm-201:before {
+  content: "\f01e";
+}
+.wi-owm-202:before {
+  content: "\f01e";
+}
+.wi-owm-210:before {
+  content: "\f016";
+}
+.wi-owm-211:before {
+  content: "\f016";
+}
+.wi-owm-212:before {
+  content: "\f016";
+}
+.wi-owm-221:before {
+  content: "\f016";
+}
+.wi-owm-230:before {
+  content: "\f01e";
+}
+.wi-owm-231:before {
+  content: "\f01e";
+}
+.wi-owm-232:before {
+  content: "\f01e";
+}
+.wi-owm-300:before {
+  content: "\f01c";
+}
+.wi-owm-301:before {
+  content: "\f01c";
+}
+.wi-owm-302:before {
+  content: "\f019";
+}
+.wi-owm-310:before {
+  content: "\f017";
+}
+.wi-owm-311:before {
+  content: "\f019";
+}
+.wi-owm-312:before {
+  content: "\f019";
+}
+.wi-owm-313:before {
+  content: "\f01a";
+}
+.wi-owm-314:before {
+  content: "\f019";
+}
+.wi-owm-321:before {
+  content: "\f01c";
+}
+.wi-owm-500:before {
+  content: "\f01c";
+}
+.wi-owm-501:before {
+  content: "\f019";
+}
+.wi-owm-502:before {
+  content: "\f019";
+}
+.wi-owm-503:before {
+  content: "\f019";
+}
+.wi-owm-504:before {
+  content: "\f019";
+}
+.wi-owm-511:before {
+  content: "\f017";
+}
+.wi-owm-520:before {
+  content: "\f01a";
+}
+.wi-owm-521:before {
+  content: "\f01a";
+}
+.wi-owm-522:before {
+  content: "\f01a";
+}
+.wi-owm-531:before {
+  content: "\f01d";
+}
+.wi-owm-600:before {
+  content: "\f01b";
+}
+.wi-owm-601:before {
+  content: "\f01b";
+}
+.wi-owm-602:before {
+  content: "\f0b5";
+}
+.wi-owm-611:before {
+  content: "\f017";
+}
+.wi-owm-612:before {
+  content: "\f017";
+}
+.wi-owm-615:before {
+  content: "\f017";
+}
+.wi-owm-616:before {
+  content: "\f017";
+}
+.wi-owm-620:before {
+  content: "\f017";
+}
+.wi-owm-621:before {
+  content: "\f01b";
+}
+.wi-owm-622:before {
+  content: "\f01b";
+}
+.wi-owm-701:before {
+  content: "\f014";
+}
+.wi-owm-711:before {
+  content: "\f062";
+}
+.wi-owm-721:before {
+  content: "\f0b6";
+}
+.wi-owm-731:before {
+  content: "\f063";
+}
+.wi-owm-741:before {
+  content: "\f014";
+}
+.wi-owm-761:before {
+  content: "\f063";
+}
+.wi-owm-762:before {
+  content: "\f063";
+}
+.wi-owm-771:before {
+  content: "\f011";
+}
+.wi-owm-781:before {
+  content: "\f056";
+}
+.wi-owm-800:before {
+  content: "\f00d";
+}
+.wi-owm-801:before {
+  content: "\f041";
+}
+.wi-owm-802:before {
+  content: "\f041";
+}
+.wi-owm-803:before {
+  content: "\f013";
+}
+.wi-owm-804:before {
+  content: "\f013";
+}
+.wi-owm-900:before {
+  content: "\f056";
+}
+.wi-owm-901:before {
+  content: "\f01d";
+}
+.wi-owm-902:before {
+  content: "\f073";
+}
+.wi-owm-903:before {
+  content: "\f076";
+}
+.wi-owm-904:before {
+  content: "\f072";
+}
+.wi-owm-905:before {
+  content: "\f021";
+}
+.wi-owm-906:before {
+  content: "\f015";
+}
+.wi-owm-957:before {
+  content: "\f050";
+}
+.wi-owm-day-200:before {
+  content: "\f010";
+}
+.wi-owm-day-201:before {
+  content: "\f010";
+}
+.wi-owm-day-202:before {
+  content: "\f010";
+}
+.wi-owm-day-210:before {
+  content: "\f005";
+}
+.wi-owm-day-211:before {
+  content: "\f005";
+}
+.wi-owm-day-212:before {
+  content: "\f005";
+}
+.wi-owm-day-221:before {
+  content: "\f005";
+}
+.wi-owm-day-230:before {
+  content: "\f010";
+}
+.wi-owm-day-231:before {
+  content: "\f010";
+}
+.wi-owm-day-232:before {
+  content: "\f010";
+}
+.wi-owm-day-300:before {
+  content: "\f00b";
+}
+.wi-owm-day-301:before {
+  content: "\f00b";
+}
+.wi-owm-day-302:before {
+  content: "\f008";
+}
+.wi-owm-day-310:before {
+  content: "\f008";
+}
+.wi-owm-day-311:before {
+  content: "\f008";
+}
+.wi-owm-day-312:before {
+  content: "\f008";
+}
+.wi-owm-day-313:before {
+  content: "\f008";
+}
+.wi-owm-day-314:before {
+  content: "\f008";
+}
+.wi-owm-day-321:before {
+  content: "\f00b";
+}
+.wi-owm-day-500:before {
+  content: "\f00b";
+}
+.wi-owm-day-501:before {
+  content: "\f008";
+}
+.wi-owm-day-502:before {
+  content: "\f008";
+}
+.wi-owm-day-503:before {
+  content: "\f008";
+}
+.wi-owm-day-504:before {
+  content: "\f008";
+}
+.wi-owm-day-511:before {
+  content: "\f006";
+}
+.wi-owm-day-520:before {
+  content: "\f009";
+}
+.wi-owm-day-521:before {
+  content: "\f009";
+}
+.wi-owm-day-522:before {
+  content: "\f009";
+}
+.wi-owm-day-531:before {
+  content: "\f00e";
+}
+.wi-owm-day-600:before {
+  content: "\f00a";
+}
+.wi-owm-day-601:before {
+  content: "\f0b2";
+}
+.wi-owm-day-602:before {
+  content: "\f00a";
+}
+.wi-owm-day-611:before {
+  content: "\f006";
+}
+.wi-owm-day-612:before {
+  content: "\f006";
+}
+.wi-owm-day-615:before {
+  content: "\f006";
+}
+.wi-owm-day-616:before {
+  content: "\f006";
+}
+.wi-owm-day-620:before {
+  content: "\f006";
+}
+.wi-owm-day-621:before {
+  content: "\f00a";
+}
+.wi-owm-day-622:before {
+  content: "\f00a";
+}
+.wi-owm-day-701:before {
+  content: "\f003";
+}
+.wi-owm-day-711:before {
+  content: "\f062";
+}
+.wi-owm-day-721:before {
+  content: "\f0b6";
+}
+.wi-owm-day-731:before {
+  content: "\f063";
+}
+.wi-owm-day-741:before {
+  content: "\f003";
+}
+.wi-owm-day-761:before {
+  content: "\f063";
+}
+.wi-owm-day-762:before {
+  content: "\f063";
+}
+.wi-owm-day-781:before {
+  content: "\f056";
+}
+.wi-owm-day-800:before {
+  content: "\f00d";
+}
+.wi-owm-day-801:before {
+  content: "\f002";
+}
+.wi-owm-day-802:before {
+  content: "\f002";
+}
+.wi-owm-day-803:before {
+  content: "\f013";
+}
+.wi-owm-day-804:before {
+  content: "\f013";
+}
+.wi-owm-day-900:before {
+  content: "\f056";
+}
+.wi-owm-day-902:before {
+  content: "\f073";
+}
+.wi-owm-day-903:before {
+  content: "\f076";
+}
+.wi-owm-day-904:before {
+  content: "\f072";
+}
+.wi-owm-day-906:before {
+  content: "\f004";
+}
+.wi-owm-day-957:before {
+  content: "\f050";
+}
+.wi-owm-night-200:before {
+  content: "\f02d";
+}
+.wi-owm-night-201:before {
+  content: "\f02d";
+}
+.wi-owm-night-202:before {
+  content: "\f02d";
+}
+.wi-owm-night-210:before {
+  content: "\f025";
+}
+.wi-owm-night-211:before {
+  content: "\f025";
+}
+.wi-owm-night-212:before {
+  content: "\f025";
+}
+.wi-owm-night-221:before {
+  content: "\f025";
+}
+.wi-owm-night-230:before {
+  content: "\f02d";
+}
+.wi-owm-night-231:before {
+  content: "\f02d";
+}
+.wi-owm-night-232:before {
+  content: "\f02d";
+}
+.wi-owm-night-300:before {
+  content: "\f02b";
+}
+.wi-owm-night-301:before {
+  content: "\f02b";
+}
+.wi-owm-night-302:before {
+  content: "\f028";
+}
+.wi-owm-night-310:before {
+  content: "\f028";
+}
+.wi-owm-night-311:before {
+  content: "\f028";
+}
+.wi-owm-night-312:before {
+  content: "\f028";
+}
+.wi-owm-night-313:before {
+  content: "\f028";
+}
+.wi-owm-night-314:before {
+  content: "\f028";
+}
+.wi-owm-night-321:before {
+  content: "\f02b";
+}
+.wi-owm-night-500:before {
+  content: "\f02b";
+}
+.wi-owm-night-501:before {
+  content: "\f028";
+}
+.wi-owm-night-502:before {
+  content: "\f028";
+}
+.wi-owm-night-503:before {
+  content: "\f028";
+}
+.wi-owm-night-504:before {
+  content: "\f028";
+}
+.wi-owm-night-511:before {
+  content: "\f026";
+}
+.wi-owm-night-520:before {
+  content: "\f029";
+}
+.wi-owm-night-521:before {
+  content: "\f029";
+}
+.wi-owm-night-522:before {
+  content: "\f029";
+}
+.wi-owm-night-531:before {
+  content: "\f02c";
+}
+.wi-owm-night-600:before {
+  content: "\f02a";
+}
+.wi-owm-night-601:before {
+  content: "\f0b4";
+}
+.wi-owm-night-602:before {
+  content: "\f02a";
+}
+.wi-owm-night-611:before {
+  content: "\f026";
+}
+.wi-owm-night-612:before {
+  content: "\f026";
+}
+.wi-owm-night-615:before {
+  content: "\f026";
+}
+.wi-owm-night-616:before {
+  content: "\f026";
+}
+.wi-owm-night-620:before {
+  content: "\f026";
+}
+.wi-owm-night-621:before {
+  content: "\f02a";
+}
+.wi-owm-night-622:before {
+  content: "\f02a";
+}
+.wi-owm-night-701:before {
+  content: "\f04a";
+}
+.wi-owm-night-711:before {
+  content: "\f062";
+}
+.wi-owm-night-721:before {
+  content: "\f0b6";
+}
+.wi-owm-night-731:before {
+  content: "\f063";
+}
+.wi-owm-night-741:before {
+  content: "\f04a";
+}
+.wi-owm-night-761:before {
+  content: "\f063";
+}
+.wi-owm-night-762:before {
+  content: "\f063";
+}
+.wi-owm-night-781:before {
+  content: "\f056";
+}
+.wi-owm-night-800:before {
+  content: "\f02e";
+}
+.wi-owm-night-801:before {
+  content: "\f081";
+}
+.wi-owm-night-802:before {
+  content: "\f086";
+}
+.wi-owm-night-803:before {
+  content: "\f013";
+}
+.wi-owm-night-804:before {
+  content: "\f013";
+}
+.wi-owm-night-900:before {
+  content: "\f056";
+}
+.wi-owm-night-902:before {
+  content: "\f073";
+}
+.wi-owm-night-903:before {
+  content: "\f076";
+}
+.wi-owm-night-904:before {
+  content: "\f072";
+}
+.wi-owm-night-906:before {
+  content: "\f024";
+}
+.wi-owm-night-957:before {
+  content: "\f050";
+}
+.wi-wu-chanceflurries:before {
+  content: "\f064";
+}
+.wi-wu-chancerain:before {
+  content: "\f019";
+}
+.wi-wu-chancesleat:before {
+  content: "\f0b5";
+}
+.wi-wu-chancesnow:before {
+  content: "\f01b";
+}
+.wi-wu-chancetstorms:before {
+  content: "\f01e";
+}
+.wi-wu-clear:before {
+  content: "\f00d";
+}
+.wi-wu-cloudy:before {
+  content: "\f002";
+}
+.wi-wu-flurries:before {
+  content: "\f064";
+}
+.wi-wu-hazy:before {
+  content: "\f0b6";
+}
+.wi-wu-mostlycloudy:before {
+  content: "\f002";
+}
+.wi-wu-mostlysunny:before {
+  content: "\f00d";
+}
+.wi-wu-partlycloudy:before {
+  content: "\f002";
+}
+.wi-wu-partlysunny:before {
+  content: "\f00d";
+}
+.wi-wu-rain:before {
+  content: "\f01a";
+}
+.wi-wu-sleat:before {
+  content: "\f0b5";
+}
+.wi-wu-snow:before {
+  content: "\f01b";
+}
+.wi-wu-sunny:before {
+  content: "\f00d";
+}
+.wi-wu-tstorms:before {
+  content: "\f01e";
+}
+.wi-wu-unknown:before {
+  content: "\f00d";
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.default-bg {
+  background: linear-gradient(#4b9dfa, #003fe6) no-repeat;
+  background-size: cover;
+}
+
+.bg-01d {
+  background-image: url(aee1ee7e25b83d899f00.png);
+  background-size: cover;
+}
+
+@-webkit-keyframes opacityBg {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.bg-01n {
+  background: url(44f3be2317f0127e1bd4.gif);
+  background-size: auto 100%;
+}
+
+.bg-02d {
+  background: linear-gradient(rgba(190, 190, 190, 0.3), rgba(79, 79, 79, 0.9)),
+    url(542ce0be1946fb57232f.gif);
+  background-size: cover;
+}
+
+.bg-02n {
+  background: url(0ad5cebc20253f0446de.jpeg);
+  background-size: cover;
+}
+
+.bg-03d {
+  background-image: linear-gradient(
+      rgba(190, 190, 190, 0.3),
+      rgba(79, 79, 79, 0.5)
+    ),
+    url(3ccb4916108d78ca63b0.gif);
+  background-size: cover;
+}
+
+.bg-03n {
+  background-image: url(9e17a68119ddd26983d2.gif);
+  background-size: cover;
+}
+
+.bg-04d {
+  background-image: linear-gradient(
+      rgba(190, 190, 190, 0.3),
+      rgba(79, 79, 79, 0.9)
+    ),
+    url(4f27357a75ef09318760.gif);
+  background-size: cover;
+}
+
+.bg-04n {
+  background-image: url(068699750cde4e7f5bd0.gif);
+  background-size: cover;
+}
+
+.bg-09d {
+  background-image: linear-gradient(rgba(45, 45, 45, 0), rgba(0, 0, 0, 0.8)),
+    url(aa4da52146270883f691.jpeg);
+  background-size: cover;
+}
+
+.bg-09n {
+  background-image: linear-gradient(rgba(15, 15, 15, 1), rgba(0, 0, 0, 0.8)),
+    url(c8e63522d4c9544e55ee.gif);
+  background-size: cover;
+}
+
+.bg-10d {
+  background-image: linear-gradient(rgba(180, 180, 180, 0), rgba(0, 0, 0, 0.8)),
+    url(43d94a89678da3e8584b.gif);
+  background-size: 100% 100%;
+}
+
+.bg-10n {
+  background-image: linear-gradient(rgba(39, 39, 39, 0.8), rgba(0, 0, 0, 1)),
+    url(43d94a89678da3e8584b.gif);
+  background-size: cover;
+}
+
+.bg-11d {
+  background-image: linear-gradient(rgba(118, 118, 118, 0.4), rgba(0, 0, 0, 1)),
+    url(e3e1a81cada630ef3a8e.gif);
+  background-size: cover;
+}
+
+.bg-11n {
+  background-image: linear-gradient(rgba(36, 36, 36, 0.8), rgba(0, 0, 0, 1)),
+    url(e3e1a81cada630ef3a8e.gif);
+  background-size: cover;
+}
+
+.bg-13d {
+  background-image: linear-gradient(
+      rgba(190, 190, 190, 0),
+      rgba(79, 79, 79, 0.4)
+    ),
+    url(54bd7f0d5eab9620878d.gif);
+  background-size: cover;
+}
+
+.bg-13n {
+  background-image: linear-gradient(rgba(8, 8, 8, 0.5), rgba(0, 0, 0, 1)),
+    url(0916c837dccff7cbdce2.gif);
+  background-size: cover;
+}
+
+.bg-50d {
+  background-image: linear-gradient(
+      rgba(190, 190, 190, 0),
+      rgba(79, 79, 79, 0.8)
+    ),
+    url(2444fb020cac574a99df.jpeg);
+  background-size: cover;
+}
+
+.bg-50n {
+  background-image: linear-gradient(rgba(8, 8, 8, 0.5), rgba(0, 0, 0, 1)),
+    url(32716b7390213982a8e3.jpeg);
+  background-size: cover;
+}
+
+:root {
+  --bg-color-menu: #edf0f3;
+  --match-color: #0661c7;
+}
+
+body {
+  background: var(--bg-color-menu) no-repeat;
+  background-size: contain;
+}
+
+.menu {
+  margin: 0.2em 0.5em;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: #464545;
+  font-size: 2rem;
+  width: calc(100% - 1em);
+  height: 100%;
+}
+
+.menu-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+.menu-header__title {
+  height: 2.5em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.menu-header__title * {
+  margin-left: 0.5em;
+}
+
+.menu-header__title i {
+  -webkit-text-stroke: 1px var(--bg-color-menu);
+}
+
+.menu__city-list {
+  height: 76vh;
+  width: 100%;
+  overflow-y: scroll;
+  background-color: var(--bg-color-menu);
+  display: block;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  overflow-x: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+
+.menu__city-list::-webkit-scrollbar {
+  display: none;
+}
+
+/*.city_list__picture {*/
+/*    margin: 0 auto;*/
+/*    !*height: 80%;*!*/
+/*}*/
+
+.city_list__name {
+  /*width: 50%;*/
+}
+
+.city_list__name img {
+  width: 0.8em;
+}
+/*.city_list__value {*/
+/*    color: var(--main-color);*/
+/*    font-weight: 700;*/
+/*    text-align: right;*/
+/*}*/
+
+.city_list__profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 0 0.5em;
+  font-size: 1.2em;
+  font-weight: 500;
+  padding: 0.75em 0.5em;
+  max-height: 3em;
+  border-radius: 0.5em;
+  color: var(--main-color);
+}
+
+.city_list__profile * {
+  padding: 0;
+  margin: 0;
+}
+
+.profile-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.profile-wrap__temp {
+  font-size: 1.5em;
+  font-weight: 300;
+}
+
+.temp-celcius-font {
+  position: relative;
+  top: -1em;
+  right: 0;
+  font-size: 0.5em;
+}
+
+.profile-wrap__descr {
+  /*margin-top: 1em;*/
+  text-align: right;
+  font-size: 1rem;
+}
+
+.pac-container {
+  z-index: 10000 !important;
+  width: auto !important;
+  /*position: a !important;*/
+  left: 0 !important;
+  right: 0 !important;
+  display: flex !important;
+  flex-direction: column;
+  background: white;
+  box-shadow: none;
+  border: 1px solid white;
+  border-radius: 2em;
+  margin: 2em 1em 0.5em;
+  height: calc(100% - 15em);
+  overflow-y: scroll;
+}
+
+.pac-container > * {
+  border-top: none;
+}
+.pac-item {
+  padding: 0.5em 1em;
+}
+.pac-item,
+.pac-item-query {
+  font-size: 2rem;
+  /*margin: .5rem;*/
+  /*padding: .5em;*/
+}
+
+.pac-matched {
+  color: var(--match-color);
+}
+
+.pac-container:empty {
+  display: none !important;
+}
+
+.pac-logo:after {
+  display: none;
+}
+
+.pac-icon,
+.pac-icon-marker {
+  display: none;
 }
 

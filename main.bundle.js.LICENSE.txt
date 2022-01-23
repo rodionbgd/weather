@@ -1,0 +1,13 @@
+/*!
+ * Chart.js v3.7.0
+ * https://www.chartjs.org
+ * (c) 2021 Chart.js Contributors
+ * Released under the MIT License
+ */
+
+/*!
+ * chartjs-plugin-datalabels v2.0.0
+ * https://chartjs-plugin-datalabels.netlify.app
+ * (c) 2017-2021 chartjs-plugin-datalabels contributors
+ * Released under the MIT license
+ */
