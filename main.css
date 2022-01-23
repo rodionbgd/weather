@@ -374,8 +374,7 @@ a:focus {
   height: 100vh;
   z-index: 100;
   overflow: visible;
-  background: #4a6dc6 url(1197a2e2549c82db3ea1.gif) no-repeat center
-    center;
+  background: #4a6dc6 url(1197a2e2549c82db3ea1.gif) no-repeat center center;
 }
 
 @media (hover: none) and (pointer: coarse) {
