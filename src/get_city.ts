@@ -1,8 +1,11 @@
-import { City, CityWeather, Coords } from "./types";
+import { City, CityWeather, Coords, LOCATION } from "./types";
 import { getCityWeather } from "./current_city_weather";
 
 export async function getCityList() {
-  const data = await Object.values(localStorage).map(async (value) => {
+  if (!Object.keys(localStorage).length) {
+    return [];
+  }
+  const data = Object.values(localStorage).map(async (value) => {
     let city = JSON.parse(value) as City;
     city.updateTime = new Date().toString();
     const weather = await getCityWeather(city.coords);
@@ -10,11 +13,11 @@ export async function getCityList() {
       ...city,
       weather,
     };
-    // localStorage.setItem(`${city.name}`, JSON.stringify(city));
     return city;
   });
-
-  return Promise.all(data);
+  const cityList = await Promise.all(data);
+  cityList.sort((a, b) => a.id - b.id);
+  return cityList;
 }
 
 export async function getCurrentCity(
@@ -29,9 +32,15 @@ export async function getCurrentCity(
   if (cities.length) {
     [city] = cities.filter((item) => item.name === cityName);
   }
-  if (!(city as City)) {
+  if (city === undefined || !Object.keys(city).length) {
+    let lastId = 0;
+    if (cities.length) {
+      lastId = Math.max(...cities.map((item) => item.id));
+    }
     city = {
+      id: lastId + 1,
       name: cityName,
+      location: LOCATION.LOCATION_NO,
       coords,
       weather: (await getCityWeather(coords)) as CityWeather,
       updateTime: new Date().toString(),

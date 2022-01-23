@@ -1,81 +1,82 @@
 :root {
   --start: 15%;
+  --day-to-show: 7;
 }
 
-.city_list {
-  overflow: hidden;
-}
-
-.city_list__profiles {
-  border-radius: 0 0 12px 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.city_list__profile {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-}
-
-.city_list__profile:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0.05rem 0.05rem 0.05rem rgba(51, 51, 51, 0.08);
-}
-
-.city_list__picture {
-  margin: 0 auto;
-  height: 80%;
-}
-
-.city_list__name {
-  font-weight: bold;
-  width: 50%;
-}
-
-.city_list__value {
-  width: 20%;
-  color: var(--main-color);
-  font-weight: 700;
-  text-align: right;
+.hour-daily-weather {
+  /*overflow: scroll;*/
 }
 
 @media (hover: none) and (pointer: coarse) {
-  .city_list {
+  .hour-daily-weather {
     width: 100%;
   }
 
-  .city_list__profiles {
+  .daily-labels {
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
     width: 100%;
     margin: 0;
-    border-bottom: 1px solid rgba(168, 204, 255, 0.2);
+    padding-left: 0;
   }
 
-  .city_list__profile {
-    height: 5em;
-    font-size: 1.2em;
-    padding: 0 2rem;
-    box-shadow: 0 0.1rem 0.1rem -0.1rem rgba(51, 51, 51, 0.1);
-    transition: transform 0.25s cubic-bezier(0.7, 0.98, 0.86, 0.98),
-      box-shadow 0.25s cubic-bezier(0.7, 0.98, 0.86, 0.98);
+  .daily-labels > li {
+    min-width: calc(100% / 5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style-type: none;
+    margin: 1em 1em 0;
+  }
+
+  .daily-labels > li > * {
+    margin: 0;
+  }
+
+  .daily-chart {
+    min-width: calc(100% * var(--day-to-show) / var(--day-per-slider));
   }
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .city_list {
+  .hour-daily-weather {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    flex-basis: 45%;
+    flex: 45%;
     height: 50vh;
     border: var(--main-color) solid 0.1em;
     padding: 0.5em 0;
     border-radius: 0.3em;
     overflow: hidden;
+  }
+
+  .daily-labels {
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+    width: 100%;
+    margin: 0;
+    padding-left: 0;
+  }
+
+  .daily-chart {
+    width: 100%;
+    padding: 0 1.8em 0 2em;
+    margin: -1.5em 0 0;
+  }
+  .daily-labels > li {
+    width: calc(100% / 5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em 1em 0;
+    list-style-type: none;
+  }
+
+  .daily-labels > li > * {
+    margin: 0;
   }
 
   .city_list__profiles {

@@ -1,0 +1,129 @@
+:root {
+  --bg-color-menu: #edf0f3;
+  --match-color: #0661c7;
+}
+
+body {
+  background: var(--bg-color-menu) no-repeat;
+  background-size: contain;
+}
+
+.menu {
+  margin: 0.2em 0.5em;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: #464545;
+  font-size: 2rem;
+  width: calc(100% - 1em);
+  height: 100%;
+}
+
+.menu-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+.menu-header__title {
+  height: 2.5em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.menu-header__title * {
+  margin-left: 0.5em;
+}
+
+.menu-header__title i {
+  -webkit-text-stroke: 1px var(--bg-color-menu);
+}
+
+.menu__city-list {
+  height: 76vh;
+  width: 100%;
+  overflow-y: scroll;
+  background-color: var(--bg-color-menu);
+  display: block;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  overflow-x: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+
+.menu__city-list::-webkit-scrollbar {
+  display: none;
+}
+
+/*.city_list__picture {*/
+/*    margin: 0 auto;*/
+/*    !*height: 80%;*!*/
+/*}*/
+
+.city_list__name {
+  /*width: 50%;*/
+}
+
+.city_list__name img {
+  width: 0.8em;
+}
+/*.city_list__value {*/
+/*    color: var(--main-color);*/
+/*    font-weight: 700;*/
+/*    text-align: right;*/
+/*}*/
+
+.city_list__profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 0 0.5em;
+  font-size: 1.2em;
+  font-weight: 500;
+  padding: 0.75em 0.5em;
+  max-height: 3em;
+  border-radius: 0.5em;
+  color: var(--main-color);
+}
+
+.city_list__profile * {
+  padding: 0;
+  margin: 0;
+}
+
+.profile-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.profile-wrap__temp {
+  font-size: 1.5em;
+  font-weight: 300;
+}
+
+.temp-celcius-font {
+  position: relative;
+  top: -1em;
+  right: 0;
+  font-size: 0.5em;
+}
+
+.profile-wrap__descr {
+  /*margin-top: 1em;*/
+  text-align: right;
+  font-size: 1rem;
+}

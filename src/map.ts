@@ -65,31 +65,3 @@ export function initMap(coords: Coords) {
   baselayer.addTo(map);
   map.setView([coords.latitude, coords.longitude], ZOOM);
 }
-
-// export async function createMap(
-//     coords: Coords,
-//     city: string,
-//     renderCity: boolean /* location */
-// ) {
-//     if (!city) return;
-//     // const response = await fetch(
-//     //     `https://api.openweathermap.org/data/2.5/onecall` +
-//     //     `?lat=${coords.latitude}&lon=${coords.longitude}` +
-//     //     `&exclude=minutely,alerts&lang=ru&appid=${WEATHER_API_KEY}`
-//     // );
-//     // const optionsHour = await response.json();
-//     // optionsHour.name = city;
-//     // if (renderCity) {
-//     //     setCurrentCityWeather(optionsHour);
-//     // }
-//     // addCityToLS(optionsHour);
-//     // if (window.TOUCH && renderCity) {
-//     //     const slider = new Slider(null, optionsHour.hourly);
-//     //     slider.createSlider();
-//     // }
-//     if (!window.TOUCH   && city !== lastCity /* && renderCity */) {
-//       flyToCity(coords);
-//       createMarker(coords, city);
-//       lastCity = city;
-//     }
-// }

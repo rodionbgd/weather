@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { City } from "../types";
+import { City, LOCATION } from "../types";
 
 const initialState = [] as City[];
 
@@ -21,14 +21,31 @@ export const citySlice = createSlice({
         state.forEach((city) => {
           city.isCurrentCity = false;
         });
-        const cityIndex = state.findIndex(
-          (city) => city.name === action.payload.name
-        );
-        if (cityIndex === -1) {
-          state.push(action.payload);
-          return;
+        let cityIndex;
+        if (action.payload.location !== LOCATION.LOCATION_NO) {
+          cityIndex = state.findIndex(
+            (city) => city.location !== LOCATION.LOCATION_NO
+          );
+          if (cityIndex === -1) {
+            state.push(action.payload);
+            return;
+          }
+        } else {
+          cityIndex = state.findIndex((city) => city.id === action.payload.id);
+          if (cityIndex === -1) {
+            state.push(action.payload);
+            return;
+          }
         }
         state[cityIndex] = action.payload;
+      },
+      prepare: (value) => ({
+        payload: value,
+      }),
+    },
+    removeCity: {
+      reducer: (state, action: PayloadAction<Number>) => {
+        return state.filter((city) => city.id !== action.payload);
       },
       prepare: (value) => ({
         payload: value,
@@ -38,4 +55,4 @@ export const citySlice = createSlice({
 });
 
 let { actions } = citySlice;
-export const { addCity, setCityList } = actions;
+export const { addCity, setCityList, removeCity } = actions;

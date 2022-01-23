@@ -2,7 +2,6 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.ts",
@@ -12,11 +11,11 @@ module.exports = {
     environment: {
       arrowFunction: false,
     },
+    clean: true,
   },
   mode: process.env.NODE_ENV === "development" ? "development" : "production",
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Weather forecast",
       template: "./src/index.html",
     }),
     new MiniCssExtractPlugin(),
@@ -26,9 +25,16 @@ module.exports = {
           from: "src/icons",
           to: path.resolve(__dirname, "dist/icons"),
         },
+        {
+          from: "src/font",
+          to: path.resolve(__dirname, "dist/font"),
+        },
+        {
+          from: "src/menu/slip.js",
+          to: path.resolve(__dirname, "dist/slip.js"),
+        },
       ],
     }),
-    new CleanWebpackPlugin(),
   ],
   module: {
     rules: [
@@ -51,7 +57,7 @@ module.exports = {
   resolve: { extensions: [".ts", ".js"] },
   devServer: {
     static: {
-      directory: path.join(__dirname, "dev"),
+      directory: path.join(__dirname, "dist"),
     },
     compress: true,
     port: 9000,

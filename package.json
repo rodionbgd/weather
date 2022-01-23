@@ -2,13 +2,13 @@
   "name": "weather",
   "version": "1.0.0",
   "description": "Online weather forecast by ip location.",
-  "main": "src/weather.js",
+  "main": "src/index.ts",
   "scripts": {
     "test": "jest",
     "lint": "eslint . && prettier --check .",
-    "lint:fix": "eslint --fix . && prettier --write .",
+    "lint:fix": "eslint --fix src && prettier --write src",
     "prepare": "husky install",
-    "dev": "webpack --node-env development",
+    "dev": "webpack serve --https --node-env development",
     "build": "webpack --node-env production"
   },
   "husky": {
@@ -47,7 +47,6 @@
     "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.2",
     "babel-plugin-rewire": "^1.2.0",
-    "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.2.0",
     "eslint": "^7.32.0",
@@ -77,6 +76,9 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
-    "redux": "^4.1.2"
+    "chart.js": "^3.7.0",
+    "chartjs-plugin-datalabels": "^2.0.0",
+    "redux": "^4.1.2",
+    "swiper": "^7.4.1"
   }
 }

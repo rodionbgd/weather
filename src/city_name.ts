@@ -1,7 +1,7 @@
 import { Coords } from "./types";
 import { getCurrentCity } from "./get_city";
 import { store } from "./index";
-import addNewCity from "./add_city";
+import { addNewCity } from "./add_remove_city";
 
 const input = <HTMLInputElement>document.getElementById("search");
 const searchBtn = <HTMLButtonElement>document.getElementById("search-button");
@@ -25,25 +25,24 @@ export async function getCityByCoords(coords: Coords) {
     let component;
     for (let r = 0, rl = results.length; r < rl; r += 1) {
       const result = results[r];
-
-      if (!city && result.types[0] === "locality") {
+      if (
+        !city &&
+        (result.types[0] === "street_address" ||
+          result.types[0] === "premise" ||
+          result.types[0] === "establishment")
+      ) {
         for (c = 0, lc = result.address_components.length; c < lc; c += 1) {
           component = result.address_components[c];
-
-          if (component.types[0] === "locality") {
+          if (component.types[0] === "administrative_area_level_3") {
             city = component.long_name;
             break;
           }
         }
-      } else if (
-        !city &&
-        !cityAlt &&
-        result.types[0] === "administrative_area_level_1"
-      ) {
+      } else if (!city && !cityAlt && result.types[0] === "political") {
         for (c = 0, lc = result.address_components.length; c < lc; c += 1) {
           component = result.address_components[c];
 
-          if (component.types[0] === "administrative_area_level_1") {
+          if (component.types[0] === "locality") {
             cityAlt = component.long_name;
             break;
           }
@@ -60,7 +59,9 @@ export async function getCityByCoords(coords: Coords) {
 }
 
 async function addCityFromInput(inputCity: string) {
-  if (!inputCity) return;
+  if (!inputCity) {
+    return;
+  }
   const geocoder = new window.google.maps.Geocoder();
 
   const { results } = await geocoder.geocode({
@@ -76,9 +77,6 @@ async function addCityFromInput(inputCity: string) {
   };
   if (input) {
     input.value = "";
-    input.blur();
-    input.focus();
-    searchBtn.style.display = "none";
   }
   const city = await getCurrentCity(cityName, coords, store.getState().cities);
   if (city) {
@@ -98,14 +96,9 @@ window.googleAutoComplete = function googleAutoComplete() {
     input,
     options
   );
-  input.addEventListener("input", () => {
-    if (input.value) {
-      searchBtn.style.display = "flex";
-    } else {
-      searchBtn.style.display = "none";
-    }
-  });
+
   searchForm.addEventListener("keydown", async (e) => {
+    e.preventDefault();
     if (!input.value) return;
     if (e.key === "Enter") {
       await addCityFromInput(input.value);
@@ -114,8 +107,12 @@ window.googleAutoComplete = function googleAutoComplete() {
   });
   searchBtn.addEventListener("click", async () => {
     if (!input.value) return;
-    await addCityFromInput(input.value);
     isCalled = true;
+    const autocompleteEl = document.querySelector(".pac-container");
+    if (autocompleteEl) {
+      autocompleteEl.remove();
+    }
+    await addCityFromInput(input.value);
   });
   autocomplete.addListener("place_changed", async () => {
     if (!input.value) return;
