@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "test": "jest",
-    "lint": "eslint . && prettier --check .",
+    "lint": "eslint src && prettier --check src",
     "lint:fix": "eslint --fix src && prettier --write src",
     "prepare": "husky install",
     "dev": "webpack serve --https --node-env development",
