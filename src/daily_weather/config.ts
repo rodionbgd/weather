@@ -12,7 +12,18 @@ export function createConfig(
     hoverRadius: 3,
     pointRadius: 3,
   };
-
+  let aspectRatio = 15 / 3;
+  let left = 45;
+  let right = 45;
+  let top = 35;
+  let bottom = 35;
+  if (!window.TOUCH) {
+    aspectRatio = 21 / 3;
+    left = 30;
+    right = 30;
+    top = 30;
+    bottom = 30;
+  }
   const labels = dailyWeatherTemp.map(
     (tempObj) =>
       `День: ${((tempObj.day as number) - KELVIN_TO_CELSIUS).toFixed(
@@ -70,14 +81,13 @@ export function createConfig(
         },
       },
 
-      // Core options
-      aspectRatio: 15 / 3,
+      aspectRatio,
       layout: {
         padding: {
-          top: 35,
-          bottom: 35,
-          left: 45,
-          right: 45,
+          top,
+          bottom,
+          left,
+          right,
         },
       },
       elements: {

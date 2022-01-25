@@ -8,8 +8,8 @@ import { isInViewport } from "./utils";
 import { bgContainer, cityListEl } from "./index";
 import { mainSwiper } from "./init";
 
-const WEATHER_API_KEY = "5df917b322441cc9e193178bf51efa31";
-// const WEATHER_API_KEY = "a7c22af58d3c31ff67298a325b74ea0e";
+// const WEATHER_API_KEY = "5df917b322441cc9e193178bf51efa31";
+const WEATHER_API_KEY = "a7c22af58d3c31ff67298a325b74ea0e";
 export const KELVIN_TO_CELSIUS = 273.15;
 
 export const initialTimeZone = new Date().getTimezoneOffset() * 60;
@@ -122,39 +122,6 @@ function getDateFromWeather(date: number, timezone_offset: number) {
   return new Date((date + timezone_offset + initialTimeZone) * 1000);
 }
 
-export function renderHeader(options: City) {
-  let innerHTML;
-  if (window.TOUCH) {
-    innerHTML = `
-        <header class="header">
-            <p class="current-city-title">
-            ${options.name}
-            `;
-    if (options.location !== LOCATION.LOCATION_NO) {
-      innerHTML += `
-            <img src="./icons/location_${options.location}.png" alt="">
-            `;
-    }
-    innerHTML += `
-            </p>
-            <p class="menu-mobile">&#11820</p>
-        </header>
-        `;
-  } else {
-    innerHTML = `
-        <header class="header">
-            <div id="header-desktop" class="header">
-                <div class="header__title">
-                    <img src="icons/header_out_icon.png" alt=""/>
-                    <span class="header__title__hover">WF</span>
-                </div>
-            </div>
-        </header>
-           `;
-  }
-  return innerHTML;
-}
-
 function renderDayTemperature(options: City) {
   const { weather } = options;
   const { current, hourly } = weather;
@@ -204,6 +171,29 @@ function renderDayTemperature(options: City) {
                             </p>
                         </div>
         `;
+}
+
+export function renderHeader(options: City) {
+  let innerHTML;
+  innerHTML = `
+        <header class="header">
+            <p class="current-city-title">
+            ${options.name}
+            `;
+  if (options.location !== LOCATION.LOCATION_NO) {
+    innerHTML += `
+            <img ${!window.TOUCH ? 'class="icon"' : ""} src="./icons/location_${
+      options.location
+    }.png" alt="">
+            `;
+  }
+  innerHTML += `
+            </p>
+         ${window.TOUCH ? '<p class="menu-mobile">&#11820</p>' : ""} 
+         ${!window.TOUCH ? renderDayTemperature(options) : ""}
+        </header>
+        `;
+  return innerHTML;
 }
 
 function renderRiseSet(options: City) {
@@ -259,7 +249,9 @@ function renderRiseSet(options: City) {
 
   return `
     <p class="verbose-info__title">Восход и закат</p>
-    <div class="verbose-info_border">
+    <div class="verbose-info_border ${
+      !window.TOUCH ? "verbose-info-sun-moon" : ""
+    }">
         <div class="sun-phase" tabindex="0">
             <span  style="${filterSun} ${styleSun}">
                 <img class="sun-size" src="./icons/sun_phase.png" alt="">
@@ -267,10 +259,10 @@ function renderRiseSet(options: City) {
         </div>
         <div class="moon-phase" tabindex="0">
             <span class="moon-rotate"  style="${filterMoon} ${styleMoon}">
-                <img class="icon" src="icons/moon_phase.png" alt="">
+                <img class="icon moon-phase-img" src="icons/moon_phase.png" alt="">
             </span>
         </div>
-        <div class="border margin-top--11em opacity-5"></div>
+        <div class="border width-100 margin-top--11em opacity-5"></div>
         <section class="sun-moon-phase-descr">
             <div>
                 <div>Восход солнца</div>
@@ -353,50 +345,41 @@ export function setCurrentCityWeather(options: City, el: HTMLDivElement) {
   const { daily } = weather;
   let cityEl = <HTMLElement>el.querySelector(`[data-name="${options.name}"]`);
   const isOldCity = !!cityEl;
-  if (!cityEl) {
+  if (!cityEl || !window.TOUCH) {
     cityEl = document.createElement("div");
   }
-  // alert(`${options.name}: ${isOldCity}`);
   cityEl.innerHTML = "";
   cityEl.dataset.name = `${options.name}`;
+  cityEl.dataset.history = `${options.id}`;
   cityEl.classList.forEach((className) => cityEl.classList.remove(className));
   cityEl.classList.add("swiper-slide");
   const sliderM = new Slider(weather);
-  const sliderInnerHTML = sliderM.createSlider();
-  cityEl.innerHTML = `
-       ${renderHeader(options)}
-       <div class="scroll">
-                <main class="section">
-                    <article class="section-content">
-                        <section class="current-container">
-                            ${renderDayTemperature(options)}
-                        </section>
-                        ${
-                          !window.TOUCH
-                            ? '<section class="map"><div class="map__wrap" style="overflow: visible"></div></section>'
-                            : ""
-                        }
-                        <section class="border swiper slider">
+  const hourSliderInnerHTML = sliderM.createSlider();
+  const slidersInnerHTML = `
+                        <section class="swiper slider border">
                             <div class="swiper-wrapper">
-                                ${sliderInnerHTML}
+                                ${hourSliderInnerHTML}
                             </div>
                         </section>
-                        <section class="hour-daily-weather">
-                            <section class="swiper">
+                        <section class="hour-daily-weather border">
+                            <section class="swiper no-margin">
                                 <div class="swiper-wrapper">
-                                    <div class="slider border swiper-slide" role="group" aria-label="1/1">
+                                    <div class="slider swiper-slide" role="group" aria-label="1/1">
                                         ${renderDailyLabels(daily)}
                                     </div>
                                 </div>
                             </section>
-                            <fieldset class="slider no-min-width no-border">
+                            <fieldset class="slider no-min-width no-border ${
+                              !window.TOUCH ? "no-padding" : ""
+                            }">
                                 <div class="daily-chart">
                                     <canvas aria-label="daily-weather" role="img"></canvas>
                                 </div>
                             </fieldset>
-                        </section>
-                    </article>
-                    <div class="verbose-info-wrapper opacity-8">
+                        </section>    
+    `;
+  const verboseInfo = `
+                        <div class="verbose-info-wrapper opacity-8">
                         <section class="verbose-info">
                             ${renderVerboseInfo(options)}
                         </section> 
@@ -404,9 +387,32 @@ export function setCurrentCityWeather(options: City, el: HTMLDivElement) {
                             ${renderRiseSet(options)}
                         </section>           
                     </div>
+    `;
+  cityEl.innerHTML = `
+       ${window.TOUCH ? renderHeader(options) : ""}
+       <div class="scroll">
+                <main class="section">
+                    <article class="section-content">
+                        <section class="current-container">
+                        ${
+                          !window.TOUCH
+                            ? renderHeader(options)
+                            : renderDayTemperature(options)
+                        }
+                        ${!window.TOUCH ? verboseInfo : slidersInnerHTML}
+                        </section>
+                    </article>
+                    <div class="sliders-wrapper">
+                        ${!window.TOUCH ? slidersInnerHTML : ""}
+                    </div>
+                    ${window.TOUCH ? verboseInfo : ""}
                 </main>
             </div>
     `;
+  if (!window.TOUCH && el.firstElementChild) {
+    el.insertAdjacentElement("beforeend", cityEl);
+    el.firstElementChild.remove();
+  }
   if (!isOldCity) {
     el.appendChild(cityEl);
   }
@@ -417,10 +423,12 @@ export function setCurrentCityWeather(options: City, el: HTMLDivElement) {
   /* eslint-disable-next-line no-new */
   new Swiper(".border.swiper", {
     slidesPerView: 6,
-    freeMode: true,
     spaceBetween: 0,
   });
 
+  const verboseInfoSunMoon = <HTMLElement>(
+    document.querySelector(".verbose-info-sun-moon")
+  );
   const currentCitySunPhase = <HTMLSpanElement>(
     cityEl.querySelector(".sun-phase span")
   );
@@ -438,9 +446,17 @@ export function setCurrentCityWeather(options: City, el: HTMLDivElement) {
         currentCityMoonPhase.classList.remove("moon-phase-animate");
       }
     });
+  } else {
+    verboseInfoSunMoon.addEventListener("mouseenter", () => {
+      currentCitySunPhase.classList.add("sun-phase-animate");
+    });
+
+    verboseInfoSunMoon.addEventListener("mouseleave", () => {
+      currentCitySunPhase.classList.remove("sun-phase-animate");
+    });
   }
 
-  if (mainSwiper) {
+  if (window.TOUCH && mainSwiper) {
     const cityList = Array.from(cityListEl.children);
     const idx = cityList.indexOf(cityEl);
     if (idx === -1) {

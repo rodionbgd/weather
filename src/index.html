@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="theme-color" content="#ff6600" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather</title>
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://use.fontawesome.com/b4ab91725e.js"></script>
     <script src="https://www.webglearth.com/v2/api.js" defer></script>
     <script src="https://kit.fontawesome.com/9b8a7e18a0.js"></script>
-    <script src="slip.js"></script>
   </head>
   <body>
     <div id="loading"></div>
     <div id="bg-container" class="bg-img">
       <div class="hidden"></div>
-      <div class="default-bg"></div>
+      <div class=""></div>
     </div>
     <div id="menu" class="menu">
       <div class="menu-header">
@@ -47,8 +46,8 @@
         <ul id="menu-city-list" class="menu__city-list"></ul>
       </div>
     </div>
-    <div id="app" class="swiper">
-      <div id="city-list" class="swiper-wrapper"></div>
+    <div id="app" class="swiper main">
+      <div id="city-list" class="swiper-wrapper main-width"></div>
       <div class="swiper-pagination"></div>
     </div>
   </body>

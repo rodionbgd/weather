@@ -14,6 +14,7 @@ export async function getCityByCoords(coords: Coords) {
     coords.latitude,
     coords.longitude
   );
+
   const data = await new window.google.maps.Geocoder().geocode({ latLng });
   const { results } = data;
   let city = "";
@@ -98,7 +99,7 @@ window.googleAutoComplete = function googleAutoComplete() {
   );
 
   searchForm.addEventListener("keydown", async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (!input.value) return;
     if (e.key === "Enter") {
       await addCityFromInput(input.value);

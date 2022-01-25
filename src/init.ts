@@ -1,5 +1,5 @@
 import "swiper/css";
-import "swiper/css/navigation";
+import "swiper/css/history";
 import "swiper/css/pagination";
 import "./css/swiper.css";
 
@@ -14,7 +14,8 @@ import "./css/bg_weather.css";
 import "./css/menu.css";
 import "./css/autocomplete.css";
 
-import Swiper, { Pagination } from "swiper";
+import "./menu/slip";
+import Swiper, { Pagination, History } from "swiper";
 
 import {
   app,
@@ -25,7 +26,7 @@ import {
   store,
 } from "./index";
 import { setCityList } from "./reducers/cities";
-import addGoogleScript from "./utils";
+import addGoogleScript, { preload } from "./utils";
 import { LOCATION } from "./types";
 
 import { getCityByCoords } from "./city_name";
@@ -34,18 +35,25 @@ import { setCurrentCityWeather } from "./current_city_weather";
 import { addNewCity } from "./add_remove_city";
 import { getCityList, getCurrentCity } from "./get_city";
 import { renderMenu } from "./menu/render";
-import { initMap } from "./map";
-
-Swiper.use([Pagination]);
 
 window.TOUCH = window.matchMedia("(any-hover:none)").matches;
-export const headerD = <HTMLDivElement>(
-  document.getElementById("header-desktop")
-);
 
 const updateLocation = <HTMLElement>document.getElementById("update-location");
 // eslint-disable-next-line import/no-mutable-exports
 export let mainSwiper: Swiper;
+Swiper.use([Pagination, History]);
+
+window.addEventListener("popstate", () => {
+  const cityId = document.location.pathname.split("/").at(-1);
+  const { cities } = store.getState();
+  let currentCity = cities.filter((city) => city.id === Number(cityId))[0];
+  if (!currentCity) {
+    [currentCity] = cities.filter(
+      (city) => city.location !== LOCATION.LOCATION_NO
+    );
+  }
+  setCurrentCityWeather(currentCity, cityListEl);
+});
 
 export function createSubscriber() {
   const { cities } = store.getState();
@@ -53,9 +61,12 @@ export function createSubscriber() {
   let currentCity;
   renderMenu();
   if (!cityListEl.children.length) {
-    cities.forEach((city) => {
-      setCurrentCityWeather(city, cityListEl);
-    });
+    preload(1);
+    if (window.TOUCH) {
+      cities.forEach((city) => {
+        setCurrentCityWeather(city, cityListEl);
+      });
+    }
     [currentCity] = cities.filter(
       (city) => city.location !== LOCATION.LOCATION_NO
     );
@@ -77,17 +88,19 @@ export function createSubscriber() {
     }
   }
   setCurrentCityWeather(currentCity, cityListEl);
-  const menuBtnList = cityListEl.querySelectorAll(".menu-mobile");
-  menuBtnList.forEach((btn) => {
-    btn.addEventListener("pointerdown", () => {
-      app.style.display = "none";
-      menuEl.style.display = "flex";
-      bgContainer.style.display = "none";
+  if (window.TOUCH) {
+    const menuBtnList = cityListEl.querySelectorAll(".menu-mobile");
+    menuBtnList.forEach((btn) => {
+      btn.addEventListener("pointerdown", () => {
+        app.style.display = "none";
+        menuEl.style.display = "flex";
+        bgContainer.style.display = "none";
+      });
     });
-  });
+  }
 }
 
-function getLocation() {
+function getLocation(force = false) {
   // Moscow
   let coords = {
     latitude: 55.7558,
@@ -99,9 +112,6 @@ function getLocation() {
   store.subscribe(createSubscriber);
 
   async function success(position: GeolocationPosition) {
-    if (!window.TOUCH) {
-      initMap(position.coords);
-    }
     const { latitude, longitude } = position.coords;
     coords = { latitude, longitude };
     const name = await getCityByCoords(coords);
@@ -114,7 +124,7 @@ function getLocation() {
 
   async function error() {
     let cityData;
-    if (cities.length) {
+    if (cities.length && !force) {
       [cityData] = cities.filter(
         (city) => city.location !== LOCATION.LOCATION_NO
       );
@@ -125,7 +135,7 @@ function getLocation() {
       cityName = cityData.name;
     }
     if (!window.TOUCH) {
-      initMap(coords);
+      // initMap(coords);
     }
     if (!cityName) {
       cityName = await getCityByCoords(coords);
@@ -156,23 +166,13 @@ function getLocation() {
 }
 
 updateLocation.addEventListener("click", () => {
-  getLocation();
-  menuEl.style.display = "none";
-  app.style.display = "block";
-  bgContainer.style.display = "initial";
-});
-
-function preload(opacity: number) {
-  const loading = <HTMLDivElement>document.getElementById("loading");
-  if (opacity <= 0) {
-    loading.style.display = "none";
-  } else {
-    loading.style.opacity = `${opacity}`;
-    setTimeout(() => {
-      preload(opacity - 0.1);
-    }, 50);
+  getLocation(true);
+  if (window.TOUCH) {
+    menuEl.style.display = "none";
+    app.style.display = "block";
+    bgContainer.style.display = "initial";
   }
-}
+});
 
 export default async function init() {
   Array.from(bgContainer.children).forEach((img) => {
@@ -184,56 +184,58 @@ export default async function init() {
     (img as HTMLElement).style.backgroundSize = "cover";
   });
   if (!window.TOUCH) {
-    const weatherItems = <HTMLElement>document.getElementById("weather-items");
-    weatherItems.firstElementChild!.remove();
+    const menuHeaderTitle = document.querySelector(".menu-header__title");
+    if (menuHeaderTitle) {
+      menuHeaderTitle.remove();
+    }
+    app.insertAdjacentElement("beforeend", menuEl);
+    menuEl.style.display = "block";
   }
-  preload(1);
   addGoogleScript();
   const cityList = await getCityList();
-  mainSwiper = new Swiper(".swiper", {
-    pagination: {
-      el: ".swiper-pagination",
-      dynamicBullets: true,
-      dynamicMainBullets: 3,
-    },
-  });
-  mainSwiper.on("slideChange", () => {
-    const { cities } = store.getState();
-    const paginationList = <HTMLElement>app.querySelector(".swiper-pagination");
-    const activeSlider = <HTMLElement>(
-      paginationList.querySelector(".swiper-pagination-bullet-active")
-    );
-    const activeSliderIndex = Array.from(paginationList.children).indexOf(
-      activeSlider
-    );
-    if (activeSliderIndex === -1) {
-      return;
-    }
-    const currentSlide = <HTMLElement>cityListEl.children[activeSliderIndex];
-    const currentCity = cities.filter(
-      (city) => city.name === currentSlide.dataset.name
-    )[0];
-    const imgList = Array.from(bgContainer.children);
-    const isSameWeather = imgList.filter(
-      (el) =>
-        el.className === `bg-${currentCity.weather.current.weather[0].icon}`
-    ).length;
-    if (isSameWeather) {
-      return;
-    }
-    Array.from(bgContainer.children).forEach((img) => {
-      img.classList.toggle("hidden");
-      img.classList.remove("default-bg");
-      if (img.classList.contains("hidden")) {
-        (img as HTMLElement).style.opacity = "0";
-      } else {
-        (img as HTMLElement).style.opacity = "1";
-        (
-          img as HTMLImageElement
-        ).className = `bg-${currentCity.weather.current.weather[0].icon}`;
-      }
+  if (window.TOUCH) {
+    mainSwiper = new Swiper(".swiper", {
+      pagination: {
+        el: ".swiper-pagination",
+        dynamicBullets: true,
+        dynamicMainBullets: 3,
+      },
+      watchOverflow: true,
+      // history: {
+      //   key: "city",
+      //   root: originLocation,
+      // },
     });
-  });
+    mainSwiper.on("slideChange", () => {
+      const { cities } = store.getState();
+      const currentSlide = <HTMLElement>(
+        cityListEl.children[mainSwiper.realIndex]
+      );
+      const currentCity = cities.filter(
+        (city) => city.name === currentSlide.dataset.name
+      )[0];
+      const imgList = Array.from(bgContainer.children);
+      const isSameWeather = imgList.filter(
+        (el) =>
+          el.className === `bg-${currentCity.weather.current.weather[0].icon}`
+      ).length;
+      if (isSameWeather) {
+        return;
+      }
+      Array.from(bgContainer.children).forEach((img) => {
+        img.classList.toggle("hidden");
+        img.classList.remove("default-bg");
+        if (img.classList.contains("hidden")) {
+          (img as HTMLElement).style.opacity = "0";
+        } else {
+          (img as HTMLElement).style.opacity = "1";
+          (
+            img as HTMLImageElement
+          ).className = `bg-${currentCity.weather.current.weather[0].icon}`;
+        }
+      });
+    });
+  }
   store.dispatch(setCityList(cityList));
   getLocation();
 }

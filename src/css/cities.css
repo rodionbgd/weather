@@ -44,12 +44,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex: 45%;
-    height: 50vh;
-    border: var(--main-color) solid 0.1em;
-    padding: 0.5em 0;
+    width: 100%;
     border-radius: 0.3em;
     overflow: hidden;
+    padding: 0.5rem 0;
   }
 
   .daily-labels {
@@ -63,8 +61,6 @@
 
   .daily-chart {
     width: 100%;
-    padding: 0 1.8em 0 2em;
-    margin: -1.5em 0 0;
   }
   .daily-labels > li {
     width: calc(100% / 5);

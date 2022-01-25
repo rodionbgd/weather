@@ -8,6 +8,22 @@ export default function addGoogleScript() {
   document.head.append(script);
 }
 
+export function preload(opacity: number) {
+  const loading = <HTMLDivElement>document.getElementById("loading");
+  let timerStepMs = 50;
+  if (!window.TOUCH) {
+    timerStepMs = 50;
+  }
+  if (opacity <= 0) {
+    loading.style.display = "none";
+  } else {
+    loading.style.opacity = `${opacity}`;
+    setTimeout(() => {
+      preload(opacity - 0.1);
+    }, timerStepMs);
+  }
+}
+
 export function isInViewport(element: HTMLElement) {
   const rect = element.getBoundingClientRect();
   return (

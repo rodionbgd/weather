@@ -1,6 +1,16 @@
-.border {
+@media (hover: none) and (pointer: coarse) {
+  .border {
+    border-top: 1pt solid #b3d7fd;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .border {
+    border: 1pt solid #b3d7fd;
+  }
+}
+
+.width-100 {
   width: 100%;
-  border-top: 1pt solid #b3d7fd;
 }
 
 .margin-top--11em {

@@ -6,6 +6,9 @@ import { removeOldCity } from "../add_remove_city";
 export function renderMenu() {
   new window.Slip(menuCityList);
   menuCityList.addEventListener("slip:swipe", function (e: Event) {
+    if (menuCityList.children.length <= 1) {
+      return;
+    }
     const city = <HTMLLIElement>(e.target as HTMLElement).closest("li");
     removeOldCity(city.dataset.menuName as string);
     city.remove();

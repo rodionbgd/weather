@@ -1,5 +1,5 @@
 import { City } from "./types";
-import { cityListEl, store } from "./index";
+import { menuCityList, store } from "./index";
 import { addCity, removeCity } from "./reducers/cities";
 
 export function addNewCity(city: City) {
@@ -37,7 +37,9 @@ export function removeOldCity(cityName: string) {
   if (removedIndex === undefined) {
     return;
   }
-  const removedCity = cityListEl.querySelector(`[data-name="${cityName}"]`);
+  const removedCity = menuCityList.querySelector(
+    `[data-menu-name="${cityName}"]`
+  );
   if (!removedCity) {
     return;
   }

@@ -3,169 +3,184 @@
   --moon-phase-deg: 0deg;
 }
 
-.sun-phase {
-  margin: 0 auto;
-  padding: 1em 1em 0 1em;
-  width: 80%;
-  overflow: hidden;
-  position: relative;
-}
-
-.moon-phase {
-  margin: 0 auto;
-  padding: 1em 1em 0 1em;
-  width: 60%;
-  top: -11em;
-  overflow: hidden;
-  position: relative;
-}
-
-.moon-phase::before {
-  content: "";
-  padding-top: 100%;
-  display: block;
-  margin-bottom: -50%;
-  border-radius: 50%;
-  border: 0.2em dashed #dbdbdb;
-}
-
-.moon-phase span {
-  position: absolute;
-  bottom: 0;
-  right: 50%;
-  left: -2%;
-  height: 2em;
-}
-
-.moon-rotate img {
-  margin-top: 0.7em;
-  transform: rotate(-110deg);
-}
-.sun-phase::before {
-  content: "";
-  padding-top: 100%;
-  display: block;
-  margin-bottom: -50%;
-  border-radius: 50%;
-  border: 0.2em dashed #dbdbdb;
-}
-
-.sun-phase span {
-  position: absolute;
-  bottom: 0;
-  right: 50%;
-  left: -4%;
-  height: 2em;
-}
-
-.sun-phase-animate {
-  transform-origin: 100% 100%;
-  animation: rotate-sun 1.5s ease;
-  transform: rotate(var(--sun-phase-deg));
-}
-
-@keyframes rotate-sun {
-  0% {
-    transform: rotate(0deg);
+@media (hover: none) and (pointer: coarse) {
+  .sun-phase {
+    margin: 0 auto;
+    padding: 1em 1em 0 1em;
+    width: 80%;
+    overflow: hidden;
+    position: relative;
   }
-  100% {
+
+  .moon-phase {
+    margin: 0 auto;
+    padding: 1em 1em 0 1em;
+    width: 60%;
+    top: -11em;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .moon-phase::before {
+    content: "";
+    padding-top: 100%;
+    display: block;
+    margin-bottom: -50%;
+    border-radius: 50%;
+    border: 0.2em dashed #dbdbdb;
+  }
+
+  .moon-phase span {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    left: -2%;
+    height: 2em;
+  }
+
+  .moon-rotate img {
+    margin-top: 0.7em;
+    transform: rotate(-110deg);
+  }
+
+  .sun-phase::before {
+    content: "";
+    padding-top: 100%;
+    display: block;
+    margin-bottom: -50%;
+    border-radius: 50%;
+    border: 0.2em dashed #dbdbdb;
+  }
+
+  .sun-phase span {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    left: -4%;
+    height: 2em;
+  }
+
+  .sun-phase-animate {
+    transform-origin: 100% 100%;
+    animation: rotate-sun 1.5s ease;
     transform: rotate(var(--sun-phase-deg));
   }
-}
 
-.moon-phase-animate {
-  transform-origin: 100% 100%;
-  animation: rotate-moon 1.5s ease;
-  transform: rotate(var(--moon-phase-deg));
-}
-
-@keyframes rotate-moon {
-  0% {
-    transform: rotate(0);
+  @keyframes rotate-sun {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(var(--sun-phase-deg));
+    }
   }
-  100% {
+
+  .moon-phase-animate {
+    transform-origin: 100% 100%;
+    animation: rotate-moon 1.5s ease;
     transform: rotate(var(--moon-phase-deg));
   }
+
+  @keyframes rotate-moon {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(var(--moon-phase-deg));
+    }
+  }
+  .sun-phase span img {
+    width: 20%;
+    margin-top: 0.5em;
+    margin-left: 0.6em;
+  }
+
+  .sun-moon-phase-descr {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0.5em;
+    width: 100%;
+    font-size: 1.5em;
+    overflow: hidden;
+    z-index: 100;
+  }
+
+  .sun-moon-phase-descr > * {
+    margin: 0.5em 0;
+  }
 }
-.sun-phase span img {
-  width: 20%;
-  margin-top: 0.5em;
-  margin-left: 0.6em;
+
+@media (hover: hover) and (pointer: fine) {
+  .sun-phase {
+    padding: 1em 1em 0;
+    width: 80%;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto 11em;
+  }
+
+  .moon-phase {
+    display: none;
+    position: relative;
+  }
+
+  .sun-phase::before {
+    content: "";
+    padding-top: 100%;
+    display: block;
+    margin-bottom: -50%;
+    border-radius: 50%;
+    border: 0.2em dashed #dbdbdb;
+  }
+
+  .sun-phase span {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    left: -4%;
+    height: 2em;
+  }
+
+  .sun-phase-animate {
+    transform-origin: 100% 100%;
+    animation: rotate-sun 1.5s ease;
+    transform: rotate(var(--sun-phase-deg));
+  }
+
+  @keyframes rotate-sun {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(var(--sun-phase-deg));
+    }
+  }
+
+  @keyframes rotate-moon {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(var(--moon-phase-deg));
+    }
+  }
+  .sun-phase span img {
+    width: 20%;
+    position: relative;
+    left: 0.8em;
+    top: 1em;
+  }
+
+  .sun-moon-phase-descr {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1em;
+    width: 100%;
+    font-size: 1.2rem;
+    overflow: hidden;
+  }
+
+  .sun-moon-phase-descr > * {
+    margin: 1.5em;
+  }
 }
-
-.sun-moon-phase-descr {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 0.5em;
-  width: 100%;
-  font-size: 1.5em;
-  overflow: hidden;
-  z-index: 1000;
-}
-
-.sun-moon-phase-descr > * {
-  margin: 0.5em 0;
-}
-
-/*.progress{*/
-/*    position: relative;*/
-/*    margin-left: 100px;*/
-/*    margin-top: 35px;*/
-/*    margin-bottom: -52px;*/
-/*    float:left;*/
-/*    text-align: center;*/
-/*}*/
-/*.barOverflow{ !* Wraps the rotating .bar *!*/
-/*    position: relative;*/
-/*    overflow: hidden; !* Comment this line to understand the trick *!*/
-/*    width: 200px; height: 100px; !* Half circle (overflow) *!*/
-/*    margin-bottom: -14px; !* bring the numbers up *!*/
-/*}*/
-/*.bar{*/
-/*    position: absolute;*/
-/*    top: 0; left: 0;*/
-/*    width: 200px; height: 200px; !* full circle! *!*/
-/*    border-radius: 50%;*/
-/*    box-sizing: border-box;*/
-/*    border: 2px solid #dedede;     !* half gray, *!*/
-/*    border-bottom-color: #e3b714;  !* half azure *!*/
-/*    border-right-color: #e3b714;*/
-/*    transform: rotate(225deg);*/
-/*    animation-name: rotate;*/
-/*    animation-duration: 2s;*/
-/*    !*animation-iteration-count: infinite;*!*/
-/*    animation-timing-function: ease-in;*/
-/*}*/
-
-/*@-webkit-keyframes rotate {*/
-/*    0% {transform: rotate(45deg);}*/
-/*    100% {transform: rotate(225deg);}*/
-/*}*/
-
-/*@keyframes rotate {*/
-/*    0% {transform: rotate(45deg);}*/
-/*    100% {transform: rotate(225deg);}*/
-/*}*/
-
-/*div#sun  {*/
-/*    position: relative;*/
-/*    transform: rotate(0deg);*/
-/*    animation-name: rotatgeCCW;*/
-/*    animation-timing-function: linear;*/
-/*    animation-duration: 2s;*/
-/*    width: 25%;*/
-/*    top:125px;*/
-/*    left:-10px;*/
-/*    !*animation-iteration-count: infinite;*!*/
-/*}*/
-
-/*@-webkit-keyframes rotateCCW {*/
-/*    0% {transform: rotate(0deg);}*/
-/*    100% {transform: rotate(-180deg);}*/
-/*}*/
-
-/*!* Standard syntax *!*/
-/*@keyframes rotateCCW {*/
-/*    0% {transform: rotate(0deg);}*/
-/*    100% {transform: rotate(-180deg);}*/
-/*}*/

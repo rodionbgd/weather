@@ -8,6 +8,7 @@ module.exports = {
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
+    publicPath: process.env.NODE_ENV === "production" ?  "/weather/" : "/",
     environment: {
       arrowFunction: false,
     },
@@ -17,6 +18,10 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+      filename: "404.html"
     }),
     new MiniCssExtractPlugin(),
     new CopyWebpackPlugin({
@@ -28,10 +33,6 @@ module.exports = {
         {
           from: "src/font",
           to: path.resolve(__dirname, "dist/font"),
-        },
-        {
-          from: "src/menu/slip.js",
-          to: path.resolve(__dirname, "dist/slip.js"),
         },
       ],
     }),
@@ -59,6 +60,7 @@ module.exports = {
     static: {
       directory: path.join(__dirname, "dist"),
     },
+    historyApiFallback:true,
     compress: true,
     port: 9000,
   },

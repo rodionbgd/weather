@@ -43,19 +43,23 @@ menuCityList.addEventListener("click", async (e: Event) => {
     isCurrentCity: true,
   };
   store.dispatch(addCity(city));
-  menuEl.style.display = "none";
-  app.style.display = "block";
-  bgContainer.style.display = "initial";
+  if (window.TOUCH) {
+    menuEl.style.display = "none";
+    app.style.display = "block";
+    bgContainer.style.display = "initial";
+  }
   // chart = renderDailyWeather(currentCity);
 });
 
 document.addEventListener("DOMContentLoaded", init);
 
-showCity.addEventListener("click", () => {
-  menuEl.style.display = "none";
-  app.style.display = "block";
-  bgContainer.style.display = "initial";
-});
+if (window.TOUCH) {
+  showCity.addEventListener("click", () => {
+    menuEl.style.display = "none";
+    app.style.display = "block";
+    bgContainer.style.display = "initial";
+  });
+}
 
 document.body.addEventListener("selectstart", (e) => e.preventDefault());
 searchForm.addEventListener("submit", (e) => e.preventDefault());

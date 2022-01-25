@@ -5,18 +5,28 @@ export async function getCityList() {
   if (!Object.keys(localStorage).length) {
     return [];
   }
-  const data = Object.values(localStorage).map(async (value) => {
+  let cityLocationCounter = 0;
+  const data = Object.entries(localStorage).map(async ([key, value]) => {
     let city = JSON.parse(value) as City;
     city.updateTime = new Date().toString();
     const weather = await getCityWeather(city.coords);
+    if (city.location !== LOCATION.LOCATION_NO) {
+      cityLocationCounter += 1;
+    }
+    if (cityLocationCounter > 1) {
+      localStorage.removeItem(key);
+      return null;
+    }
+
     city = {
       ...city,
       weather,
     };
     return city;
   });
-  const cityList = await Promise.all(data);
-  cityList.sort((a, b) => a.id - b.id);
+  let cityList = await Promise.all(data);
+  cityList = [...cityList.filter((city) => city)];
+  cityList.sort((a, b) => a!.id - b!.id);
   return cityList;
 }
 
