@@ -376,7 +376,7 @@ a:focus {
   }
 
   .section-content {
-    margin-top: 3rem;
+    margin-top: .5rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
