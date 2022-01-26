@@ -326,7 +326,7 @@
     width: 75%;
   }
   .sliders-wrapper > * {
-    margin: 0.5rem;
+    margin: 0.5rem 0.5rem 0;
   }
   .slider {
     width: var(--slider-width);
@@ -749,7 +749,7 @@ a:focus {
   }
 
   .section-content {
-    margin-top: 3rem;
+    margin-top: .5rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -3398,7 +3398,7 @@ a:focus {
   }
 
   .city_list__name {
-    width: 70%;
+    width: 75%;
     font-size: 1.8rem;
     word-break: break-word;
   }
