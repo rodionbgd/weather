@@ -59,6 +59,7 @@ module.exports = {
   devServer: {
     static: {
       directory: path.join(__dirname, "dist"),
+      publicPath: "/city/",
     },
     historyApiFallback:true,
     compress: true,

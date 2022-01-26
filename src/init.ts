@@ -134,9 +134,6 @@ function getLocation(force = false) {
       coords = cityData.coords;
       cityName = cityData.name;
     }
-    if (!window.TOUCH) {
-      // initMap(coords);
-    }
     if (!cityName) {
       cityName = await getCityByCoords(coords);
     }
@@ -192,6 +189,7 @@ export default async function init() {
     menuEl.style.display = "block";
   }
   addGoogleScript();
+  const originLocation = window.location.origin;
   const cityList = await getCityList();
   if (window.TOUCH) {
     mainSwiper = new Swiper(".swiper", {
@@ -201,10 +199,10 @@ export default async function init() {
         dynamicMainBullets: 3,
       },
       watchOverflow: true,
-      // history: {
-      //   key: "city",
-      //   root: originLocation,
-      // },
+      history: {
+        key: "city",
+        root: originLocation,
+      },
     });
     mainSwiper.on("slideChange", () => {
       const { cities } = store.getState();
