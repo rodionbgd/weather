@@ -36,7 +36,8 @@ import { addNewCity } from "./add_remove_city";
 import { getCityList, getCurrentCity } from "./get_city";
 import { renderMenu } from "./menu/render";
 
-window.TOUCH = window.matchMedia("(any-hover:none)").matches;
+window.TOUCH = true;
+// window.TOUCH = window.matchMedia("(any-hover:none)").matches;
 
 const updateLocation = <HTMLElement>document.getElementById("update-location");
 // eslint-disable-next-line import/no-mutable-exports
