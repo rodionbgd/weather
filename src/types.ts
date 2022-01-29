@@ -2,22 +2,12 @@ declare global {
   interface Window {
     TOUCH: boolean;
     WE: any;
+    getLocation: (force?: boolean) => void;
     google: any;
     googleAutoComplete: any;
     Slip: any;
   }
 }
-
-export type MarkerWebGL = {
-  setLatLng: any;
-  bindPopup: any;
-};
-
-export type MapWebGL = {
-  fitBounds: any;
-  panInsideBounds: any;
-  setView: any;
-};
 
 export type TemperatureObj = {
   min?: number;
@@ -62,6 +52,8 @@ export type Coords = {
   latitude: number;
   longitude: number;
 };
+
+// eslint-disable-next-line
 export enum LOCATION {
   LOCATION_NO,
   LOCATION_OK,

@@ -24,32 +24,34 @@ export const store = configureStore({
   },
 });
 
-menuCityList.addEventListener("click", async (e: Event) => {
-  const cityEl = <HTMLElement>(
-    (e.target as HTMLElement).closest(".city_list__profile")
-  );
-  if (!cityEl) {
-    return;
-  }
-  const { cities } = store.getState();
+if (menuCityList) {
+  menuCityList.addEventListener("click", async (e: Event) => {
+    const cityEl = <HTMLElement>(
+      (e.target as HTMLElement).closest(".city_list__profile")
+    );
+    if (!cityEl) {
+      return;
+    }
+    const { cities } = store.getState();
 
-  let city = cities.filter(
-    (item) => item.name === cityEl.dataset.menuName
-  )[0] as City;
-  city = {
-    ...city,
-    updateTime: new Date().toString(),
-    weather: (await getCityWeather(city.coords)) as CityWeather,
-    isCurrentCity: true,
-  };
-  store.dispatch(addCity(city));
-  if (window.TOUCH) {
-    menuEl.style.display = "none";
-    app.style.display = "block";
-    bgContainer.style.display = "initial";
-  }
-  // chart = renderDailyWeather(currentCity);
-});
+    let city = cities.filter(
+      (item) => item.name === cityEl.dataset.menuName
+    )[0] as City;
+    city = {
+      ...city,
+      updateTime: new Date().toString(),
+      weather: (await getCityWeather(city.coords)) as CityWeather,
+      isCurrentCity: true,
+    };
+    store.dispatch(addCity(city));
+    if (window.TOUCH) {
+      menuEl.style.display = "none";
+      app.style.display = "block";
+      bgContainer.style.display = "initial";
+    }
+    // chart = renderDailyWeather(currentCity);
+  });
+}
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -62,4 +64,6 @@ if (window.TOUCH) {
 }
 
 document.body.addEventListener("selectstart", (e) => e.preventDefault());
-searchForm.addEventListener("submit", (e) => e.preventDefault());
+if (searchForm) {
+  searchForm.addEventListener("submit", (e) => e.preventDefault());
+}

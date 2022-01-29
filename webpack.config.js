@@ -8,7 +8,7 @@ module.exports = {
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
-    publicPath: process.env.NODE_ENV === "production" ?  "/weather/" : "/",
+    // publicPath: process.env.NODE_ENV === "production" ?  "/weather/" : "/",
     environment: {
       arrowFunction: false,
     },

@@ -13,8 +13,8 @@ import "./css/weather-icons.css";
 import "./css/bg_weather.css";
 import "./css/menu.css";
 import "./css/autocomplete.css";
+import "slipjs";
 
-import "./menu/slip";
 import Swiper, { Pagination, History } from "swiper";
 
 import {
@@ -100,7 +100,7 @@ export function createSubscriber() {
   }
 }
 
-function getLocation(force = false) {
+window.getLocation = function getLocation(force = false) {
   // Moscow
   let coords = {
     latitude: 55.7558,
@@ -154,32 +154,26 @@ function getLocation(force = false) {
     error();
   } else {
     const options = {
-      enableHighAccuracy: true,
-      maximumAge: 60000,
-      timeout: 10000,
+      enableHighAccuracy: false,
+      maximumAge: 0,
+      timeout: 5000,
     };
     navigator.geolocation.getCurrentPosition(success, error, options);
   }
+};
+if (updateLocation) {
+  updateLocation.addEventListener("click", () => {
+    window.getLocation(true);
+    if (window.TOUCH) {
+      menuEl.style.display = "none";
+      app.style.display = "block";
+      bgContainer.style.display = "initial";
+    }
+  });
 }
 
-updateLocation.addEventListener("click", () => {
-  getLocation(true);
-  if (window.TOUCH) {
-    menuEl.style.display = "none";
-    app.style.display = "block";
-    bgContainer.style.display = "initial";
-  }
-});
-
 export default async function init() {
-  Array.from(bgContainer.children).forEach((img) => {
-    (img as HTMLElement).style.position = "fixed";
-    (img as HTMLElement).style.opacity = "1";
-    (img as HTMLElement).style.transition = "opacity 1s linear";
-    (img as HTMLElement).style.width = "100%";
-    (img as HTMLElement).style.height = "100%";
-    (img as HTMLElement).style.backgroundSize = "cover";
-  });
+  window.getLocation();
   if (!window.TOUCH) {
     const menuHeaderTitle = document.querySelector(".menu-header__title");
     if (menuHeaderTitle) {
@@ -189,7 +183,7 @@ export default async function init() {
     menuEl.style.display = "block";
   }
   addGoogleScript();
-  const originLocation = window.location.origin;
+  // const originLocation = window.location.origin;
   const cityList = await getCityList();
   if (window.TOUCH) {
     mainSwiper = new Swiper(".swiper", {
@@ -199,10 +193,10 @@ export default async function init() {
         dynamicMainBullets: 3,
       },
       watchOverflow: true,
-      history: {
-        key: "city",
-        root: originLocation,
-      },
+      // history: {
+      //   key: "city",
+      //   root: originLocation,
+      // },
     });
     mainSwiper.on("slideChange", () => {
       const { cities } = store.getState();
@@ -220,20 +214,23 @@ export default async function init() {
       if (isSameWeather) {
         return;
       }
-      Array.from(bgContainer.children).forEach((img) => {
-        img.classList.toggle("hidden");
-        img.classList.remove("default-bg");
-        if (img.classList.contains("hidden")) {
-          (img as HTMLElement).style.opacity = "0";
-        } else {
-          (img as HTMLElement).style.opacity = "1";
-          (
-            img as HTMLImageElement
-          ).className = `bg-${currentCity.weather.current.weather[0].icon}`;
+      Array.from(bgContainer.children as unknown as HTMLDivElement[]).forEach(
+        (img) => {
+          img.classList.toggle("hidden");
+          img.classList.remove("default-bg");
+          if (img.classList.contains("hidden")) {
+            img.style.setProperty("opacity", "0");
+          } else {
+            img.style.setProperty("opacity", "1");
+            img.setAttribute(
+              "class",
+              `bg-${currentCity.weather.current.weather[0].icon}`
+            );
+          }
         }
-      });
+      );
     });
   }
   store.dispatch(setCityList(cityList));
-  getLocation();
+  window.getLocation();
 }

@@ -1,4 +1,2 @@
-src/types.ts
 node_modules/*
 dist/*
-src/menu/slip.js
