@@ -426,7 +426,7 @@ a:focus {
   height: 100vh;
   z-index: 100;
   overflow: visible;
-  background: #4a6dc6 url(/weather/1197a2e2549c82db3ea1.gif) no-repeat center center;
+  background: #4a6dc6 url(1197a2e2549c82db3ea1.gif) no-repeat center center;
 }
 
 @media (hover: none) and (pointer: coarse) {
@@ -1267,13 +1267,13 @@ a:focus {
  */
 @font-face {
   font-family: "weathericons";
-  src: url(/weather/bb2ec001c20cf752f852.eot);
-  src: url(/weather/bb2ec001c20cf752f852.eot?#iefix)
+  src: url(bb2ec001c20cf752f852.eot);
+  src: url(bb2ec001c20cf752f852.eot?#iefix)
       format("embedded-opentype"),
-    url(/weather/e218aee6928fe3da9ed6.woff2) format("woff2"),
-    url(/weather/371511ddba5fdac0538c.woff) format("woff"),
-    url(/weather/0942d1e1c447d6ce3ffc.ttf) format("truetype"),
-    url(/weather/1341a15172cec8dae06e.svg#weather_iconsregular)
+    url(e218aee6928fe3da9ed6.woff2) format("woff2"),
+    url(371511ddba5fdac0538c.woff) format("woff"),
+    url(0942d1e1c447d6ce3ffc.ttf) format("truetype"),
+    url(1341a15172cec8dae06e.svg#weather_iconsregular)
       format("svg");
   font-weight: normal;
   font-style: normal;
@@ -3093,13 +3093,22 @@ a:focus {
   opacity: 0;
 }
 
+.bg-img div {
+  position: fixed;
+  opacity: 1;
+  transition: opacity 1s linear;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
 .default-bg {
   background: linear-gradient(#4b9dfa, #003fe6) no-repeat;
   background-size: cover;
 }
 
 .bg-01d {
-  background-image: url(/weather/aee1ee7e25b83d899f00.png);
+  background-image: url(aee1ee7e25b83d899f00.png);
   background-size: cover;
 }
 
@@ -3113,18 +3122,18 @@ a:focus {
 }
 
 .bg-01n {
-  background: url(/weather/44f3be2317f0127e1bd4.gif);
+  background: url(44f3be2317f0127e1bd4.gif);
   background-size: auto 100%;
 }
 
 .bg-02d {
   background: linear-gradient(rgba(190, 190, 190, 0.3), rgba(79, 79, 79, 0.9)),
-    url(/weather/542ce0be1946fb57232f.gif);
+    url(542ce0be1946fb57232f.gif);
   background-size: cover;
 }
 
 .bg-02n {
-  background: url(/weather/0ad5cebc20253f0446de.jpeg);
+  background: url(0ad5cebc20253f0446de.jpeg);
   background-size: cover;
 }
 
@@ -3133,12 +3142,12 @@ a:focus {
       rgba(190, 190, 190, 0.3),
       rgba(79, 79, 79, 0.5)
     ),
-    url(/weather/3ccb4916108d78ca63b0.gif);
+    url(3ccb4916108d78ca63b0.gif);
   background-size: cover;
 }
 
 .bg-03n {
-  background-image: url(/weather/9e17a68119ddd26983d2.gif);
+  background-image: url(9e17a68119ddd26983d2.gif);
   background-size: cover;
 }
 
@@ -3147,48 +3156,48 @@ a:focus {
       rgba(190, 190, 190, 0.3),
       rgba(79, 79, 79, 0.9)
     ),
-    url(/weather/4f27357a75ef09318760.gif);
+    url(4f27357a75ef09318760.gif);
   background-size: cover;
 }
 
 .bg-04n {
-  background-image: url(/weather/068699750cde4e7f5bd0.gif);
+  background-image: url(068699750cde4e7f5bd0.gif);
   background-size: cover;
 }
 
 .bg-09d {
   background-image: linear-gradient(rgba(45, 45, 45, 0), rgba(0, 0, 0, 0.8)),
-    url(/weather/aa4da52146270883f691.jpeg);
+    url(aa4da52146270883f691.jpeg);
   background-size: cover;
 }
 
 .bg-09n {
   background-image: linear-gradient(rgba(15, 15, 15, 1), rgba(0, 0, 0, 0.8)),
-    url(/weather/c8e63522d4c9544e55ee.gif);
+    url(c8e63522d4c9544e55ee.gif);
   background-size: cover;
 }
 
 .bg-10d {
   background-image: linear-gradient(rgba(180, 180, 180, 0), rgba(0, 0, 0, 0.8)),
-    url(/weather/43d94a89678da3e8584b.gif);
+    url(43d94a89678da3e8584b.gif);
   background-size: 100% 100%;
 }
 
 .bg-10n {
   background-image: linear-gradient(rgba(39, 39, 39, 0.8), rgba(0, 0, 0, 1)),
-    url(/weather/43d94a89678da3e8584b.gif);
+    url(43d94a89678da3e8584b.gif);
   background-size: cover;
 }
 
 .bg-11d {
   background-image: linear-gradient(rgba(118, 118, 118, 0.4), rgba(0, 0, 0, 1)),
-    url(/weather/e3e1a81cada630ef3a8e.gif);
+    url(e3e1a81cada630ef3a8e.gif);
   background-size: cover;
 }
 
 .bg-11n {
   background-image: linear-gradient(rgba(36, 36, 36, 0.8), rgba(0, 0, 0, 1)),
-    url(/weather/e3e1a81cada630ef3a8e.gif);
+    url(e3e1a81cada630ef3a8e.gif);
   background-size: cover;
 }
 
@@ -3197,13 +3206,13 @@ a:focus {
       rgba(190, 190, 190, 0),
       rgba(79, 79, 79, 0.4)
     ),
-    url(/weather/54bd7f0d5eab9620878d.gif);
+    url(54bd7f0d5eab9620878d.gif);
   background-size: cover;
 }
 
 .bg-13n {
   background-image: linear-gradient(rgba(8, 8, 8, 0.5), rgba(0, 0, 0, 1)),
-    url(/weather/0916c837dccff7cbdce2.gif);
+    url(0916c837dccff7cbdce2.gif);
   background-size: cover;
 }
 
@@ -3212,13 +3221,13 @@ a:focus {
       rgba(190, 190, 190, 0),
       rgba(79, 79, 79, 0.8)
     ),
-    url(/weather/2444fb020cac574a99df.jpeg);
+    url(2444fb020cac574a99df.jpeg);
   background-size: cover;
 }
 
 .bg-50n {
   background-image: linear-gradient(rgba(8, 8, 8, 0.5), rgba(0, 0, 0, 1)),
-    url(/weather/32716b7390213982a8e3.jpeg);
+    url(32716b7390213982a8e3.jpeg);
   background-size: cover;
 }
 
