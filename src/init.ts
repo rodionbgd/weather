@@ -36,8 +36,8 @@ import { addNewCity } from "./add_remove_city";
 import { getCityList, getCurrentCity } from "./get_city";
 import { renderMenu } from "./menu/render";
 
-window.TOUCH = true;
-// window.TOUCH = window.matchMedia("(any-hover:none)").matches;
+// window.TOUCH = true;
+window.TOUCH = window.matchMedia("(any-hover:none)").matches;
 
 const updateLocation = <HTMLElement>document.getElementById("update-location");
 // eslint-disable-next-line import/no-mutable-exports
@@ -155,9 +155,9 @@ window.getLocation = function getLocation(force = false) {
     error();
   } else {
     const options = {
-      enableHighAccuracy: false,
+      enableHighAccuracy: true,
       maximumAge: 0,
-      timeout: 5000,
+      timeout: 1000,
     };
     navigator.geolocation.getCurrentPosition(success, error, options);
   }
@@ -184,7 +184,7 @@ export default async function init() {
     menuEl.style.display = "block";
   }
   addGoogleScript();
-  // const originLocation = window.location.origin;
+  const originLocation = window.location.origin;
   const cityList = await getCityList();
   if (window.TOUCH) {
     mainSwiper = new Swiper(".swiper", {
@@ -194,10 +194,10 @@ export default async function init() {
         dynamicMainBullets: 3,
       },
       watchOverflow: true,
-      // history: {
-      //   key: "city",
-      //   root: originLocation,
-      // },
+      history: {
+        key: "city",
+        root: originLocation,
+      },
     });
     mainSwiper.on("slideChange", () => {
       const { cities } = store.getState();
