@@ -9,6 +9,8 @@ export const searchForm = <HTMLFormElement>(
   document.getElementById("search-form")
 );
 
+searchForm.addEventListener("submit", (e) => e.preventDefault());
+
 export async function getCityByCoords(coords: Coords) {
   const latLng = new window.google.maps.LatLng(
     coords.latitude,

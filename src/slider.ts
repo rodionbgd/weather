@@ -24,7 +24,7 @@ export default class Slider {
       } else {
         sliderInnerHTML += `<p>&nbsp;</p>`;
       }
-      sliderInnerHTML += `<img class="wrap-hour-img" src="./icons/weather/${
+      sliderInnerHTML += `<img class="wrap-hour-img" src="./images/weather/${
         hourly[i].weather[0].icon
       }_icon.png" alt="">
                        <p>${Math.round(

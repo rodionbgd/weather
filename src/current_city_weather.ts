@@ -1,15 +1,12 @@
 import Swiper from "swiper";
-import { City, Coords, LOCATION } from "./types";
+import { City, LOCATION } from "./types";
 import Slider from "./slider";
 import renderDailyChart, {
   renderDailyLabels,
 } from "./daily_weather/daily_weather";
 import { isInViewport } from "./utils";
-import { bgContainer, cityListEl } from "./index";
-import { mainSwiper } from "./init";
+import { bgContainer, cityListEl, mainSwiper } from "./index";
 
-// const WEATHER_API_KEY = "5df917b322441cc9e193178bf51efa31";
-const WEATHER_API_KEY = "a7c22af58d3c31ff67298a325b74ea0e";
 export const KELVIN_TO_CELSIUS = 273.15;
 
 export const initialTimeZone = new Date().getTimezoneOffset() * 60;
@@ -36,16 +33,6 @@ export function getWindDirection(deg: number) {
   return DIRECTION[
     Math.floor((deg + 11) / (360 / DIRECTION.length)) % DIRECTION.length
   ];
-}
-
-export async function getCityWeather(coords: Coords) {
-  // currentCityImg.src = "icons/load.gif";
-  const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/onecall` +
-      `?lat=${coords.latitude}&lon=${coords.longitude}` +
-      `&exclude=minutely,alerts&lang=ru&appid=${WEATHER_API_KEY}`
-  );
-  return response.json();
 }
 
 export function getPhaseDegree(
@@ -182,9 +169,9 @@ export function renderHeader(options: City) {
             `;
   if (options.location !== LOCATION.LOCATION_NO) {
     innerHTML += `
-            <img ${!window.TOUCH ? 'class="icon"' : ""} src="./icons/location_${
-      options.location
-    }.png" alt="">
+            <img ${
+              !window.TOUCH ? 'class="icon"' : ""
+            } src="./images/location_${options.location}.png" alt="">
             `;
   }
   innerHTML += `
@@ -218,7 +205,9 @@ function renderRiseSet(options: City) {
 
   const { daily } = weather;
   const moonrise = getDateFromWeather(daily[0].moonrise, timezone_offset);
-  const moonset = getDateFromWeather(daily[1].moonset, timezone_offset);
+  const moontSetTime =
+    daily[0].moonrise < daily[0].moonset ? daily[0].moonset : daily[1].moonset;
+  const moonset = getDateFromWeather(moontSetTime, timezone_offset);
   const moonPhase = getPhaseDegree(
     moonrise as unknown as number,
     moonset as unknown as number,
@@ -254,12 +243,12 @@ function renderRiseSet(options: City) {
     }">
         <div class="sun-phase" tabindex="0">
             <span  style="${filterSun} ${styleSun}">
-                <img class="sun-size" src="./icons/sun_phase.png" alt="">
+                <img class="sun-size" src="./images/sun_phase.png" alt="">
             </span>
         </div>
         <div class="moon-phase" tabindex="0">
             <span class="moon-rotate"  style="${filterMoon} ${styleMoon}">
-                <img class="icon moon-phase-img" src="icons/moon_phase.png" alt="">
+                <img class="icon moon-phase-img" src="./images/moon_phase.png" alt="">
             </span>
         </div>
         <div class="border width-100 margin-top--11em opacity-5"></div>
@@ -323,7 +312,7 @@ export function renderVerboseInfo(options: City) {
   helpfulInfoParams.forEach((param) => {
     helpfulInfoParamsHTML += `
             <li>
-                <img class="verbose-info__icon" src="./icons/verbose/${param.img}" alt="">
+                <img class="verbose-info__icon" src="./images/verbose/${param.img}" alt="">
                 <div class="item-description-wrapper">
                     <p class="item-description opacity-7 ">${param.title}</p>
                     <p class="item-description font-weight-500">${param.value}</p>
@@ -353,8 +342,8 @@ export function setCurrentCityWeather(options: City, el: HTMLDivElement) {
   cityEl.dataset.history = `${options.id}`;
   cityEl.classList.forEach((className) => cityEl.classList.remove(className));
   cityEl.classList.add("swiper-slide");
-  const sliderM = new Slider(weather);
-  const hourSliderInnerHTML = sliderM.createSlider();
+  const slider = new Slider(weather);
+  const hourSliderInnerHTML = slider.createSlider();
   const slidersInnerHTML = `
                         <section class="swiper slider border">
                             <div class="swiper-wrapper">
@@ -415,6 +404,7 @@ export function setCurrentCityWeather(options: City, el: HTMLDivElement) {
   }
   if (!isOldCity) {
     el.appendChild(cityEl);
+    mainSwiper.update();
   }
   const dailyWeatherCtx = <HTMLCanvasElement>(
     cityEl.querySelector(".hour-daily-weather canvas")
@@ -470,8 +460,6 @@ export function setCurrentCityWeather(options: City, el: HTMLDivElement) {
       )[0];
       imgBgEl.className = `bg-${weather.current.weather[0].icon}`;
     }
-
     mainSwiper.slideTo(idx);
-    mainSwiper.update();
   }
 }

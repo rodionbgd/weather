@@ -35,6 +35,7 @@ module.exports = {
       "no-unused-vars": "off",
       "camelcase" : "off",
       "import/no-unresolved": "off",
+      "import/no-mutable-exports" : "off"
     },
   }],
   settings: {

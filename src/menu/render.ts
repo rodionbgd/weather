@@ -22,7 +22,7 @@ export function renderMenu() {
     let locationImg = "";
     if (city.location !== LOCATION.LOCATION_NO) {
       locationImg = `
-            <img src="./icons/location_${city.location}.png" alt="">
+            <img src="./images/location_${city.location}.png" alt="">
             `;
     }
     const description =

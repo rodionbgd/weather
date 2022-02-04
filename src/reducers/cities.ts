@@ -26,16 +26,12 @@ export const citySlice = createSlice({
           cityIndex = state.findIndex(
             (city) => city.location !== LOCATION.LOCATION_NO
           );
-          if (cityIndex === -1) {
-            state.push(action.payload);
-            return;
-          }
         } else {
           cityIndex = state.findIndex((city) => city.id === action.payload.id);
-          if (cityIndex === -1) {
-            state.push(action.payload);
-            return;
-          }
+        }
+        if (cityIndex === -1) {
+          state.push(action.payload);
+          return;
         }
         state[cityIndex] = action.payload;
       },

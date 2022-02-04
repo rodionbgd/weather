@@ -1,5 +1,19 @@
 import { City, CityWeather, Coords, LOCATION } from "./types";
-import { getCityWeather } from "./current_city_weather";
+import { store } from "./index";
+import { getCityByCoords } from "./city_name";
+import { addNewCity } from "./add_remove_city";
+
+// const WEATHER_API_KEY = "5df917b322441cc9e193178bf51efa31";
+const WEATHER_API_KEY = "a7c22af58d3c31ff67298a325b74ea0e";
+
+export async function getCityWeather(coords: Coords) {
+  const response = await fetch(
+    `https://api.openweathermap.org/data/2.5/onecall` +
+      `?lat=${coords.latitude}&lon=${coords.longitude}` +
+      `&exclude=minutely,alerts&lang=ru&appid=${WEATHER_API_KEY}`
+  );
+  return response.json();
+}
 
 export async function getCityList() {
   if (!Object.keys(localStorage).length) {
@@ -61,4 +75,66 @@ export async function getCurrentCity(
     isCurrentCity: true,
   };
   return city;
+}
+
+export function getLocation(force: boolean) {
+  // Moscow
+  let coords = {
+    latitude: 55.7558,
+    longitude: 37.6173,
+  };
+  let cityName = "Москва";
+  let cityData: City;
+  const { cities } = store.getState();
+
+  async function success(position: GeolocationPosition) {
+    const { latitude, longitude } = position.coords;
+    coords = { latitude, longitude };
+    const name = await getCityByCoords(coords);
+    const newCity = await getCurrentCity(name, coords, cities);
+    if (newCity) {
+      newCity.location = LOCATION.LOCATION_OK;
+      setTimeout(() => {
+        addNewCity(newCity);
+      }, 0);
+    }
+  }
+
+  async function error() {
+    if (cities.length && !force) {
+      [cityData] = cities.filter(
+        (city) => city.location !== LOCATION.LOCATION_NO
+      );
+      if (!cityData) {
+        [cityData] = cities;
+      }
+      coords = cityData.coords;
+      cityName = cityData.name;
+    }
+    if (!cityName) {
+      cityName = await getCityByCoords(coords);
+    }
+
+    const newCity = await getCurrentCity(cityName, coords, cities);
+    if (newCity) {
+      if (
+        !cityData ||
+        (cityData && cityData.location !== LOCATION.LOCATION_NO)
+      ) {
+        newCity.location = LOCATION.LOCATION_ERROR;
+      }
+      addNewCity(newCity);
+    }
+  }
+
+  if (!navigator.geolocation) {
+    error();
+  } else {
+    const options = {
+      enableHighAccuracy: true,
+      maximumAge: 0,
+      timeout: 10000,
+    };
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  }
 }

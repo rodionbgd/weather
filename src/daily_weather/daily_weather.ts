@@ -20,7 +20,7 @@ export function renderDailyLabels(dailyWeather: Weather[]) {
                 : WEEK_DAYS[(currentDay + i) % WEEK_DAYS.length]
             }</p>
             <p>${date}/${month}</p>
-            <img  class="wrap-day-img" src="./icons/weather/${
+            <img  class="wrap-day-img" src="./images/weather/${
               dailyWeather[i].weather[0].icon
             }_icon.png" alt="">
             <p>${dailyWeather[i].weather[0].description}</p>

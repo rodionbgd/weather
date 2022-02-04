@@ -17,7 +17,7 @@
 }
 
 .bg-01d {
-  background-image: url("../icons/bg/01d_bg.png");
+  background-image: url("../images/bg/01d_bg.png");
   background-size: cover;
 }
 
@@ -31,18 +31,18 @@
 }
 
 .bg-01n {
-  background: url("../icons/bg/01n_bg.gif");
+  background: url("../images/bg/01n_bg.gif");
   background-size: auto 100%;
 }
 
 .bg-02d {
   background: linear-gradient(rgba(190, 190, 190, 0.3), rgba(79, 79, 79, 0.9)),
-    url("../icons/bg/02d_bg.gif");
+    url("../images/bg/02d_bg.gif");
   background-size: cover;
 }
 
 .bg-02n {
-  background: url("../icons/bg/02n_bg.jpeg");
+  background: url("../images/bg/02n_bg.jpeg");
   background-size: cover;
 }
 
@@ -51,12 +51,12 @@
       rgba(190, 190, 190, 0.3),
       rgba(79, 79, 79, 0.5)
     ),
-    url("../icons/bg/03d_bg.gif");
+    url("../images/bg/03d_bg.gif");
   background-size: cover;
 }
 
 .bg-03n {
-  background-image: url("../icons/bg/03n_bg.gif");
+  background-image: url("../images/bg/03n_bg.gif");
   background-size: cover;
 }
 
@@ -65,48 +65,48 @@
       rgba(190, 190, 190, 0.3),
       rgba(79, 79, 79, 0.9)
     ),
-    url("../icons/bg/04d_bg.gif");
+    url("../images/bg/04d_bg.gif");
   background-size: cover;
 }
 
 .bg-04n {
-  background-image: url("../icons/bg/04n_bg.gif");
+  background-image: url("../images/bg/04n_bg.gif");
   background-size: cover;
 }
 
 .bg-09d {
   background-image: linear-gradient(rgba(45, 45, 45, 0), rgba(0, 0, 0, 0.8)),
-    url("../icons/bg/09d_bg.jpeg");
+    url("../images/bg/09d_bg.jpeg");
   background-size: cover;
 }
 
 .bg-09n {
   background-image: linear-gradient(rgba(15, 15, 15, 1), rgba(0, 0, 0, 0.8)),
-    url("../icons/bg/09n_bg.gif");
+    url("../images/bg/09n_bg.gif");
   background-size: cover;
 }
 
 .bg-10d {
   background-image: linear-gradient(rgba(180, 180, 180, 0), rgba(0, 0, 0, 0.8)),
-    url("../icons/bg/10d_bg.gif");
+    url("../images/bg/10d_bg.gif");
   background-size: 100% 100%;
 }
 
 .bg-10n {
   background-image: linear-gradient(rgba(39, 39, 39, 0.8), rgba(0, 0, 0, 1)),
-    url("../icons/bg/10n_bg.gif");
+    url("../images/bg/10n_bg.gif");
   background-size: cover;
 }
 
 .bg-11d {
   background-image: linear-gradient(rgba(118, 118, 118, 0.4), rgba(0, 0, 0, 1)),
-    url("../icons/bg/11d_bg.gif");
+    url("../images/bg/11d_bg.gif");
   background-size: cover;
 }
 
 .bg-11n {
   background-image: linear-gradient(rgba(36, 36, 36, 0.8), rgba(0, 0, 0, 1)),
-    url("../icons/bg/11n_bg.gif");
+    url("../images/bg/11n_bg.gif");
   background-size: cover;
 }
 
@@ -115,27 +115,27 @@
       rgba(190, 190, 190, 0),
       rgba(79, 79, 79, 0.4)
     ),
-    url("../icons/bg/13d_bg.gif");
+    url("../images/bg/13d_bg.gif");
   background-size: cover;
 }
 
 .bg-13n {
   background-image: linear-gradient(rgba(8, 8, 8, 0.5), rgba(0, 0, 0, 1)),
-    url("../icons/bg/13n_bg.gif");
+    url("../images/bg/13n_bg.gif");
   background-size: cover;
 }
 
 .bg-50d {
   background-image: linear-gradient(
-      rgba(190, 190, 190, 0),
+      rgba(131, 131, 131, 0.4),
       rgba(79, 79, 79, 0.8)
     ),
-    url("../icons/bg/50d_bg.jpeg");
+    url("../images/bg/50d_bg.jpeg");
   background-size: cover;
 }
 
 .bg-50n {
   background-image: linear-gradient(rgba(8, 8, 8, 0.5), rgba(0, 0, 0, 1)),
-    url("../icons/bg/50n_bg.jpeg");
+    url("../images/bg/50n_bg.jpeg");
   background-size: cover;
 }

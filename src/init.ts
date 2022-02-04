@@ -15,46 +15,22 @@ import "./css/menu.css";
 import "./css/autocomplete.css";
 import "slipjs";
 
-import Swiper, { Pagination, History } from "swiper";
-
 import {
   app,
   bgContainer,
   cityListEl,
+  initializeElements,
   menuCityList,
   menuEl,
   store,
 } from "./index";
 import { setCityList } from "./reducers/cities";
-import addGoogleScript, { preload } from "./utils";
+import { preload } from "./utils";
 import { LOCATION } from "./types";
 
-import { getCityByCoords } from "./city_name";
 import { setCurrentCityWeather } from "./current_city_weather";
-
-import { addNewCity } from "./add_remove_city";
-import { getCityList, getCurrentCity } from "./get_city";
+import { getCityList, getLocation } from "./get_city";
 import { renderMenu } from "./menu/render";
-
-// window.TOUCH = true;
-window.TOUCH = window.matchMedia("(any-hover:none)").matches;
-
-const updateLocation = <HTMLElement>document.getElementById("update-location");
-// eslint-disable-next-line import/no-mutable-exports
-export let mainSwiper: Swiper;
-Swiper.use([Pagination, History]);
-
-window.addEventListener("popstate", () => {
-  const cityId = document.location.pathname.split("/").at(-1);
-  const { cities } = store.getState();
-  let currentCity = cities.filter((city) => city.id === Number(cityId))[0];
-  if (!currentCity) {
-    [currentCity] = cities.filter(
-      (city) => city.location !== LOCATION.LOCATION_NO
-    );
-  }
-  setCurrentCityWeather(currentCity, cityListEl);
-});
 
 export function createSubscriber() {
   const { cities } = store.getState();
@@ -101,80 +77,9 @@ export function createSubscriber() {
   }
 }
 
-window.getLocation = function getLocation(force = false) {
-  // Moscow
-  let coords = {
-    latitude: 55.7558,
-    longitude: 37.6173,
-  };
-  let cityName = "Москва";
-
-  const { cities } = store.getState();
-  store.subscribe(createSubscriber);
-
-  async function success(position: GeolocationPosition) {
-    const { latitude, longitude } = position.coords;
-    coords = { latitude, longitude };
-    const name = await getCityByCoords(coords);
-    const newCity = await getCurrentCity(name, coords, cities);
-    if (newCity) {
-      newCity.location = LOCATION.LOCATION_OK;
-      addNewCity(newCity);
-    }
-  }
-
-  async function error() {
-    let cityData;
-    if (cities.length && !force) {
-      [cityData] = cities.filter(
-        (city) => city.location !== LOCATION.LOCATION_NO
-      );
-      if (!cityData) {
-        [cityData] = cities;
-      }
-      coords = cityData.coords;
-      cityName = cityData.name;
-    }
-    if (!cityName) {
-      cityName = await getCityByCoords(coords);
-    }
-
-    const newCity = await getCurrentCity(cityName, coords, cities);
-    if (newCity) {
-      if (
-        !cityData ||
-        (cityData && cityData.location !== LOCATION.LOCATION_NO)
-      ) {
-        newCity.location = LOCATION.LOCATION_ERROR;
-      }
-      addNewCity(newCity);
-    }
-  }
-
-  if (!navigator.geolocation) {
-    error();
-  } else {
-    const options = {
-      enableHighAccuracy: true,
-      maximumAge: 0,
-      timeout: 1000,
-    };
-    navigator.geolocation.getCurrentPosition(success, error, options);
-  }
-};
-if (updateLocation) {
-  updateLocation.addEventListener("click", () => {
-    window.getLocation(true);
-    if (window.TOUCH) {
-      menuEl.style.display = "none";
-      app.style.display = "block";
-      bgContainer.style.display = "initial";
-    }
-  });
-}
-
 export default async function init() {
-  window.getLocation();
+  initializeElements();
+  store.subscribe(createSubscriber);
   if (!window.TOUCH) {
     const menuHeaderTitle = document.querySelector(".menu-header__title");
     if (menuHeaderTitle) {
@@ -183,55 +88,7 @@ export default async function init() {
     app.insertAdjacentElement("beforeend", menuEl);
     menuEl.style.display = "block";
   }
-  addGoogleScript();
-  const originLocation = window.location.origin;
   const cityList = await getCityList();
-  if (window.TOUCH) {
-    mainSwiper = new Swiper(".swiper", {
-      pagination: {
-        el: ".swiper-pagination",
-        dynamicBullets: true,
-        dynamicMainBullets: 3,
-      },
-      watchOverflow: true,
-      history: {
-        key: "city",
-        root: originLocation,
-      },
-    });
-    mainSwiper.on("slideChange", () => {
-      const { cities } = store.getState();
-      const currentSlide = <HTMLElement>(
-        cityListEl.children[mainSwiper.realIndex]
-      );
-      const currentCity = cities.filter(
-        (city) => city.name === currentSlide.dataset.name
-      )[0];
-      const imgList = Array.from(bgContainer.children);
-      const isSameWeather = imgList.filter(
-        (el) =>
-          el.className === `bg-${currentCity.weather.current.weather[0].icon}`
-      ).length;
-      if (isSameWeather) {
-        return;
-      }
-      Array.from(bgContainer.children as unknown as HTMLDivElement[]).forEach(
-        (img) => {
-          img.classList.toggle("hidden");
-          img.classList.remove("default-bg");
-          if (img.classList.contains("hidden")) {
-            img.style.setProperty("opacity", "0");
-          } else {
-            img.style.setProperty("opacity", "1");
-            img.setAttribute(
-              "class",
-              `bg-${currentCity.weather.current.weather[0].icon}`
-            );
-          }
-        }
-      );
-    });
-  }
   store.dispatch(setCityList(cityList));
-  window.getLocation();
+  getLocation(false);
 }

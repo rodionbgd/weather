@@ -8,7 +8,7 @@ module.exports = {
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
-    // publicPath: process.env.NODE_ENV === "production" ?  "/weather/" : "/",
+    publicPath: process.env.NODE_ENV === "production" ?  "/weather/" : "/",
     environment: {
       arrowFunction: false,
     },
@@ -27,8 +27,8 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: "src/icons",
-          to: path.resolve(__dirname, "dist/icons"),
+          from: "src/images",
+          to: path.resolve(__dirname, "dist/images"),
         },
         {
           from: "src/font",

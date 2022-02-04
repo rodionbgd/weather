@@ -1,69 +1,88 @@
 import { configureStore } from "@reduxjs/toolkit";
-import init from "./init";
-import { searchForm } from "./city_name";
-import { addCity, citySlice } from "./reducers/cities";
-import { City, CityWeather } from "./types";
-import { getCityWeather } from "./current_city_weather";
+import Swiper, { History, Pagination } from "swiper";
+import { citySlice } from "./reducers/cities";
+import addGoogleScript from "./utils";
+import listeners from "./listeners";
 
-export const app = <HTMLDivElement>document.getElementById("app");
-export const bgContainer = <HTMLDivElement>(
-  document.getElementById("bg-container")
-);
-export const menuEl = <HTMLDivElement>document.getElementById("menu");
-export const menuCityList = <HTMLUListElement>(
-  document.getElementById("menu-city-list")
-);
-export const cityListEl = <HTMLDivElement>document.getElementById("city-list");
-export const showCity = <HTMLDivElement>(
-  document.getElementById("show-last-city")
-);
-// eslint-disable-next-line
+Swiper.use([Pagination, History]);
+
+// window.TOUCH = true;
+window.TOUCH = window.matchMedia("(any-hover:none)").matches;
+
 export const store = configureStore({
   reducer: {
     cities: citySlice.reducer,
   },
 });
 
-if (menuCityList) {
-  menuCityList.addEventListener("click", async (e: Event) => {
-    const cityEl = <HTMLElement>(
-      (e.target as HTMLElement).closest(".city_list__profile")
-    );
-    if (!cityEl) {
+export let mainSwiper: Swiper;
+
+export let app: HTMLDivElement;
+export let bgContainer: HTMLDivElement;
+export let menuEl: HTMLDivElement;
+export let menuCityList: HTMLUListElement;
+export let cityListEl: HTMLDivElement;
+export let showCity: HTMLDivElement;
+export let updateLocation: HTMLElement;
+
+export function createSwiper() {
+  // const originLocation = window.location.origin;
+  mainSwiper = new Swiper(".swiper", {
+    pagination: {
+      el: ".swiper-pagination",
+      dynamicBullets: true,
+      dynamicMainBullets: 3,
+    },
+    watchOverflow: true,
+    // history: {
+    //     key: "city",
+    //     root: originLocation,
+    // },
+  });
+  mainSwiper.on("slideChange", () => {
+    const { cities } = store.getState();
+    const currentSlide = <HTMLElement>cityListEl.children[mainSwiper.realIndex];
+    const currentCity = cities.filter(
+      (city) => city.name === currentSlide.dataset.name
+    )[0];
+    const imgList = Array.from(bgContainer.children);
+    const isSameWeather = imgList.filter(
+      (el) =>
+        el.className === `bg-${currentCity.weather.current.weather[0].icon}`
+    ).length;
+    if (isSameWeather) {
       return;
     }
-    const { cities } = store.getState();
-
-    let city = cities.filter(
-      (item) => item.name === cityEl.dataset.menuName
-    )[0] as City;
-    city = {
-      ...city,
-      updateTime: new Date().toString(),
-      weather: (await getCityWeather(city.coords)) as CityWeather,
-      isCurrentCity: true,
-    };
-    store.dispatch(addCity(city));
-    if (window.TOUCH) {
-      menuEl.style.display = "none";
-      app.style.display = "block";
-      bgContainer.style.display = "initial";
-    }
-    // chart = renderDailyWeather(currentCity);
+    Array.from(bgContainer.children as unknown as HTMLDivElement[]).forEach(
+      (img) => {
+        img.classList.toggle("hidden");
+        img.classList.remove("default-bg");
+        if (img.classList.contains("hidden")) {
+          img.style.setProperty("opacity", "0");
+        } else {
+          img.style.setProperty("opacity", "1");
+          img.setAttribute(
+            "class",
+            `bg-${currentCity.weather.current.weather[0].icon}`
+          );
+        }
+      }
+    );
   });
 }
 
-document.addEventListener("DOMContentLoaded", init);
+export function initializeElements() {
+  app = <HTMLDivElement>document.getElementById("app");
+  bgContainer = <HTMLDivElement>document.getElementById("bg-container");
+  menuEl = <HTMLDivElement>document.getElementById("menu");
+  menuCityList = <HTMLUListElement>document.getElementById("menu-city-list");
+  cityListEl = <HTMLDivElement>document.getElementById("city-list");
+  showCity = <HTMLDivElement>document.getElementById("show-last-city");
+  updateLocation = <HTMLElement>document.getElementById("update-location");
 
-if (window.TOUCH) {
-  showCity.addEventListener("click", () => {
-    menuEl.style.display = "none";
-    app.style.display = "block";
-    bgContainer.style.display = "initial";
-  });
-}
-
-document.body.addEventListener("selectstart", (e) => e.preventDefault());
-if (searchForm) {
-  searchForm.addEventListener("submit", (e) => e.preventDefault());
+  addGoogleScript();
+  listeners();
+  if (window.TOUCH) {
+    createSwiper();
+  }
 }
