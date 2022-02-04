@@ -426,7 +426,7 @@ a:focus {
   height: 100vh;
   z-index: 100;
   overflow: visible;
-  background: #4a6dc6 url(1197a2e2549c82db3ea1.gif) no-repeat center center;
+  background: #4a6dc6 url(/weather/1197a2e2549c82db3ea1.gif) no-repeat center center;
 }
 
 @media (hover: none) and (pointer: coarse) {
@@ -566,7 +566,7 @@ a:focus {
     mask-image: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0),
-      rgba(0, 0, 0, 3) 3%
+      rgb(160, 160, 160) 5%
     );
   }
 
@@ -1267,13 +1267,13 @@ a:focus {
  */
 @font-face {
   font-family: "weathericons";
-  src: url(bb2ec001c20cf752f852.eot);
-  src: url(bb2ec001c20cf752f852.eot?#iefix)
+  src: url(/weather/bb2ec001c20cf752f852.eot);
+  src: url(/weather/bb2ec001c20cf752f852.eot?#iefix)
       format("embedded-opentype"),
-    url(e218aee6928fe3da9ed6.woff2) format("woff2"),
-    url(371511ddba5fdac0538c.woff) format("woff"),
-    url(0942d1e1c447d6ce3ffc.ttf) format("truetype"),
-    url(1341a15172cec8dae06e.svg#weather_iconsregular)
+    url(/weather/e218aee6928fe3da9ed6.woff2) format("woff2"),
+    url(/weather/371511ddba5fdac0538c.woff) format("woff"),
+    url(/weather/0942d1e1c447d6ce3ffc.ttf) format("truetype"),
+    url(/weather/1341a15172cec8dae06e.svg#weather_iconsregular)
       format("svg");
   font-weight: normal;
   font-style: normal;
@@ -3108,7 +3108,7 @@ a:focus {
 }
 
 .bg-01d {
-  background-image: url(aee1ee7e25b83d899f00.png);
+  background-image: url(/weather/aee1ee7e25b83d899f00.png);
   background-size: cover;
 }
 
@@ -3122,18 +3122,18 @@ a:focus {
 }
 
 .bg-01n {
-  background: url(44f3be2317f0127e1bd4.gif);
+  background: url(/weather/44f3be2317f0127e1bd4.gif);
   background-size: auto 100%;
 }
 
 .bg-02d {
   background: linear-gradient(rgba(190, 190, 190, 0.3), rgba(79, 79, 79, 0.9)),
-    url(542ce0be1946fb57232f.gif);
+    url(/weather/542ce0be1946fb57232f.gif);
   background-size: cover;
 }
 
 .bg-02n {
-  background: url(0ad5cebc20253f0446de.jpeg);
+  background: url(/weather/0ad5cebc20253f0446de.jpeg);
   background-size: cover;
 }
 
@@ -3142,12 +3142,12 @@ a:focus {
       rgba(190, 190, 190, 0.3),
       rgba(79, 79, 79, 0.5)
     ),
-    url(3ccb4916108d78ca63b0.gif);
+    url(/weather/3ccb4916108d78ca63b0.gif);
   background-size: cover;
 }
 
 .bg-03n {
-  background-image: url(9e17a68119ddd26983d2.gif);
+  background-image: url(/weather/9e17a68119ddd26983d2.gif);
   background-size: cover;
 }
 
@@ -3156,48 +3156,48 @@ a:focus {
       rgba(190, 190, 190, 0.3),
       rgba(79, 79, 79, 0.9)
     ),
-    url(4f27357a75ef09318760.gif);
+    url(/weather/4f27357a75ef09318760.gif);
   background-size: cover;
 }
 
 .bg-04n {
-  background-image: url(068699750cde4e7f5bd0.gif);
+  background-image: url(/weather/068699750cde4e7f5bd0.gif);
   background-size: cover;
 }
 
 .bg-09d {
   background-image: linear-gradient(rgba(45, 45, 45, 0), rgba(0, 0, 0, 0.8)),
-    url(aa4da52146270883f691.jpeg);
+    url(/weather/aa4da52146270883f691.jpeg);
   background-size: cover;
 }
 
 .bg-09n {
   background-image: linear-gradient(rgba(15, 15, 15, 1), rgba(0, 0, 0, 0.8)),
-    url(c8e63522d4c9544e55ee.gif);
+    url(/weather/c8e63522d4c9544e55ee.gif);
   background-size: cover;
 }
 
 .bg-10d {
   background-image: linear-gradient(rgba(180, 180, 180, 0), rgba(0, 0, 0, 0.8)),
-    url(43d94a89678da3e8584b.gif);
+    url(/weather/43d94a89678da3e8584b.gif);
   background-size: 100% 100%;
 }
 
 .bg-10n {
   background-image: linear-gradient(rgba(39, 39, 39, 0.8), rgba(0, 0, 0, 1)),
-    url(43d94a89678da3e8584b.gif);
+    url(/weather/43d94a89678da3e8584b.gif);
   background-size: cover;
 }
 
 .bg-11d {
   background-image: linear-gradient(rgba(118, 118, 118, 0.4), rgba(0, 0, 0, 1)),
-    url(e3e1a81cada630ef3a8e.gif);
+    url(/weather/e3e1a81cada630ef3a8e.gif);
   background-size: cover;
 }
 
 .bg-11n {
   background-image: linear-gradient(rgba(36, 36, 36, 0.8), rgba(0, 0, 0, 1)),
-    url(e3e1a81cada630ef3a8e.gif);
+    url(/weather/e3e1a81cada630ef3a8e.gif);
   background-size: cover;
 }
 
@@ -3206,28 +3206,28 @@ a:focus {
       rgba(190, 190, 190, 0),
       rgba(79, 79, 79, 0.4)
     ),
-    url(54bd7f0d5eab9620878d.gif);
+    url(/weather/54bd7f0d5eab9620878d.gif);
   background-size: cover;
 }
 
 .bg-13n {
   background-image: linear-gradient(rgba(8, 8, 8, 0.5), rgba(0, 0, 0, 1)),
-    url(0916c837dccff7cbdce2.gif);
+    url(/weather/0916c837dccff7cbdce2.gif);
   background-size: cover;
 }
 
 .bg-50d {
   background-image: linear-gradient(
-      rgba(190, 190, 190, 0),
+      rgba(131, 131, 131, 0.4),
       rgba(79, 79, 79, 0.8)
     ),
-    url(2444fb020cac574a99df.jpeg);
+    url(/weather/2444fb020cac574a99df.jpeg);
   background-size: cover;
 }
 
 .bg-50n {
   background-image: linear-gradient(rgba(8, 8, 8, 0.5), rgba(0, 0, 0, 1)),
-    url(32716b7390213982a8e3.jpeg);
+    url(/weather/32716b7390213982a8e3.jpeg);
   background-size: cover;
 }
 
