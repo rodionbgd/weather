@@ -3,11 +3,13 @@ import Swiper, { History, Pagination } from "swiper";
 import { citySlice } from "./reducers/cities";
 import addGoogleScript from "./utils";
 import listeners from "./listeners";
+import { BeforeInstallPromptEvent } from "./types";
 
 Swiper.use([Pagination, History]);
 
 // window.TOUCH = true;
-window.TOUCH = window.matchMedia("(any-hover:none)").matches;
+window.TOUCH = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+window.standalone = window.matchMedia("(display-mode: standalone)").matches;
 
 export const store = configureStore({
   reducer: {
@@ -25,8 +27,52 @@ export let cityListEl: HTMLDivElement;
 export let showCity: HTMLDivElement;
 export let updateLocation: HTMLElement;
 
+function installApp() {
+  const installAppEl = <HTMLButtonElement>(
+    document.getElementById("install-app")
+  );
+  if (window.standalone && window.TOUCH) {
+    menuCityList.classList.add("menu__city-list_standalone");
+  }
+  window.addEventListener("beforeinstallprompt", (event) => {
+    if (window.standalone) {
+      event.preventDefault();
+    }
+    window.deferredPrompt = <BeforeInstallPromptEvent>event;
+    installAppEl.style.display = "block";
+  });
+  installAppEl.addEventListener("click", async () => {
+    const promptEvent = window.deferredPrompt;
+    if (!promptEvent) {
+      installAppEl.style.display = "none";
+      return;
+    }
+    if (
+      Object.hasOwnProperty.call(promptEvent, "prompt") &&
+      Object.hasOwnProperty.call(promptEvent, "userChoice")
+    ) {
+      await promptEvent.prompt();
+      await promptEvent.userChoice;
+    }
+    window.deferredPrompt = <BeforeInstallPromptEvent>(<unknown>null);
+    installAppEl.style.display = "none";
+  });
+
+  window.addEventListener("appinstalled", () => {
+    window.deferredPrompt = <BeforeInstallPromptEvent>(<unknown>null);
+  });
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register(
+        "https://rodionbgd.github.io/weather_test/sw.js"
+      );
+    });
+  }
+}
 export function createSwiper() {
   // const originLocation = window.location.origin;
+
   mainSwiper = new Swiper(".swiper", {
     pagination: {
       el: ".swiper-pagination",
@@ -79,7 +125,7 @@ export function initializeElements() {
   cityListEl = <HTMLDivElement>document.getElementById("city-list");
   showCity = <HTMLDivElement>document.getElementById("show-last-city");
   updateLocation = <HTMLElement>document.getElementById("update-location");
-
+  installApp();
   addGoogleScript();
   listeners();
   if (window.TOUCH) {

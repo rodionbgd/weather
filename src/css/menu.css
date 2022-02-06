@@ -39,6 +39,10 @@
     margin-left: 0.5em;
   }
 
+  .menu-header__title p {
+    flex: 1;
+  }
+
   .menu-header__title i {
     -webkit-text-stroke: 1px var(--bg-color-menu);
   }
@@ -62,6 +66,9 @@
     -ms-overflow-style: none;
   }
 
+  .menu__city-list_standalone {
+    height: 90vh;
+  }
   .menu__city-list::-webkit-scrollbar {
     display: none;
   }
@@ -178,6 +185,7 @@
     font-size: 1.8rem;
     word-break: break-word;
   }
+
   .city_list__name img {
     width: 0.8em;
   }

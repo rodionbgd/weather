@@ -2,6 +2,7 @@ import { menuCityList, store } from "../index";
 import { KELVIN_TO_CELSIUS } from "../current_city_weather";
 import { LOCATION } from "../types";
 import { removeOldCity } from "../add_remove_city";
+import "slipjs";
 
 export function renderMenu() {
   new window.Slip(menuCityList);

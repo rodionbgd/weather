@@ -24,7 +24,7 @@
   .swiper-wrapper {
     position: relative;
     max-width: 100%;
-    z-index: 100;
+    z-index: 1;
     display: flex;
     transition-property: transform;
     box-sizing: inherit;

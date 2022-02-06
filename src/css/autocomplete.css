@@ -1,6 +1,6 @@
 @media (hover: none) and (pointer: coarse) {
   .pac-container {
-    z-index: 1000 !important;
+    z-index: 100 !important;
     width: auto !important;
     /*position: a !important;*/
     left: 0 !important;

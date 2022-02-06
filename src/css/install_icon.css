@@ -1,0 +1,117 @@
+:root {
+  --color-icon: #fbcd00;
+  --social-icon1: #e4405f;
+}
+
+.icon-item {
+  display: none;
+}
+.icon-link {
+  display: inline-flex;
+  padding-right: 7rem;
+  font-size: 3rem;
+  text-decoration: none;
+  color: var(--color-icon);
+  transition: 0.5s linear;
+  position: relative;
+  z-index: 1;
+  margin: auto;
+}
+
+.icon-link:hover,
+.icon-link:active {
+  color: var(--main-color);
+}
+
+@-webkit-keyframes wiggle {
+  0% {
+    -webkit-transform: rotate(10deg);
+  }
+  25% {
+    -webkit-transform: rotate(-10deg);
+  }
+  50% {
+    -webkit-transform: rotate(10deg);
+  }
+  75% {
+    -webkit-transform: rotate(-10deg);
+  }
+  100% {
+    -webkit-transform: rotate(10deg);
+  }
+}
+
+@-ms-keyframes wiggle {
+  0% {
+    -ms-transform: rotate(10deg);
+  }
+  25% {
+    -ms-transform: rotate(-10deg);
+  }
+  50% {
+    -ms-transform: rotate(10deg);
+  }
+  75% {
+    -ms-transform: rotate(-10deg);
+  }
+  100% {
+    -ms-transform: rotate(10deg);
+  }
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(10deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(10deg);
+  }
+}
+
+.icon-link i {
+  margin: auto;
+  -webkit-animation-name: wiggle;
+  -ms-animation-name: wiggle;
+  -ms-animation-duration: 2000ms;
+  -webkit-animation-duration: 2000ms;
+  -webkit-animation-iteration-count: 100;
+  -ms-animation-iteration-count: 100;
+  -webkit-animation-timing-function: ease-in-out;
+  -ms-animation-timing-function: ease-in-out;
+}
+
+.icon-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 6rem;
+  height: 6rem;
+  background: var(--color-icon);
+  border-radius: 50%;
+  z-index: -1;
+  transform: scale(0);
+  transition: 0.3s cubic-bezier(0.95, 0.32, 0.37, 1.21);
+}
+
+.icon-link:hover::before,
+.icon-link:active::before {
+  transform: scale(0.75);
+  transition: transform 0.5s;
+}
+
+.icon-item a:hover:before,
+a:active:before {
+  background: var(--social-icon1);
+}

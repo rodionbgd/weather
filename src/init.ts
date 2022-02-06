@@ -13,7 +13,7 @@ import "./css/weather-icons.css";
 import "./css/bg_weather.css";
 import "./css/menu.css";
 import "./css/autocomplete.css";
-import "slipjs";
+import "./css/install_icon.css";
 
 import {
   app,

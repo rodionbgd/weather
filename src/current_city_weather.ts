@@ -379,7 +379,7 @@ export function setCurrentCityWeather(options: City, el: HTMLDivElement) {
     `;
   cityEl.innerHTML = `
        ${window.TOUCH ? renderHeader(options) : ""}
-       <div class="scroll">
+       <div class="scroll ${window.standalone ? "scroll_standalone" : ""}">
                 <main class="section">
                     <article class="section-content">
                         <section class="current-container">
@@ -404,7 +404,9 @@ export function setCurrentCityWeather(options: City, el: HTMLDivElement) {
   }
   if (!isOldCity) {
     el.appendChild(cityEl);
-    mainSwiper.update();
+    if (mainSwiper) {
+      mainSwiper.update();
+    }
   }
   const dailyWeatherCtx = <HTMLCanvasElement>(
     cityEl.querySelector(".hour-daily-weather canvas")

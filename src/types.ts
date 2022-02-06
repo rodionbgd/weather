@@ -1,11 +1,23 @@
+export interface BeforeInstallPromptEvent extends Event {
+  readonly platforms: Array<string>;
+  readonly userChoice: Promise<{
+    outcome: "accepted" | "dismissed";
+    platform: string;
+  }>;
+
+  prompt(): Promise<void>;
+}
+
 declare global {
   interface Window {
     TOUCH: boolean;
+    standalone: boolean;
     WE: any;
     getLocation: (force?: boolean) => void;
     google: any;
     googleAutoComplete: any;
     Slip: any;
+    deferredPrompt: BeforeInstallPromptEvent;
   }
 }
 

@@ -85,8 +85,9 @@ export function getLocation(force: boolean) {
   };
   let cityName = "Москва";
   let cityData: City;
-  const { cities } = store.getState();
+  let watchId: number;
 
+  const { cities } = store.getState();
   async function success(position: GeolocationPosition) {
     const { latitude, longitude } = position.coords;
     coords = { latitude, longitude };
@@ -135,6 +136,9 @@ export function getLocation(force: boolean) {
       maximumAge: 0,
       timeout: 10000,
     };
-    navigator.geolocation.getCurrentPosition(success, error, options);
+    watchId = navigator.geolocation.watchPosition(success, error, options);
+    setTimeout(() => {
+      navigator.geolocation.clearWatch(watchId);
+    }, 10 * 1000);
   }
 }
