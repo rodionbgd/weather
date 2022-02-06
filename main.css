@@ -39,7 +39,7 @@
   .swiper-wrapper {
     position: relative;
     max-width: 100%;
-    z-index: 100;
+    z-index: 1;
     display: flex;
     transition-property: transform;
     box-sizing: inherit;
@@ -249,7 +249,7 @@
   .slider {
     display: flex;
     width: var(--slider-width);
-    z-index: 100;
+    z-index: 10;
     font-size: 1.1rem;
     padding: 0.5em 0;
   }
@@ -296,7 +296,7 @@
   .slider {
     display: flex;
     width: var(--slider-width);
-    z-index: 1000;
+    z-index: 10;
     font-size: 1.1rem;
     padding: 0.5em 0;
   }
@@ -375,7 +375,7 @@
   font-size: 12px;
   box-sizing: border-box;
   --header-color: #535353;
-  --main-color: #d2d2d2;
+  --main-color: #f4f4f4;
 }
 
 *,
@@ -424,12 +424,23 @@ a:focus {
   position: fixed;
   width: 100%;
   height: 100vh;
-  z-index: 100;
+  z-index: 1;
   overflow: visible;
   background: #4a6dc6 url(/weather/1197a2e2549c82db3ea1.gif) no-repeat center center;
 }
 
 @media (hover: none) and (pointer: coarse) {
+  * {
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    overflow-x: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
   .header {
     height: 6rem;
   }
@@ -466,6 +477,10 @@ a:focus {
   margin-left: 0.4em;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .header__title__hover:first-letter {
   display: inline-block;
   background: linear-gradient(to right, #e4f4fe 50%, #1bbaf9 50%);
@@ -495,7 +510,7 @@ a:focus {
 }
 
 .update-time {
-  align-self: end;
+  align-self: flex-end;
   padding: 1em;
   margin-bottom: 0;
 }
@@ -570,6 +585,10 @@ a:focus {
     );
   }
 
+  .scroll_standalone {
+    height: 95vh;
+  }
+
   .section-content {
     width: 100%;
     flex-direction: column;
@@ -594,6 +613,7 @@ a:focus {
   .update-time {
     font-size: 0.58em;
   }
+
   .current-temp {
     display: flex;
     flex-direction: column;
@@ -770,6 +790,7 @@ a:focus {
   .update-time {
     font-size: 0.8em;
   }
+
   .current-city-title {
     text-align: center;
     font-size: 2rem;
@@ -900,27 +921,6 @@ a:focus {
     font-size: 1.1em;
   }
 
-  .map {
-    width: 35%;
-    height: 35%;
-    position: relative;
-  }
-
-  .map__wrap {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
-
-  .map__wrap canvas {
-    height: 100%;
-    overflow: auto;
-  }
-
-  .cesium-credit-textContainer {
-    display: none;
-  }
-
   .current-city-img {
     height: 80%;
   }
@@ -932,28 +932,6 @@ a:focus {
     background: rgba(26, 53, 98, 0.2);
     margin: 0 10px 0 10px;
     border-radius: 5px;
-  }
-
-  .we-pp-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: var(--input-color);
-    margin: 0 auto;
-    width: 50%;
-    height: 2.5em;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .we-pp-tip {
-    background-color: var(--input-color);
-  }
-
-  .marker {
-    font-size: 1.3rem;
-    text-align: center;
-    color: var(--header-color);
   }
 }
 
@@ -1087,7 +1065,7 @@ a:focus {
     width: 100%;
     font-size: 1.5em;
     overflow: hidden;
-    z-index: 100;
+    z-index: 1;
   }
 
   .sun-moon-phase-descr > * {
@@ -3156,7 +3134,7 @@ a:focus {
       rgba(190, 190, 190, 0.3),
       rgba(79, 79, 79, 0.9)
     ),
-    url(/weather/4f27357a75ef09318760.gif);
+    url(/weather/542ce0be1946fb57232f.gif);
   background-size: cover;
 }
 
@@ -3272,6 +3250,10 @@ a:focus {
     margin-left: 0.5em;
   }
 
+  .menu-header__title p {
+    flex: 1;
+  }
+
   .menu-header__title i {
     -webkit-text-stroke: 1px var(--bg-color-menu);
   }
@@ -3295,6 +3277,9 @@ a:focus {
     -ms-overflow-style: none;
   }
 
+  .menu__city-list_standalone {
+    height: 90vh;
+  }
   .menu__city-list::-webkit-scrollbar {
     display: none;
   }
@@ -3411,6 +3396,7 @@ a:focus {
     font-size: 1.8rem;
     word-break: break-word;
   }
+
   .city_list__name img {
     width: 0.8em;
   }
@@ -3462,7 +3448,7 @@ a:focus {
 
 @media (hover: none) and (pointer: coarse) {
   .pac-container {
-    z-index: 1000 !important;
+    z-index: 100 !important;
     width: auto !important;
     /*position: a !important;*/
     left: 0 !important;
@@ -3513,5 +3499,123 @@ a:focus {
 .pac-icon,
 .pac-icon-marker {
   display: none;
+}
+
+:root {
+  --color-icon: #fbcd00;
+  --social-icon1: #e4405f;
+}
+
+.icon-item {
+  display: none;
+}
+.icon-link {
+  display: inline-flex;
+  padding-right: 7rem;
+  font-size: 3rem;
+  text-decoration: none;
+  color: var(--color-icon);
+  transition: 0.5s linear;
+  position: relative;
+  z-index: 1;
+  margin: auto;
+}
+
+.icon-link:hover,
+.icon-link:active {
+  color: var(--main-color);
+}
+
+@-webkit-keyframes wiggle {
+  0% {
+    -webkit-transform: rotate(10deg);
+  }
+  25% {
+    -webkit-transform: rotate(-10deg);
+  }
+  50% {
+    -webkit-transform: rotate(10deg);
+  }
+  75% {
+    -webkit-transform: rotate(-10deg);
+  }
+  100% {
+    -webkit-transform: rotate(10deg);
+  }
+}
+
+@-ms-keyframes wiggle {
+  0% {
+    -ms-transform: rotate(10deg);
+  }
+  25% {
+    -ms-transform: rotate(-10deg);
+  }
+  50% {
+    -ms-transform: rotate(10deg);
+  }
+  75% {
+    -ms-transform: rotate(-10deg);
+  }
+  100% {
+    -ms-transform: rotate(10deg);
+  }
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(10deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(10deg);
+  }
+}
+
+.icon-link i {
+  margin: auto;
+  -webkit-animation-name: wiggle;
+  -ms-animation-name: wiggle;
+  -ms-animation-duration: 2000ms;
+  -webkit-animation-duration: 2000ms;
+  -webkit-animation-iteration-count: 100;
+  -ms-animation-iteration-count: 100;
+  -webkit-animation-timing-function: ease-in-out;
+  -ms-animation-timing-function: ease-in-out;
+}
+
+.icon-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 6rem;
+  height: 6rem;
+  background: var(--color-icon);
+  border-radius: 50%;
+  z-index: -1;
+  transform: scale(0);
+  transition: 0.3s cubic-bezier(0.95, 0.32, 0.37, 1.21);
+}
+
+.icon-link:hover::before,
+.icon-link:active::before {
+  transform: scale(0.75);
+  transition: transform 0.5s;
+}
+
+.icon-item a:hover:before,
+a:active:before {
+  background: var(--social-icon1);
 }
 
