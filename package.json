@@ -10,7 +10,7 @@
     "prepare": "husky install",
     "dev": "webpack serve --https --node-env development --history-api-fallback",
     "build": "webpack --node-env production",
-    "version": "auto-changelog  --tag-pattern .+ --hide-credit"
+    "version": "auto-changelog  --tag-pattern .+ --hide-credit && git add CHANGELOG.md && git commit -am \"changelog update\" && git push origin"
   },
   "husky": {
     "hooks": {

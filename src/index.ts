@@ -7,9 +7,8 @@ import { BeforeInstallPromptEvent } from "./types";
 
 Swiper.use([Pagination, History]);
 
-// window.TOUCH = true;
 window.TOUCH = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-window.standalone = window.matchMedia("(display-mode: standalone)").matches;
+window.standalone = window.matchMedia("standalone").matches;
 
 export const store = configureStore({
   reducer: {
@@ -28,9 +27,10 @@ export let showCity: HTMLDivElement;
 export let updateLocation: HTMLElement;
 
 function installApp() {
-  const installAppEl = <HTMLButtonElement>(
+  const installAppBtn = <HTMLButtonElement>(
     document.getElementById("install-app")
   );
+  let deferredPrompt: BeforeInstallPromptEvent;
   if (window.standalone && window.TOUCH) {
     menuCityList.classList.add("menu__city-list_standalone");
   }
@@ -38,24 +38,18 @@ function installApp() {
     if (window.standalone) {
       event.preventDefault();
     }
-    window.deferredPrompt = <BeforeInstallPromptEvent>event;
-    installAppEl.style.display = "block";
+    deferredPrompt = <BeforeInstallPromptEvent>event;
+    installAppBtn.style.display = "inline-flex";
   });
-  installAppEl.addEventListener("click", async () => {
-    const promptEvent = window.deferredPrompt;
-    if (!promptEvent) {
-      installAppEl.style.display = "none";
+  installAppBtn.addEventListener("click", async () => {
+    if (!deferredPrompt) {
+      installAppBtn.style.display = "none";
       return;
     }
-    if (
-      Object.hasOwnProperty.call(promptEvent, "prompt") &&
-      Object.hasOwnProperty.call(promptEvent, "userChoice")
-    ) {
-      await promptEvent.prompt();
-      await promptEvent.userChoice;
-    }
-    window.deferredPrompt = <BeforeInstallPromptEvent>(<unknown>null);
-    installAppEl.style.display = "none";
+    await deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => {});
+    deferredPrompt = <BeforeInstallPromptEvent>(<unknown>null);
+    installAppBtn.style.display = "none";
   });
 
   window.addEventListener("appinstalled", () => {
@@ -65,7 +59,7 @@ function installApp() {
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
       navigator.serviceWorker.register(
-        "https://rodionbgd.github.io/weather_test/sw.js"
+        "https://rodionbgd.github.io/weather/sw.js"
       );
     });
   }
@@ -80,6 +74,7 @@ export function createSwiper() {
       dynamicMainBullets: 3,
     },
     watchOverflow: true,
+    noSwiping: true,
     // history: {
     //     key: "city",
     //     root: originLocation,

@@ -358,7 +358,7 @@ export function setCurrentCityWeather(options: City, el: HTMLDivElement) {
                                     </div>
                                 </div>
                             </section>
-                            <fieldset class="slider no-min-width no-border ${
+                            <fieldset class="slider no-min-width no-border swiper-no-swiping ${
                               !window.TOUCH ? "no-padding" : ""
                             }">
                                 <div class="daily-chart">
@@ -437,6 +437,18 @@ export function setCurrentCityWeather(options: City, el: HTMLDivElement) {
         currentCitySunPhase.classList.remove("sun-phase-animate");
         currentCityMoonPhase.classList.remove("moon-phase-animate");
       }
+    });
+    const dailyLabels = <HTMLElement>(
+      cityEl.querySelector(".hour-daily-weather .slider.swiper-slide")
+    );
+    const dailyChart = <HTMLElement>(
+      cityEl.querySelector(".hour-daily-weather fieldset")
+    );
+    dailyLabels.addEventListener("scroll", () => {
+      dailyChart.scrollLeft = dailyLabels.scrollLeft;
+    });
+    dailyChart.addEventListener("scroll", () => {
+      dailyLabels.scrollLeft = dailyChart.scrollLeft;
     });
   } else {
     verboseInfoSunMoon.addEventListener("mouseenter", () => {

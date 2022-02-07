@@ -13,7 +13,7 @@ export function renderDailyLabels(dailyWeather: Weather[]) {
     const date = currentDate.getDate();
     const month = currentDate.getMonth() + 1;
     innerHTML += `
-        <div class=" width-day wrap">
+        <div class="swiper-no-swiping width-day wrap">
             <p>${
               i === 1
                 ? "Завтра"

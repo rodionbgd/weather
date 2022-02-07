@@ -3,19 +3,14 @@
   --social-icon1: #e4405f;
 }
 
-.icon-item {
-  display: none;
-}
 .icon-link {
-  display: inline-flex;
+  display: none;
   padding-right: 7rem;
   font-size: 3rem;
   text-decoration: none;
   color: var(--color-icon);
   transition: 0.5s linear;
-  position: relative;
   z-index: 1;
-  margin: auto;
 }
 
 .icon-link:hover,
@@ -92,12 +87,9 @@
 .icon-link::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 6rem;
-  height: 6rem;
+  padding-right: 4rem;
+  width: 3rem;
+  height: 3rem;
   background: var(--color-icon);
   border-radius: 50%;
   z-index: -1;
@@ -107,7 +99,7 @@
 
 .icon-link:hover::before,
 .icon-link:active::before {
-  transform: scale(0.75);
+  transform: scale(1.4);
   transition: transform 0.5s;
 }
 
