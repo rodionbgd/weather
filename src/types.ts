@@ -14,7 +14,6 @@ declare global {
     standalone: boolean;
     WE: any;
     getLocation: (force?: boolean) => void;
-    google: any;
     googleAutoComplete: any;
     Slip: any;
     deferredPrompt: BeforeInstallPromptEvent;
@@ -66,7 +65,7 @@ export type Coords = {
 };
 
 // eslint-disable-next-line
-export enum LOCATION {
+export enum Location {
   LOCATION_NO,
   LOCATION_OK,
   LOCATION_ERROR,
@@ -74,7 +73,7 @@ export enum LOCATION {
 export type City = {
   id: number;
   name: string;
-  location: LOCATION;
+  location: Location;
   coords: Coords;
   isCurrentCity?: boolean;
   updateTime: string;

@@ -1,3 +1,4 @@
+import { google } from "google-maps";
 import { Coords } from "./types";
 import { getCurrentCity } from "./get_city";
 import { store } from "./index";
@@ -6,59 +7,50 @@ import { addNewCity } from "./add_remove_city";
 const input = <HTMLInputElement>document.getElementById("search");
 const searchBtn = <HTMLButtonElement>document.getElementById("search-button");
 export const searchForm = <HTMLFormElement>(
-  document.getElementById("search-form")
+    document.getElementById("search-form")
 );
 
 searchForm.addEventListener("submit", (e) => e.preventDefault());
 
 export async function getCityByCoords(coords: Coords) {
   const latLng = new window.google.maps.LatLng(
-    coords.latitude,
-    coords.longitude
+      coords.latitude,
+      coords.longitude
   );
 
-  const data = await new window.google.maps.Geocoder().geocode({ latLng });
+  const data = await new google.maps.Geocoder().geocode({ location: latLng });
   const { results } = data;
   let city = "";
-  if (results[1]) {
-    let country = null;
-    let cityAlt = null;
-    let c;
-    let lc;
-    let component;
-    for (let r = 0, rl = results.length; r < rl; r += 1) {
-      const result = results[r];
-      if (
-        !city &&
-        (result.types[0] === "street_address" ||
-          result.types[0] === "premise" ||
-          result.types[0] === "establishment")
-      ) {
-        for (c = 0, lc = result.address_components.length; c < lc; c += 1) {
-          component = result.address_components[c];
-          if (component.types[0] === "administrative_area_level_3") {
-            city = component.long_name;
-            break;
-          }
-        }
-      } else if (!city && !cityAlt && result.types[0] === "political") {
-        for (c = 0, lc = result.address_components.length; c < lc; c += 1) {
-          component = result.address_components[c];
-
-          if (component.types[0] === "locality") {
-            cityAlt = component.long_name;
-            break;
-          }
-        }
-      } else if (!country && result.types[0] === "country") {
-        country = result.address_components[0].long_name;
-      }
-      if (city && country) {
-        break;
-      }
-    }
+  if (!results[1]) {
+    return city;
   }
-  return city;
+  let cityAlt = "";
+  results.forEach((result: google.maps.GeocoderResult) => {
+    const { address_components, types } = result;
+    if (
+        !city &&
+        (types[0] === "street_address" ||
+            types[0] === "premise" ||
+            types[0] === "establishment")
+    ) {
+      address_components.forEach((address_component) => {
+        if (
+            !city &&
+            address_component.types[0] === "administrative_area_level_3"
+        ) {
+          city = address_component.long_name;
+        }
+      });
+    } else if (!cityAlt && types[0] === "political") {
+      address_components.forEach((address_component) => {
+        if (!cityAlt && address_component.types[0] === "locality") {
+          cityAlt = address_component.long_name;
+        }
+      });
+    }
+  });
+
+  return city || cityAlt;
 }
 
 async function addCityFromInput(inputCity: string) {
@@ -95,10 +87,7 @@ window.googleAutoComplete = function googleAutoComplete() {
     strictBounds: false,
     types: ["(cities)"],
   };
-  const autocomplete = new window.google.maps.places.Autocomplete(
-    input,
-    options
-  );
+  const autocomplete = new google.maps.places.Autocomplete(input, options);
 
   searchForm.addEventListener("keydown", async (e) => {
     // e.preventDefault();
