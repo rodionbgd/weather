@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [1.0.3](https://github.com/rodionbgd/weather/compare/1.0.2...1.0.3)
+
+> 8 February 2022
+
+- fix: Типизация google.maps [`9bc308f`](https://github.com/rodionbgd/weather/commit/9bc308f2e2cbf06c2eda6f6e2a6cb419d4fdd33a)
+- refactor: Линтинг [`9d7a0b6`](https://github.com/rodionbgd/weather/commit/9d7a0b61ffed56ed2b786d2a0b481c7ccb580591)
+- changelog update [`f79dc9b`](https://github.com/rodionbgd/weather/commit/f79dc9bf28664f6e5d450b4174080a365af291f5)
+
 #### [1.0.2](https://github.com/rodionbgd/weather/compare/1.0.1...1.0.2)
 
 > 7 February 2022
