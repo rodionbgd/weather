@@ -9,41 +9,43 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  overrides: [{
-    "files": ["src/*.ts"],
-    parser: "@typescript-eslint/parser",
-    parserOptions: {
-      "project": "./tsconfig.json"
+  overrides: [
+    {
+      files: ["src/*.ts"],
+      parser: "@typescript-eslint/parser",
+      parserOptions: {
+        project: "./tsconfig.json",
+      },
+      plugins: ["@typescript-eslint/eslint-plugin"],
+      rules: {
+        "import/extensions": [
+          "error",
+          "ignorePackages",
+          {
+            ts: "never",
+            js: "never",
+          },
+        ],
+        "max-len": [
+          "error",
+          {
+            ignoreComments: true,
+            code: 120,
+          },
+        ],
+        "no-unused-vars": "off",
+        camelcase: "off",
+        "import/no-unresolved": "off",
+        "import/no-mutable-exports": "off",
+      },
     },
-    plugins: ["@typescript-eslint/eslint-plugin"],
-    rules: {
-      "import/extensions": [
-        "error",
-        "ignorePackages",
-        {
-          "ts": "never",
-          "js": "never",
-        }
-      ],
-      "max-len": [
-        "error",
-        {
-          ignoreComments: true,
-          code: 120,
-        },
-      ],
-      "no-unused-vars": "off",
-      "camelcase" : "off",
-      "import/no-unresolved": "off",
-      "import/no-mutable-exports" : "off"
-    },
-  }],
+  ],
   settings: {
     "import/resolver": {
-      "node": {
-        "extensions": [".ts", ".js"],
-      }
-    }
+      node: {
+        extensions: [".ts", ".js"],
+      },
+    },
   },
   plugins: ["jest"],
 };

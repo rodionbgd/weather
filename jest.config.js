@@ -6,7 +6,5 @@ module.exports = {
   moduleNameMapper: {
     "\\.(scss|css)$": "identity-obj-proxy",
   },
-  "transformIgnorePatterns": [
-    "node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)"
-  ]
+  transformIgnorePatterns: ["node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)"],
 };
