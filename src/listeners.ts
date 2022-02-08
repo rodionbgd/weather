@@ -1,4 +1,4 @@
-import { City, CityWeather, LOCATION } from "./types";
+import { City, CityWeather, Location } from "./types";
 import { setCurrentCityWeather } from "./current_city_weather";
 import { addCity } from "./reducers/cities";
 import init from "./init";
@@ -32,7 +32,7 @@ export default function listeners() {
     let currentCity = cities.filter((city) => city.id === Number(cityId))[0];
     if (!currentCity) {
       [currentCity] = cities.filter(
-        (city) => city.location !== LOCATION.LOCATION_NO
+        (city) => city.location !== Location.LOCATION_NO
       );
     }
     setCurrentCityWeather(currentCity, cityListEl);

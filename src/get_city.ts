@@ -1,4 +1,4 @@
-import { City, CityWeather, Coords, LOCATION } from "./types";
+import { City, CityWeather, Coords, Location } from "./types";
 import { store } from "./index";
 import { getCityByCoords } from "./city_name";
 import { addNewCity } from "./add_remove_city";
@@ -24,7 +24,7 @@ export async function getCityList() {
     let city = JSON.parse(value) as City;
     city.updateTime = new Date().toString();
     const weather = await getCityWeather(city.coords);
-    if (city.location !== LOCATION.LOCATION_NO) {
+    if (city.location !== Location.LOCATION_NO) {
       cityLocationCounter += 1;
     }
     if (cityLocationCounter > 1) {
@@ -64,7 +64,7 @@ export async function getCurrentCity(
     city = {
       id: lastId + 1,
       name: cityName,
-      location: LOCATION.LOCATION_NO,
+      location: Location.LOCATION_NO,
       coords,
       weather: (await getCityWeather(coords)) as CityWeather,
       updateTime: new Date().toString(),
@@ -94,7 +94,7 @@ export function getLocation(force: boolean) {
     const name = await getCityByCoords(coords);
     const newCity = await getCurrentCity(name, coords, cities);
     if (newCity) {
-      newCity.location = LOCATION.LOCATION_OK;
+      newCity.location = Location.LOCATION_OK;
       setTimeout(() => {
         addNewCity(newCity);
       }, 0);
@@ -104,7 +104,7 @@ export function getLocation(force: boolean) {
   async function error() {
     if (cities.length && !force) {
       [cityData] = cities.filter(
-        (city) => city.location !== LOCATION.LOCATION_NO
+        (city) => city.location !== Location.LOCATION_NO
       );
       if (!cityData) {
         [cityData] = cities;
@@ -120,9 +120,9 @@ export function getLocation(force: boolean) {
     if (newCity) {
       if (
         !cityData ||
-        (cityData && cityData.location !== LOCATION.LOCATION_NO)
+        (cityData && cityData.location !== Location.LOCATION_NO)
       ) {
-        newCity.location = LOCATION.LOCATION_ERROR;
+        newCity.location = Location.LOCATION_ERROR;
       }
       addNewCity(newCity);
     }

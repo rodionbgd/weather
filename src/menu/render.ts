@@ -1,6 +1,6 @@
 import { menuCityList, store } from "../index";
 import { KELVIN_TO_CELSIUS } from "../current_city_weather";
-import { LOCATION } from "../types";
+import { Location } from "../types";
 import { removeOldCity } from "../add_remove_city";
 import "slipjs";
 
@@ -21,7 +21,7 @@ export function renderMenu() {
     const { current } = weather;
     const bgClassName = `bg-${current.weather[0].icon}`;
     let locationImg = "";
-    if (city.location !== LOCATION.LOCATION_NO) {
+    if (city.location !== Location.LOCATION_NO) {
       locationImg = `
             <img src="./images/location_${city.location}.png" alt="">
             `;

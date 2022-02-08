@@ -1,5 +1,5 @@
 import Swiper from "swiper";
-import { City, LOCATION } from "./types";
+import { City, Location } from "./types";
 import Slider from "./slider";
 import renderDailyChart, {
   renderDailyLabels,
@@ -167,7 +167,7 @@ export function renderHeader(options: City) {
             <p class="current-city-title">
             ${options.name}
             `;
-  if (options.location !== LOCATION.LOCATION_NO) {
+  if (options.location !== Location.LOCATION_NO) {
     innerHTML += `
             <img ${
               !window.TOUCH ? 'class="icon"' : ""

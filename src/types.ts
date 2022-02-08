@@ -18,6 +18,9 @@ declare global {
     Slip: any;
     deferredPrompt: BeforeInstallPromptEvent;
   }
+  interface Array<T> {
+    at(index: number): T;
+  }
 }
 
 export type TemperatureObj = {

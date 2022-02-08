@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { City, LOCATION } from "../types";
+import { City, Location } from "../types";
 
 const initialState = [] as City[];
 
@@ -22,9 +22,9 @@ export const citySlice = createSlice({
           city.isCurrentCity = false;
         });
         let cityIndex;
-        if (action.payload.location !== LOCATION.LOCATION_NO) {
+        if (action.payload.location !== Location.LOCATION_NO) {
           cityIndex = state.findIndex(
-            (city) => city.location !== LOCATION.LOCATION_NO
+            (city) => city.location !== Location.LOCATION_NO
           );
         } else {
           cityIndex = state.findIndex((city) => city.id === action.payload.id);

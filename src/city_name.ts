@@ -1,4 +1,3 @@
-import { google } from "google-maps";
 import { Coords } from "./types";
 import { getCurrentCity } from "./get_city";
 import { store } from "./index";
@@ -7,16 +6,13 @@ import { addNewCity } from "./add_remove_city";
 const input = <HTMLInputElement>document.getElementById("search");
 const searchBtn = <HTMLButtonElement>document.getElementById("search-button");
 export const searchForm = <HTMLFormElement>(
-    document.getElementById("search-form")
+  document.getElementById("search-form")
 );
 
 searchForm.addEventListener("submit", (e) => e.preventDefault());
 
 export async function getCityByCoords(coords: Coords) {
-  const latLng = new window.google.maps.LatLng(
-      coords.latitude,
-      coords.longitude
-  );
+  const latLng = new google.maps.LatLng(coords.latitude, coords.longitude);
 
   const data = await new google.maps.Geocoder().geocode({ location: latLng });
   const { results } = data;
@@ -28,15 +24,15 @@ export async function getCityByCoords(coords: Coords) {
   results.forEach((result: google.maps.GeocoderResult) => {
     const { address_components, types } = result;
     if (
-        !city &&
-        (types[0] === "street_address" ||
-            types[0] === "premise" ||
-            types[0] === "establishment")
+      !city &&
+      (types[0] === "street_address" ||
+        types[0] === "premise" ||
+        types[0] === "establishment")
     ) {
       address_components.forEach((address_component) => {
         if (
-            !city &&
-            address_component.types[0] === "administrative_area_level_3"
+          !city &&
+          address_component.types[0] === "administrative_area_level_3"
         ) {
           city = address_component.long_name;
         }

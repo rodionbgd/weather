@@ -26,7 +26,7 @@ import {
 } from "./index";
 import { setCityList } from "./reducers/cities";
 import { preload } from "./utils";
-import { LOCATION } from "./types";
+import { Location } from "./types";
 
 import { setCurrentCityWeather } from "./current_city_weather";
 import { getCityList, getLocation } from "./get_city";
@@ -45,7 +45,7 @@ export function createSubscriber() {
       });
     }
     [currentCity] = cities.filter(
-      (city) => city.location !== LOCATION.LOCATION_NO
+      (city) => city.location !== Location.LOCATION_NO
     );
   } else {
     [currentCity] = cities.filter((city) => city.isCurrentCity);
