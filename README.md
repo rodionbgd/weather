@@ -38,4 +38,4 @@ Please [open an issue](https://github.com/rodionbgd/weather/issues) for support 
 
 
 # Contacts
-Don't hesitate to ask me whatever you want. Stay tuned for more awesome projects :smile:. Follow me or Connect me via <a href="https://t.me/rodionbgd">Telegram<a/
+Don't hesitate to ask me whatever you want. Stay tuned for more awesome projects :smile:. Follow me or Connect me via <a href="https://t.me/rodionbgd">Telegram</a>
