@@ -27,29 +27,18 @@ export let showCity: HTMLDivElement;
 export let updateLocation: HTMLElement;
 
 function installApp() {
-  const installAppBtn = <HTMLButtonElement>(
-    document.getElementById("install-app")
-  );
   let deferredPrompt: BeforeInstallPromptEvent;
   if (window.standalone && window.TOUCH) {
     menuCityList.classList.add("menu__city-list_standalone");
   }
-  window.addEventListener("beforeinstallprompt", (event) => {
+  window.addEventListener("beforeinstallprompt", async (event) => {
     if (window.standalone) {
       event.preventDefault();
     }
     deferredPrompt = <BeforeInstallPromptEvent>event;
-    installAppBtn.style.display = "inline-flex";
-  });
-  installAppBtn.addEventListener("click", async () => {
-    if (!deferredPrompt) {
-      installAppBtn.style.display = "none";
-      return;
-    }
     await deferredPrompt.prompt();
     deferredPrompt.userChoice.then(() => {});
     deferredPrompt = <BeforeInstallPromptEvent>(<unknown>null);
-    installAppBtn.style.display = "none";
   });
 
   window.addEventListener("appinstalled", () => {
