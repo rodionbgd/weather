@@ -35,9 +35,12 @@ module.exports = {
         ],
         "no-unused-vars": "off",
         "no-undef" : "off",
-        camelcase: "off",
+        "no-restricted-globals":"off",
+
         "import/no-unresolved": "off",
         "import/no-mutable-exports": "off",
+
+        camelcase: "off",
       },
     },
   ],
