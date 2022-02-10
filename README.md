@@ -6,7 +6,7 @@
 </h1>  
 
 <h3 align=center>A typescript Weather Forecast app with awesome UI</h3>
-<div style="text-align: center;">
+<div align="center">
 <span > <img width=179 src="readme/main_frame.gif" alt=""/></span>  
 <span > <img width=300 src="readme/hour_daily.gif" alt=""/></span> 
 <span > <img width=432 src="readme/sum_moon.gif" alt=""/></span>
