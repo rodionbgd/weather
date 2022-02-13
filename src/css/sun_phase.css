@@ -1,0 +1,186 @@
+:root {
+  --sun-phase-deg: 0deg;
+  --moon-phase-deg: 0deg;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .sun-phase {
+    margin: 0 auto;
+    padding: 1em 1em 0 1em;
+    width: 80%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .moon-phase {
+    margin: 0 auto;
+    padding: 1em 1em 0 1em;
+    width: 60%;
+    top: -11em;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .moon-phase::before {
+    content: "";
+    padding-top: 100%;
+    display: block;
+    margin-bottom: -50%;
+    border-radius: 50%;
+    border: 0.2em dashed #dbdbdb;
+  }
+
+  .moon-phase span {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    left: -2%;
+    height: 2em;
+  }
+
+  .moon-rotate img {
+    margin-top: 0.7em;
+    transform: rotate(-110deg);
+  }
+
+  .sun-phase::before {
+    content: "";
+    padding-top: 100%;
+    display: block;
+    margin-bottom: -50%;
+    border-radius: 50%;
+    border: 0.2em dashed #dbdbdb;
+  }
+
+  .sun-phase span {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    left: -4%;
+    height: 2em;
+  }
+
+  .sun-phase-animate {
+    transform-origin: 100% 100%;
+    animation: rotate-sun 1.5s ease;
+    transform: rotate(var(--sun-phase-deg));
+  }
+
+  @keyframes rotate-sun {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(var(--sun-phase-deg));
+    }
+  }
+
+  .moon-phase-animate {
+    transform-origin: 100% 100%;
+    animation: rotate-moon 1.5s ease;
+    transform: rotate(var(--moon-phase-deg));
+  }
+
+  @keyframes rotate-moon {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(var(--moon-phase-deg));
+    }
+  }
+  .sun-phase span img {
+    width: 20%;
+    margin-top: 0.5em;
+    margin-left: 0.6em;
+  }
+
+  .sun-moon-phase-descr {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0.5em;
+    width: 100%;
+    font-size: 1.5em;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .sun-moon-phase-descr > * {
+    margin: 0.5em 0;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sun-phase {
+    padding: 1em 1em 0;
+    width: 80%;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto 11em;
+  }
+
+  .moon-phase {
+    display: none;
+    position: relative;
+  }
+
+  .sun-phase::before {
+    content: "";
+    padding-top: 100%;
+    display: block;
+    margin-bottom: -50%;
+    border-radius: 50%;
+    border: 0.2em dashed #dbdbdb;
+  }
+
+  .sun-phase span {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    left: -4%;
+    height: 2em;
+  }
+
+  .sun-phase-animate {
+    transform-origin: 100% 100%;
+    animation: rotate-sun 1.5s ease;
+    transform: rotate(var(--sun-phase-deg));
+  }
+
+  @keyframes rotate-sun {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(var(--sun-phase-deg));
+    }
+  }
+
+  @keyframes rotate-moon {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(var(--moon-phase-deg));
+    }
+  }
+  .sun-phase span img {
+    width: 20%;
+    position: relative;
+    left: 0.8em;
+    top: 1em;
+  }
+
+  .sun-moon-phase-descr {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1em;
+    width: 100%;
+    font-size: 1.2rem;
+    overflow: hidden;
+  }
+
+  .sun-moon-phase-descr > * {
+    margin: 1.5em;
+  }
+}

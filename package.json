@@ -1,0 +1,90 @@
+{
+  "name": "weather",
+  "version": "1.0.4",
+  "description": "Online weather forecast",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint src && prettier --check src",
+    "lint:fix": "prettier --write src && eslint --fix src",
+    "prepare": "husky install",
+    "dev": "webpack serve --https --node-env development --history-api-fallback",
+    "build": "webpack --node-env production",
+    "version": "auto-changelog  --tag-pattern .+ --hide-credit && git add CHANGELOG.md && git commit -am \"chore: Changelog update\" && git push origin"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --fix",
+    "*.{js,css,md,json,yml}": "prettier --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rodionbgd/weather.git"
+  },
+  "keywords": [
+    "js",
+    "weather",
+    "forecast",
+    "widget"
+  ],
+  "author": "Rodion",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rodionbgd/weather/issues"
+  },
+  "homepage": "https://github.com/rodionbgd/weather#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/plugin-transform-runtime": "^7.16.10",
+    "@babel/preset-env": "^7.14.9",
+    "@babel/preset-typescript": "^7.16.0",
+    "@types/googlemaps": "^3.43.3",
+    "@types/jest": "^26.0.24",
+    "@typescript-eslint/eslint-plugin": "^5.3.0",
+    "@typescript-eslint/parser": "^5.3.0",
+    "auto-changelog": "^2.4.0",
+    "babel-jest": "^27.0.6",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-rewire": "^1.2.0",
+    "babel-polyfill": "^6.26.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "css-loader": "^6.2.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jest": "^24.4.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.3.2",
+    "http-server": "^14.1.0",
+    "husky": "^7.0.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.0.6",
+    "lint-staged": "^11.1.2",
+    "live-server": "^1.1.0",
+    "live-server-https": "0.0.2",
+    "mini-css-extract-plugin": "^2.2.0",
+    "prettier": "2.3.2",
+    "regenerator-runtime": "^0.13.9",
+    "sass": "^1.38.0",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.2.1",
+    "typescript": "^4.5.4",
+    "webpack": "^5.50.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^4.0.0"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.7.1",
+    "chart.js": "^3.7.0",
+    "chartjs-plugin-datalabels": "^2.0.0",
+    "jest-fetch-mock": "^3.0.3",
+    "redux": "^4.1.2",
+    "slipjs": "github:kornelski/slip",
+    "swiper": "^7.4.1"
+  }
+}

@@ -1,0 +1,67 @@
+:root {
+  --swiper-navigation-size: 44px;
+  --swiper-theme-color: #007aff;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .swiper {
+    max-width: 100%;
+    overflow-y: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  .swiper {
+    /*max-width: calc( 100% - 1.2em);*/
+    /*padding: 1em;*/
+    font-size: inherit;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+  }
+
+  .swiper-wrapper {
+    position: relative;
+    max-width: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+  }
+
+  .swiper-slide {
+    transition-property: transform;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .swiper-slide {
+    /*max-width: 100%;*/
+    /*height: 100%;*/
+    /*position: relative;*/
+  }
+
+  .swiper-pagination {
+    /*padding-left: .5rem;*/
+  }
+
+  .swiper-pagination-bullet {
+    width: 0.5rem;
+    height: 0.5rem;
+    /*text-align: center;*/
+    /*background-color: #c62c2c;*/
+    /*opacity: 1;*/
+    /*background: rgba(0,0,0,0.2);*/
+  }
+
+  .swiper-pagination-bullet-active {
+    width: 0.8rem;
+    height: 0.5rem;
+    opacity: 0.4;
+  }
+}
