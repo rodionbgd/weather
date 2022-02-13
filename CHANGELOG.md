@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file. Dates are d
 
 > 13 February 2022
 
-- fix: Корректный рендеринг при изменении местоположения [`4ae6334`](https://github.com/rodionbgd/weather/commit/4ae63347d05d096df53863255573823cbecf8f05)
+- fix: Корректный рендеринг при изменении местоположения [`d3b2424`](https://github.com/rodionbgd/weather/commit/d3b24240a40d305df8303f426afe37be42b319dd)
 - Добавлен readme [`030902c`](https://github.com/rodionbgd/weather/commit/030902c1284a8b2f97f633860a46cca3d876d5f1)
 - fix: window.self заменен на self [`a6109b8`](https://github.com/rodionbgd/weather/commit/a6109b8392cbd06ab75f7b69c7c7dd9f46e28a54)
 
