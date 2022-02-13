@@ -88,6 +88,7 @@ export function getLocation(force: boolean) {
   let watchId: number;
 
   const { cities } = store.getState();
+
   async function success(position: GeolocationPosition) {
     const { latitude, longitude } = position.coords;
     coords = { latitude, longitude };
@@ -95,9 +96,7 @@ export function getLocation(force: boolean) {
     const newCity = await getCurrentCity(name, coords, cities);
     if (newCity) {
       newCity.location = Location.LOCATION_OK;
-      setTimeout(() => {
-        addNewCity(newCity);
-      }, 0);
+      addNewCity(newCity);
     }
   }
 

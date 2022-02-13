@@ -1,6 +1,6 @@
 {
   "name": "weather",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Online weather forecast",
   "main": "src/index.ts",
   "scripts": {
@@ -76,8 +76,7 @@
     "typescript": "^4.5.4",
     "webpack": "^5.50.0",
     "webpack-cli": "^4.7.2",
-    "webpack-dev-server": "^4.0.0",
-    "workbox-webpack-plugin": "^6.4.2"
+    "webpack-dev-server": "^4.0.0"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",

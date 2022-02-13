@@ -28,9 +28,6 @@ export let updateLocation: HTMLElement;
 
 function installApp() {
   let deferredPrompt: BeforeInstallPromptEvent;
-  if (window.standalone && window.TOUCH) {
-    menuCityList.classList.add("menu__city-list_standalone");
-  }
   window.addEventListener("beforeinstallprompt", async (event) => {
     if (window.standalone) {
       event.preventDefault();

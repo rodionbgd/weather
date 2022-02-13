@@ -104,10 +104,6 @@ a:focus {
   margin-left: 0.4em;
 }
 
-.hidden {
-  display: none !important;
-}
-
 .header__title__hover:first-letter {
   display: inline-block;
   background: linear-gradient(to right, #e4f4fe 50%, #1bbaf9 50%);
